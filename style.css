@@ -78,18 +78,18 @@ header {
 /* ====== PROFILE PHOTO STYLING ======= */
 /* ==================================== */
 .profile-photo {
-    width: 120px; /* Adjust size as needed */
-    height: 120px; /* Must match width for a circle */
+    width: 160px; /* Adjust size as needed */
+    height: 160px; /* Must match width for a circle */
     border-radius: 50%; /* Makes it circular */
     object-fit: cover; /* Ensures square cropping doesn't warp image */
-    border: 3px solid var(--accent-color); /* Professional accent border */
+    border: 4px solid var(--accent-color); /* Professional accent border */
     box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Soft depth shadow */
     margin-bottom: 1.5rem; /* Space below photo */
     transition: transform 0.3s ease; /* Adds subtle interactive effect */
 }
 
 .profile-photo:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
+    transform: scale(1.03); /* Slight zoom on hover */
 }
 
 /* Container refinement */
@@ -248,7 +248,7 @@ footer {
         font-size: 2.2rem;
     }
     .profile-photo {
-        width: 90px; /* Slightly smaller photo on mobile */
-        height: 90px;
+        width: 130px; /* Slightly smaller photo on mobile */
+        height: 130px;
     }
 }
