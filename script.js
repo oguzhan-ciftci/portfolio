@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scrolling for navigation links
     const links = document.querySelectorAll('.navbar a');
     
     links.forEach(link => {
@@ -9,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if(targetElement) {
                 window.scrollTo({
-                    top: targetElement.offsetTop - 60, // Menü yüksekliğini hesaba katar
+                    top: targetElement.offsetTop - 60, // Offsets the sticky navbar height
                     behavior: 'smooth'
                 });
             }
