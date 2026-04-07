@@ -78,8 +78,8 @@ header {
 /* ====== PROFILE PHOTO STYLING ======= */
 /* ==================================== */
 .profile-photo {
-    width: 80px; /* Adjust size as needed */
-    height: 80px; /* Must match width for a circle */
+    width: 120px; /* Adjust size as needed */
+    height: 120px; /* Must match width for a circle */
     border-radius: 50%; /* Makes it circular */
     object-fit: cover; /* Ensures square cropping doesn't warp image */
     border: 3px solid var(--accent-color); /* Professional accent border */
@@ -248,7 +248,7 @@ footer {
         font-size: 2.2rem;
     }
     .profile-photo {
-        width: 65px; /* Slightly smaller photo on mobile */
-        height: 65px;
+        width: 90px; /* Slightly smaller photo on mobile */
+        height: 90px;
     }
 }
