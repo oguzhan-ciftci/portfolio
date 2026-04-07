@@ -37,6 +37,49 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
+/* ==================================== */
+/* ====== NAV PHOTO & ALIGNMENT ======= */
+/* ==================================== */
+.nav-container {
+    display: flex;
+    justify-content: space-between; /* Fotoğraf/metni sola, menü linklerini sağa hizalar */
+    align-items: center; /* Dikey olarak ortalar */
+    padding: 0 1rem;
+}
+
+.nav-logo-area {
+    display: flex;
+    align-items: center; /* Fotoğraf ve metni dikey olarak ortalar */
+}
+
+.nav-profile-photo {
+    width: 32px; /* Menü için küçük boyut */
+    height: 32px;
+    border-radius: 50%; /* Dairesel */
+    object-fit: cover;
+    border: 2px solid var(--accent-color);
+    margin-right: 12px; /* Metinle fotoğraf arasındaki boşluk */
+}
+
+.nav-text-block {
+    display: flex;
+    flex-direction: column; /* İsim ve unvanı dikey olarak sıralar */
+}
+
+.nav-name {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.05rem;
+    line-height: 1.2;
+}
+
+.nav-title {
+    color: #a0aec0; /* Daha sönük bir renk unvan için */
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+/* ==================================== */
+
 .navbar ul {
     list-style: none;
     display: flex;
