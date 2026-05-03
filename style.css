@@ -62,39 +62,28 @@ a:hover { text-decoration: underline; }
 /* ==================================== */
 /* NOTES & ARTICLE LISTING STYLES       */
 /* ==================================== */
-.notes-list {
-    list-style: none;
-    margin-top: 20px;
-}
-
 .note-item {
     display: flex;
-    justify-content: flex-start; /* Sola hizalama */
-    align-items: center; /* Dikey olarak ortala */
+    justify-content: flex-start;
+    align-items: center;
     padding: 25px 0;
     border-bottom: 1px solid var(--border-color);
     transition: background-color 0.3s ease;
 }
 
-.note-item:hover {
-    background-color: #fcfcfc;
-}
-
-/* ======= NEW COVER IMAGE STYLING ======= */
+/* DAİREDEN DİKDÖRTGENE DÖNÜŞÜM */
 .note-cover {
-    width: 80px;  /* Ufak bir boyut */
-    height: 80px; /* Kare form */
-    border-radius: 50%; /* Dairesel (Eğer kare istersen 6px yap) */
-    object-fit: cover; /* Resim sığmazsa orantılı kırp */
-    margin-right: 25px; /* Metinle resim arasındaki boşluk */
-    border: 1px solid var(--border-color); /* Hafif bir çerçeve */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Çok hafif derinlik */
-    flex-shrink: 0; /* Ekran küçülünce resim daralmasın */
+    width: 100px; /* Dikdörtgen için genişliği biraz artırdık */
+    height: 70px; /* Yüksekliği azaltarak 16:9'a yakın bir form verdik */
+    border-radius: 6px; /* Köşeleri hafif yuvarlatılmış dikdörtgen */
+    object-fit: cover;
+    margin-right: 25px;
+    border: 1px solid var(--border-color);
+    flex-shrink: 0;
 }
-/* ======================================= */
 
 .note-info {
-    flex-grow: 1; /* Metin kalan alanı doldursun */
+    flex-grow: 1;
     padding-right: 20px;
 }
 
@@ -103,57 +92,12 @@ a:hover { text-decoration: underline; }
     color: var(--heading-color);
     margin-bottom: 5px;
     font-weight: 600;
-    line-height: 1.3;
 }
 
-.note-meta {
-    font-size: 0.85rem;
-    color: #888;
-}
-
-.read-btn {
-    display: inline-block;
-    padding: 8px 20px;
-    background-color: transparent;
-    color: var(--accent-color);
-    border: 1px solid var(--accent-color);
-    border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
-    flex-shrink: 0; /* Buton daralmasın */
-}
-
-.read-btn:hover {
-    background-color: var(--accent-color);
-    color: #fff;
-    text-decoration: none;
-}
-
-/* RESPONSIVE ADDITIONS FOR NOTES */
-@media (max-width: 768px) {
-    .note-item {
-        flex-direction: column; /* Mobilde dikey sırala */
-        align-items: flex-start; /* Sola hizala */
-        padding: 20px 0;
-    }
-    
-    .note-cover {
-        width: 60px; /* Mobilde biraz daha küçült */
-        height: 60px;
-        margin-right: 0;
-        margin-bottom: 15px; /* Alttaki metne boşluk */
-    }
-    
-    .read-btn {
-        margin-top: 15px; /* Metinden sonra boşluk */
-    }
-}
+/* PAYLAŞ/BEĞEN BUTONLARI KALDIRILDIĞI İÇİN GEREKSİZ STİLLERİ SİLDİK */
 /* ==================================== */
 
-/* ==================================== */
+
 /* ARTICLE DETAIL STYLES                */
 /* ==================================== */
 .article-header {
