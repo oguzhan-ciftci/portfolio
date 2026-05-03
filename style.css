@@ -1,10 +1,16 @@
+/* ==================================== */
+/* BASE & TYPOGRAPHY           */
+/* ==================================== */
 :root {
-    --primary-color: #1a365d;
-    --secondary-color: #2b6cb0;
-    --accent-color: #4299e1;
-    --light-bg: #f7fafc;
-    --text-color: #2d3748;
-    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --sidebar-bg: #1c1c1c;
+    --sidebar-text: #e0e0e0;
+    --main-bg: #ffffff;
+    --text-color: #333333;
+    --heading-color: #222222;
+    --accent-color: #0066cc;
+    --border-color: #eaeaea;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-serif: "Georgia", "Times New Roman", serif;
 }
 
 * {
@@ -18,370 +24,259 @@ html {
 }
 
 body {
-    font-family: var(--font-family);
+    font-family: var(--font-sans);
     color: var(--text-color);
     line-height: 1.6;
+    background-color: var(--main-bg);
+    display: flex;
 }
 
-.container {
-    width: 90%;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.navbar {
-    background-color: var(--primary-color);
-    position: sticky;
+/* ==================================== */
+/* SIDEBAR                */
+/* ==================================== */
+.sidebar {
+    position: fixed;
     top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-/* ==================================== */
-/* ====== NAV PHOTO & ALIGNMENT ======= */
-/* ==================================== */
-.nav-container {
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    padding: 40px 30px;
+    overflow-y: auto;
     display: flex;
-    justify-content: space-between; /* Fotoğraf/metni sola, menü linklerini sağa hizalar */
-    align-items: center; /* Dikey olarak ortalar */
-    padding: 0 1rem;
+    flex-direction: column;
 }
 
-.nav-logo-area {
-    display: flex;
-    align-items: center; /* Fotoğraf ve metni dikey olarak ortalar */
+.profile-container {
+    margin-bottom: 30px;
 }
 
-.nav-profile-photo {
-    width: 32px; /* Menü için küçük boyut */
-    height: 32px;
-    border-radius: 50%; /* Dairesel */
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--accent-color);
-    margin-right: 12px; /* Metinle fotoğraf arasındaki boşluk */
+    margin-bottom: 15px;
+    border: 3px solid #333;
 }
 
-.nav-text-block {
-    display: flex;
-    flex-direction: column; /* İsim ve unvanı dikey olarak sıralar */
-}
-
-.nav-name {
-    color: #fff;
-    font-weight: 500;
-    font-size: 1.05rem;
+.site-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 10px;
     line-height: 1.2;
 }
 
-.nav-title {
-    color: #a0aec0; /* Daha sönük bir renk unvan için */
-    font-size: 0.8rem;
-    font-weight: 400;
+.site-description {
+    font-size: 0.9rem;
+    color: #aaaaaa;
+    line-height: 1.5;
 }
-/* ==================================== */
 
-.navbar ul {
+.sidebar-nav {
+    flex-grow: 1;
+}
+
+.sidebar-nav ul {
     list-style: none;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 1rem 0;
 }
 
-.navbar li {
-    margin: 0.5rem 1.2rem;
+.sidebar-nav li {
+    margin-bottom: 12px;
 }
 
-.navbar a {
-    color: #fff;
+.sidebar-nav a {
+    color: #dddddd;
     text-decoration: none;
-    font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     transition: color 0.3s ease;
 }
 
-.navbar a:hover {
-    color: var(--accent-color);
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.sidebar-footer {
+    font-size: 0.8rem;
+    color: #666666;
+    margin-top: 30px;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+}
+
+/* ==================================== */
+/* MAIN CONTENT              */
+/* ==================================== */
+.content {
+    margin-left: 280px; /* Sidebar genişliği kadar soldan boşluk */
+    padding: 60px 8%;
+    max-width: 1100px;
+    width: 100%;
 }
 
 .section {
-    padding: 4rem 0;
-}
-
-.bg-light {
-    background-color: var(--light-bg);
-}
-
-header {
-    text-align: center;
-    padding-top: 5rem;
-}
-
-/* ==================================== */
-/* ====== PROFILE PHOTO STYLING ======= */
-/* ==================================== */
-.profile-photo {
-    width: 160px; /* İlk versiyondaki boyuta döndü */
-    height: 160px; /* İlk versiyondaki boyuta döndü */
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid var(--accent-color);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    margin-bottom: 1.5rem;
-    transition: transform 0.3s ease;
-}
-
-.profile-photo:hover {
-    transform: scale(1.03);
-}
-
-.header-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.name-block {
-    margin-bottom: 0.5rem;
-}
-
-header h1 {
-    font-size: 2.8rem;
-    color: var(--primary-color);
-    margin-bottom: 0.2rem;
-}
-
-header h2 {
-    font-size: 1.3rem;
-    color: var(--secondary-color);
-    font-weight: 400;
-    margin-bottom: 1.2rem;
-}
-/* ==================================== */
-
-.contact-info {
-    font-size: 0.95rem;
-    color: #4a5568;
-    margin-bottom: 1.5rem;
-}
-
-.contact-links {
-    margin-bottom: 2rem;
-}
-
-.contact-links a {
-    display: inline-block;
-    margin: 0.5rem;
-    padding: 0.6rem 1.2rem;
-    background-color: var(--secondary-color);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    transition: background-color 0.3s;
-}
-
-.contact-links a:hover {
-    background-color: var(--primary-color);
-}
-
-.research-interests {
-    background: #fff;
-    padding: 1.5rem;
-    border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    max-width: 700px;
-    margin: 0 auto;
-    border-top: 3px solid var(--accent-color);
+    margin-bottom: 60px;
 }
 
 h2 {
-    margin-bottom: 2rem;
-    color: var(--primary-color);
-    border-bottom: 2px solid var(--accent-color);
-    display: inline-block;
-    padding-bottom: 0.5rem;
+    font-family: var(--font-sans);
+    font-size: 2.2rem;
+    color: var(--heading-color);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
 }
 
 h3 {
-    color: var(--secondary-color);
-    margin-bottom: 0.5rem;
-    margin-top: 1.5rem;
+    font-size: 1.4rem;
+    color: var(--heading-color);
+    margin-bottom: 15px;
+    margin-top: 30px;
 }
 
-h4 {
-    color: var(--primary-color);
-    margin-bottom: 0.2rem;
+p {
+    margin-bottom: 15px;
+    font-size: 1.05rem;
 }
 
-.card {
-    background: #fff;
-    padding: 1.5rem 2rem;
-    margin-bottom: 1.5rem;
-    border-left: 4px solid var(--secondary-color);
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.card h3 {
-    margin-top: 0;
-}
-
-.card ul {
-    margin-left: 1.2rem;
-    margin-top: 0.5rem;
-}
-
-.card li {
-    margin-bottom: 0.8rem;
-}
-
-.grid-2-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.bullet-list {
-    margin-left: 1.2rem;
-}
-
-.bullet-list li {
-    margin-bottom: 0.5rem;
-}
-
-/* Ders Listesi Linkleri İçin Stil */
-.course-list a {
-    color: var(--secondary-color);
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.course-list a:hover {
+a {
     color: var(--accent-color);
+    text-decoration: none;
+}
+
+a:hover {
     text-decoration: underline;
 }
 
-.skills-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 2rem;
+/* ==================================== */
+/* LISTS & CARDS             */
+/* ==================================== */
+.contact-info p {
+    margin-bottom: 8px;
 }
 
-.skill-tag {
-    background-color: var(--secondary-color);
-    color: #fff;
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
+.cv-list {
+    list-style: none;
 }
 
-.skill-tag.outline {
-    background-color: transparent;
-    color: var(--secondary-color);
-    border: 1px solid var(--secondary-color);
+.cv-list li {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--border-color);
 }
 
-footer {
-    text-align: center;
-    padding: 2rem 0;
-    background-color: var(--primary-color);
-    color: #fff;
-    font-size: 0.9rem;
+.cv-list li:last-child {
+    border-bottom: none;
 }
 
-@media (max-width: 768px) {
-    .grid-2-col {
-        grid-template-columns: 1fr;
-    }
-    header h1 {
-        font-size: 2.2rem;
-    }
-    .profile-photo {
-        width: 130px; /* İlk versiyondaki mobil boyuta döndü */
-        height: 130px; /* İlk versiyondaki mobil boyuta döndü */
-    }
+.date-right {
+    float: right;
+    color: #666;
+    font-weight: 500;
+}
+
+.simple-list li {
+    margin-bottom: 8px;
+    margin-left: 20px;
+}
+
+.pub-list {
+    margin-left: 20px;
+}
+
+.pub-list li {
+    margin-bottom: 15px;
+    line-height: 1.5;
 }
 
 /* ==================================== */
-/* ========= TIMELINE STYLING ========= */
+/* TIMELINE (Experience)        */
 /* ==================================== */
 .timeline {
     position: relative;
-    max-width: 800px;
-    margin: 2rem auto;
-    padding-left: 2rem;
+    padding-left: 25px;
+    margin-top: 20px;
 }
 
-/* Dikey Ana Çizgi */
 .timeline::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 8px; /* Çizginin konumu */
+    left: 4px;
     height: 100%;
-    width: 3px;
-    background-color: var(--accent-color);
-    border-radius: 2px;
+    width: 2px;
+    background-color: var(--border-color);
 }
 
 .timeline-item {
     position: relative;
-    margin-bottom: 2.5rem;
+    margin-bottom: 30px;
 }
 
-/* Noktalar */
 .timeline-dot {
     position: absolute;
-    left: -2.35rem; /* Noktayı çizginin tam üstüne oturtur */
-    top: 0.2rem;
-    width: 18px;
-    height: 18px;
-    background-color: var(--primary-color);
-    border: 3px solid #fff;
+    left: -25px;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    background-color: var(--heading-color);
     border-radius: 50%;
-    box-shadow: 0 0 0 2px var(--accent-color); /* Çizgi ile uyumlu dış halka */
-    z-index: 1;
-}
-
-/* İçerik Kutusu */
-.timeline-content {
-    background: #fff;
-    padding: 1.5rem 2rem;
-    border-radius: 6px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.05);
-    border-left: 4px solid transparent;
-    transition: all 0.3s ease;
-}
-
-.timeline-content:hover {
-    border-left-color: var(--primary-color);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transform: translateY(-2px);
 }
 
 .timeline-date {
-    display: inline-block;
-    color: var(--accent-color);
+    display: block;
     font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-    background-color: var(--light-bg);
-    padding: 0.2rem 0.6rem;
-    border-radius: 15px;
+    color: #666;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .timeline-content h4 {
-    margin-bottom: 0.3rem;
-    color: var(--primary-color);
+    margin-bottom: 5px;
+    color: var(--heading-color);
+    font-size: 1.1rem;
 }
 
-.timeline-content p {
-    margin-bottom: 0;
-    font-size: 0.95rem;
-}
 /* ==================================== */
+/* RESPONSIVE                */
+/* ==================================== */
+@media (max-width: 900px) {
+    body {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 30px 20px;
+        text-align: center;
+    }
+    
+    .content {
+        margin-left: 0;
+        padding: 40px 5%;
+    }
+    
+    .date-right {
+        float: none;
+        display: block;
+        color: var(--accent-color);
+        margin-bottom: 5px;
+    }
+    
+    .sidebar-nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .sidebar-nav li {
+        margin-bottom: 0;
+    }
+}
