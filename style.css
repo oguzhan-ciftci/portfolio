@@ -114,6 +114,7 @@ a:hover { text-decoration: underline; }
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
     flex-shrink: 0;
+    margin-left: 20px;
 }
 
 .read-btn:hover {
@@ -121,7 +122,6 @@ a:hover { text-decoration: underline; }
     color: #fff;
     text-decoration: none;
 }
-/* ==================================== */
 
 
 /* ARTICLE DETAIL STYLES                */
