@@ -3,257 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oğuzhan Çiftçi - Portfolio</title>    
-    <link rel="icon" href="picture.jpg" type="image/jpeg">    
+    <title>Oğuzhan Çiftçi - Portfolio</title>
+    <link rel="icon" href="picture.jpg" type="image/jpeg">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container nav-container">
-            <div class="nav-logo-area">
-                <img src="picture.jpg" alt="Oğuzhan Çiftçi" class="nav-profile-photo">
-                <div class="nav-text-block">
-                    <span class="nav-name">Oğuzhan Çiftçi</span>
-                    <span class="nav-title">PhD Candidate</span>
-                </div>
-            </div>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects & Awards</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#skills">Skills & Info</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <header id="about" class="section">
-        <div class="container header-container">
-            
+    <aside class="sidebar">
+        <div class="profile-container">
             <img src="picture.jpg" alt="Oğuzhan Çiftçi" class="profile-photo">
-            
-            <div class="name-block">
-                <h1>Oğuzhan ÇİFTÇİ</h1>
-                <h2>Electrical and Electronics Engineering PhD Candidate</h2>
-            </div>
-            
-            <p class="contact-info">
-                Marmara University, RTE Campus, M4-201, Maltepe, Istanbul, TÜRKİYE<br>
-                Mail: oguzhan.ciftci at marmara.edu.tr
-            </p>
-            <div class="contact-links">
-                <a href="https://linkedin.com/in/oguzhanciftci" target="_blank">LinkedIn</a>
-                <a href="https://orcid.org/0000-0002-9763-3677" target="_blank">ORCID: 0000-0002-9763-3677</a>
-            </div>
-            <div class="research-interests">
-                <h3>Research Interests</h3>
-                <p>Multi-agent systems, energy & power systems management, fault detection algorithms, modern control theory, system modeling.</p>
-            </div>
+            <h1 class="site-title">Oğuzhan Çiftçi</h1>
+            <p class="site-description">I am a PhD Candidate in Electrical and Electronics Engineering at Marmara University, Türkiye.</p>
         </div>
-    </header>
+        
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#brief-cv">Brief CV</a></li>
+                <li><a href="#teaching">Teaching</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#skills">Skills & Memberships</a></li>
+            </ul>
+        </nav>
 
-    <section id="education" class="section bg-light">
-        <div class="container">
-            <h2>Education</h2>
-            <div class="card">
-                <h3>PhD, Electrical and Electronics Engineering</h3>
-                <p><strong>Marmara University, Istanbul</strong> | Present</p>
-                <p>Courses completed with High Honor Degree.</p>
-            </div>
-            <div class="card">
-                <h3>MSc, Electrical and Electronics Engineering</h3>
-                <p><strong>Boğaziçi University, Istanbul</strong> | Jan, 2023</p>
-                <p><em>Thesis Title:</em> Resilient Distributed Algorithms for Linear Algebraic Equations in Faulty Networks. (Funded by TUBITAK 117E204)</p>
-            </div>
-            <div class="card">
-                <h3>BSc, Electrical and Electronics Engineering</h3>
-                <p><strong>Marmara University, Istanbul</strong> | June, 2018</p>
-                <p>Honor Student. <em>Final Year Project:</em> Hybrid Servo Motor Driver and Magnetic Encoder PCB Design and Implementation. (Funded by TUBITAK 2209-B)</p>
-            </div>
+        <div class="sidebar-footer">
+            &copy; 2026 Oğuzhan Çiftçi.<br>All rights reserved.
         </div>
-    </section>
+    </aside>
 
-    <section id="experience" class="section">
-        <div class="container">
-            <h2>Academic & Professional Experience</h2>
+    <main class="content">
+
+        <section id="home" class="section">
+            <h2>Biography</h2>
+            <p>Oğuzhan Çiftçi is a PhD candidate in the Department of Electrical and Electronics Engineering at Marmara University. He received his MSc from Boğaziçi University in 2023 and his BSc from Marmara University in 2018. He is currently a Visiting Researcher at the Brunel Interdisciplinary Power Systems (BIPS) Research Centre, Brunel University of London.</p>
+            <p>His research interests include <strong>multi-agent systems, energy & power systems management, fault detection algorithms, modern control theory, and system modeling.</strong></p>
             
+            <h2 style="margin-top: 2rem;">Contact</h2>
+            <div class="contact-info">
+                <p><strong>Oğuzhan Çiftçi</strong><br>
+                Electrical and Electronics Engineering PhD Candidate</p>
+                <p>
+                Marmara University<br>
+                RTE Campus, M4-201<br>
+                Maltepe, Istanbul, TÜRKİYE
+                </p>
+                <p><strong>Email:</strong> oguzhan.ciftci@marmara.edu.tr</p>
+                <p>
+                    <strong>Links:</strong> 
+                    <a href="https://linkedin.com/in/oguzhanciftci" target="_blank">LinkedIn</a> | 
+                    <a href="https://orcid.org/0000-0002-9763-3677" target="_blank">ORCID</a>
+                </p>
+            </div>
+        </section>
+
+        <section id="brief-cv" class="section">
+            <h2>Brief CV</h2>
+            
+            <h3>Education</h3>
+            <ul class="cv-list">
+                <li>
+                    <strong>PhD in Electrical and Electronics Engineering</strong> <span class="date-right">Present</span><br>
+                    <em>Marmara University, Istanbul</em><br>
+                    Courses completed with High Honor Degree.
+                </li>
+                <li>
+                    <strong>MSc in Electrical and Electronics Engineering</strong> <span class="date-right">Jan, 2023</span><br>
+                    <em>Boğaziçi University, Istanbul</em><br>
+                    Thesis Title: Resilient Distributed Algorithms for Linear Algebraic Equations in Faulty Networks. (Funded by TUBITAK 117E204)
+                </li>
+                <li>
+                    <strong>BSc in Electrical and Electronics Engineering</strong> <span class="date-right">June, 2018</span><br>
+                    <em>Marmara University, Istanbul</em><br>
+                    Honor Student. Final Year Project: Hybrid Servo Motor Driver and Magnetic Encoder PCB Design and Implementation. (Funded by TUBITAK 2209-B)
+                </li>
+            </ul>
+
+            <h3 style="margin-top: 2.5rem;">Academic & Professional Experience</h3>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">April 2026 - Present</div>
+                        <span class="timeline-date">April 2026 - Present</span>
                         <h4>Visiting Researcher</h4>
-                        <p><strong>Brunel University of London, London</strong></p>
-                        <p>Department of Electrical and Electronics Engineering, Brunel Interdisciplinary Power Systems (BIPS) Research Centre. Funded by YOK GEP.</p>
+                        <p><strong>Brunel University of London</strong><br>Department of Electrical and Electronics Engineering, BIPS Research Centre. Funded by YOK GEP.</p>
                     </div>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">Feb 2021 - Present</div>
+                        <span class="timeline-date">Feb 2021 - Present</span>
                         <h4>Research and Teaching Assistant</h4>
-                        <p><strong>Marmara University, Istanbul</strong></p>
-                        <p>Department of Electrical and Electronics Engineering, Circuits & Systems Theory.</p>
+                        <p><strong>Marmara University, Istanbul</strong><br>Department of Electrical and Electronics Engineering, Circuits & Systems Theory.</p>
                     </div>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">Feb 2019 - Mar 2021</div>
+                        <span class="timeline-date">Feb 2019 - Mar 2021</span>
                         <h4>Researcher</h4>
-                        <p><strong>Boğaziçi University, Istanbul</strong></p>
-                        <p>Mechatronics Lab. Funded by TUBITAK 117E204. Supervisors: Prof. Mehmet AKAR & Assoc. Prof. Onur CİHAN.</p>
+                        <p><strong>Boğaziçi University, Istanbul</strong><br>Mechatronics Lab. Funded by TUBITAK 117E204. Supervisors: Prof. Mehmet AKAR & Assoc. Prof. Onur CİHAN.</p>
                     </div>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">June 2017 - May 2018</div>
+                        <span class="timeline-date">June 2017 - May 2018</span>
                         <h4>Researcher</h4>
-                        <p><strong>Marmara University, Istanbul</strong></p>
-                        <p>Electronics Lab. Funded by TUBITAK 2209-B. Supervisor: Prof. Emre ARSLAN.</p>
+                        <p><strong>Marmara University, Istanbul</strong><br>Electronics Lab. Funded by TUBITAK 2209-B. Supervisor: Prof. Emre ARSLAN.</p>
                     </div>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">Dec 2016 - Mar 2018</div>
+                        <span class="timeline-date">Dec 2016 - Mar 2018</span>
                         <h4>Part-Time Software Development Engineer</h4>
-                        <p><strong>Bosch San. Tic. AŞ., Bursa</strong></p>
-                        <p>I4.0 based Projects Implementations.</p>
+                        <p><strong>Bosch San. Tic. AŞ., Bursa</strong><br>I4.0 based Projects Implementations.</p>
                     </div>
                 </div>
-            </div> <div class="grid-2-col" style="margin-top: 3rem;">
-                <div>
-                    <h3>Assisted Courses (Marmara University)</h3>
-                   <ul class="bullet-list course-list">
-                        <li><a href="https://meobs.marmara.edu.tr/Course/introduction-to-programming/cse1145_57055_4019" target="_blank">CSE 1145</a> (Fall '21, '22, '24, '25)</li>
-                        <li><a href="https://meobs.marmara.edu.tr/Course/intermediate-programming/cse1146_57056_3368" target="_blank">CSE 1146</a> (Spring '20, '21, '22)</li>
-                        <li><a href="https://meobs.marmara.edu.tr/Course/introduction-to-systems-programming/cse2037_38016_3368" target="_blank">CSE 2037</a> (Fall '22)</li>
-                        <li><a href="https://meobs.marmara.edu.tr/Course/dynamic-systems-and-control/ee3072_37494_4019" target="_blank">EE 3072</a> (Spring '21, '22, '23, '24)</li>
-                        <li><a href="https://meobs.marmara.edu.tr/Course/electrical-circuits-ii/ee2002_37486_4019" target="_blank">EE 2002</a> (Spring '21)</li>
-                        <li><a href="https://meobs.marmara.edu.tr/Course/computer-tools-for-electrical-engineering/ee2021_37487_3368" target="_blank">EE 2021</a> (Fall '22)</li>
-                        <li><a href="https://meobs.marmara.edu.tr/Course/object-oriented-programming/ee1004_79552_4019" target="_blank">EE 1004</a> (Spring '22, '23, '24)</li>
-                        <li><a href="https://meobs.marmara.edu.tr/Ders/digital-design/ee2003-79554-4019" target="_blank">EE 2003</a> (Fall '25)</li>
-                        <li><a href="https://meobs.marmara.edu.tr/Ders/signals-and-systems/ee3061-37493-4019" target="_blank">EE 3061</a> (Fall '25)</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Administrative & Advisory Duties</h3>
-                    <ul class="bullet-list">
-                        <li><strong>Board Member:</strong> <a href="https://www.linkedin.com/company/milliteknolojiatolyeleri/" target="_blank">Milli Teknoloji Atölyeleri</a>, Marmara University (Dec, 2025 - present)</li>
-                        <li><strong>Advisory:</strong> <a href="https://www.linkedin.com/company/marmara-havac%C4%B1l%C4%B1k-uzay-kul%C3%BCb%C3%BC/" target="_blank">Marmara University Aviation and Space Student Club</a> (May, 2021 - present)
-
-                            <ul>
-                               <li><a href="https://www.linkedin.com/company/aldebaran-uav-team/" target="_blank">ALDEBARAN Fixed-Wing UAV Team</a>: TEKNOFEST 2022 & 2025</li>
-                                <li><a href="https://www.linkedin.com/company/falconrocketteam/" target="_blank">FALCON Rocket Team</a>: TEKNOFEST 2022, 2023, 2024 & 2025</li>
-                                <li><a href="https://www.linkedin.com/company/counsat/" target="_blank">COUNSAT Model Satellite Team</a>: TEKNOFEST 2026</li>
-                            </ul>
-                        </li>
-                        <li><strong>Presentations:</strong> TUBITAK BİLGEM SGE, Cyber Security (Oct 2021, May 2022, Sept 2022, Dec 2022)</li>
-                    </ul>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">May 2016 - May 2018</span>
+                        <h4>Trainee R&D Engineer</h4>
+                        <p><strong>Bio Mekatronik ve Sağlık Hiz. San. Tic. Ltd., Istanbul</strong><br>Development of Blood Group Diagnostic Devices.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section id="projects" class="section bg-light">
-    <div class="container">
-        <h2>Projects, Honors and Awards</h2>
-        <div class="card">
-            <ul class="bullet-list">
+            <h3 style="margin-top: 2.5rem;">Projects, Honors and Awards</h3>
+            <ul class="cv-list">
                 <li>
-                    <strong>YOK-Grant:</strong><br>
-                    Abroad Graduate Researcher Scholar in Young Brains Program (Dec, 2025).<br>
-                    Grant scope: International Researcher Program.<br>
-                    Accepted and hosted by Brunel University of London between April and June of 2026.
+                    <strong>YOK-Grant:</strong> Abroad Graduate Researcher Scholar in Young Brains Program (Dec, 2025). Grant scope: International Researcher Program. Accepted and hosted by Brunel University of London between April and June of 2026.
                 </li>
-                <br>
                 <li>
-                    <strong>TUBITAK-Scientific Research Project:</strong><br>
-                    Graduate Researcher Scholar in TUBITAK 22AG018 ILATERA Environmentally Compatible Sustainable Advanced Vehicle Technologies Platform (June, 2025 - present).
+                    <strong>TUBITAK-Scientific Research Project:</strong> Graduate Researcher Scholar in TUBITAK 22AG018 ILATERA Environmentally Compatible Sustainable Advanced Vehicle Technologies Platform (June, 2025 - present).
                 </li>
-                <br>
                 <li>
-                    <strong>TUBITAK-Scientific Research Project:</strong><br>
-                    Graduate Researcher Scholar in TUBITAK 117E204.<br>
-                    Project Title: Distributed Algorithms for Solving Linear Equations in Multi-Agent Networks.<br>
-                    Supervisor: Assoc. Prof. Onur CİHAN. (Feb, 2019 - Mar, 2021).
+                    <strong>TUBITAK-Scientific Research Project:</strong> Graduate Researcher Scholar in TUBITAK 117E204. Project Title: Distributed Algorithms for Solving Linear Equations in Multi-Agent Networks. Supervisor: Assoc. Prof. Onur CİHAN. (Feb, 2019 - Mar, 2021).
                 </li>
-                <br>
                 <li>
-                    <strong>TUBITAK-Grant:</strong><br>
-                    2209-B Sanayiye Yönelik Lisans Araştırma Projeleri Destek Programı Bursu (4000 TL) (Dec, 2017).
+                    <strong>TUBITAK-Grant:</strong> 2209-B Sanayiye Yönelik Lisans Araştırma Projeleri Destek Programı Bursu (4000 TL) (Dec, 2017).
                 </li>
             </ul>
-        </div>
-    </div>
-</section>
+        </section>
 
-    <section id="publications" class="section">
-        <div class="container">
-            <h2>Publications & Writings</h2>
-            <div class="card">
-                <ul class="bullet-list">
-                    <li>Oguzhan Çiftçi et. al., <em>Blockchain-based Decentralized Digitalization of the Prominent Geothermal District Heating System Services</em>, International Conference on Artificial Intelligence, Computer, Data Sciences and Applications (ACDSA), February 2026, Boracay Island, Philippines.</li>
-                    <li>Oguzhan Çiftçi, <em>An Optimized Traffic Lights Scheduling</em>, International Open-Source Conference (UAKK), December 2024, Istanbul, Turkiye.</li>
-                    <li>Oguzhan Çiftçi, <em>Solving Linear Algebraic Equations by using Distributed Memory Programming</em>, International Open-Source Conference (UAKK), December 2024, Istanbul, Turkiye.</li>
-                    <li>Oguzhan Çiftçi & Onur Cihan, <em>Solution of a Traffic Network Problem by Using A Continuous-Time Distributed Algorithm</em>, 21st National Conference on Automatic Control, pp. 556-561, September 2019, Muğla, Turkey.</li>
-                    <li>Oguzhan Çiftçi, <em>Enerji 101</em>, 2020, blog (Turkish).</li>
-                    <li>Oguzhan Çiftçi, <em>Kısıtlı Matematiksel Eniyileme (Optimizasyon)</em>, 2020, blog (Turkish).</li>
-                    <li>Oguzhan Çiftçi, <em>Deneylerle Elektronik - Arduino Destekli</em>, Istanbul, 2018 (Turkish).</li>
-                    <li>Oguzhan Çiftçi, <em>Kriptoloji ve Günümüzdeki Değeri</em>, Marmara University Engineering Faculty Journal 2nd Issue, Istanbul, 2016 (Turkish).</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+        <section id="teaching" class="section">
+            <h2>Teaching & Administrative Duties</h2>
+            <h3>Assisted Courses (Marmara University)</h3>
+            <ul class="simple-list">
+                <li><a href="#">CSE 1145</a> (Fall '21, '22, '24, '25)</li>
+                <li><a href="#">CSE 1146</a> (Spring '20, '21, '22)</li>
+                <li><a href="#">CSE 2037</a> (Fall '22)</li>
+                <li><a href="#">EE 3072</a> (Spring '21, '22, '23, '24)</li>
+                <li><a href="#">EE 2002</a> (Spring '21)</li>
+                <li><a href="#">EE 2021</a> (Fall '22)</li>
+                <li><a href="#">EE 1004</a> (Spring '22, '23, '24)</li>
+                <li><a href="#">EE 2003</a> (Fall '25)</li>
+                <li><a href="#">EE 3061</a> (Fall '25)</li>
+            </ul>
 
-    <section id="skills" class="section bg-light">
-        <div class="container">
-            <h2>Computer Skills, Languages & Memberships</h2>
+            <h3 style="margin-top: 2rem;">Administrative & Advisory Duties</h3>
+            <ul class="simple-list">
+                <li><strong>Board Member:</strong> Milli Teknoloji Atölyeleri, Marmara University (Dec, 2025 - present)</li>
+                <li><strong>Advisory:</strong> Marmara University Aviation and Space Student Club (May, 2021 - present)
+                    <ul style="margin-left: 20px; margin-top: 5px;">
+                        <li>ALDEBARAN Fixed-Wing UAV Team: TEKNOFEST 2022 & 2025</li>
+                        <li>FALCON Rocket Team: TEKNOFEST 2022, 2023, 2024 & 2025</li>
+                    </ul>
+                </li>
+                <li><strong>Presentations:</strong> TUBITAK BİLGEM SGE, Cyber Security (Oct 2021, May 2022, Sept 2022, Dec 2022)</li>
+            </ul>
+        </section>
+
+        <section id="publications" class="section">
+            <h2>Publications</h2>
+            <ol class="pub-list">
+                <li>Oguzhan Çiftçi et. al., <em>Blockchain-based Decentralized Digitalization of the Prominent Geothermal District Heating System Services</em>, International Conference on Artificial Intelligence, Computer, Data Sciences and Applications (ACDSA), February 2026, Boracay Island, Philippines.</li>
+                <li>Oguzhan Çiftçi, <em>An Optimized Traffic Lights Scheduling</em>, International Open-Source Conference (UAKK), December 2024, Istanbul, Turkiye.</li>
+                <li>Oguzhan Çiftçi, <em>Solving Linear Algebraic Equations by using Distributed Memory Programming</em>, International Open-Source Conference (UAKK), December 2024, Istanbul, Turkiye.</li>
+                <li>Oguzhan Çiftçi & Onur Cihan, <em>Solution of a Traffic Network Problem by Using A Continuous-Time Distributed Algorithm</em>, 21st National Conference on Automatic Control, pp. 556-561, September 2019, Muğla, Turkey.</li>
+                <li>Oguzhan Çiftçi, <em>Enerji 101</em>, 2020, blog (Turkish).</li>
+                <li>Oguzhan Çiftçi, <em>Kısıtlı Matematiksel Eniyileme (Optimizasyon)</em>, 2020, blog (Turkish).</li>
+                <li>Oguzhan Çiftçi, <em>Deneylerle Elektronik - Arduino Destekli</em>, Istanbul, 2018 (Turkish).</li>
+                <li>Oguzhan Çiftçi, <em>Kriptoloji ve Günümüzdeki Değeri</em>, Marmara University Engineering Faculty Journal 2nd Issue, Istanbul, 2016 (Turkish).</li>
+            </ol>
+        </section>
+
+        <section id="skills" class="section">
+            <h2>Skills & Memberships</h2>
             
             <h3>Computer Skills</h3>
-            <div class="skills-grid">
-                <span class="skill-tag">MATLAB (Proficient)</span>
-                <span class="skill-tag">Simulink (Proficient)</span>
-                <span class="skill-tag">C# (Proficient)</span>
-                <span class="skill-tag">C (Proficient)</span>
-                <span class="skill-tag">LATEX (Proficient)</span>
-                <span class="skill-tag outline">Java (Familiar)</span>
-                <span class="skill-tag outline">Python (Familiar)</span>
-                <span class="skill-tag outline">Assembly (Familiar)</span>
-                <span class="skill-tag outline">SQL DB (Familiar)</span>
-                <span class="skill-tag outline">Verilog HDL (Familiar)</span>
-                <span class="skill-tag outline">SolidWorks (Familiar)</span>
-            </div>
+            <p><strong>Proficient:</strong> MATLAB, Simulink, C#, C, LATEX</p>
+            <p><strong>Familiar:</strong> Java, Python, Assembly, SQL DB, Verilog HDL, SolidWorks</p>
 
-            <div class="grid-2-col" style="margin-top: 2rem;">
-                <div>
-                    <h3>Languages</h3>
-                    <ul class="bullet-list">
-                        <li>Turkish (Native)</li>
-                        <li>English (Proficient)</li>
-                        <li>German (Beginner)</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Memberships</h3>
-                    <ul class="bullet-list">
-                        <li>Student member of IEEE since 2018</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+            <h3 style="margin-top: 2rem;">Languages</h3>
+            <p>Turkish (Native), English (Proficient), German (Beginner)</p>
 
-    <footer>
-        <p>&copy; 2026 Oğuzhan Çiftçi. Last update: April 7, 2026.</p>
-    </footer>
+            <h3 style="margin-top: 2rem;">Memberships</h3>
+            <p>Student member of IEEE since 2018</p>
+        </section>
+
+    </main>
 
     <script src="script.js"></script>
 </body>
