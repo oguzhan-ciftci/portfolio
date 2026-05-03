@@ -71,15 +71,16 @@ a:hover { text-decoration: underline; }
     transition: background-color 0.3s ease;
 }
 
-/* DAİREDEN DİKDÖRTGENE DÖNÜŞÜM */
+/* Kapak Fotoğrafı (Dikdörtgen) */
 .note-cover {
-    width: 100px; /* Dikdörtgen için genişliği biraz artırdık */
-    height: 70px; /* Yüksekliği azaltarak 16:9'a yakın bir form verdik */
-    border-radius: 6px; /* Köşeleri hafif yuvarlatılmış dikdörtgen */
+    width: 100px;
+    height: 70px;
+    border-radius: 6px;
     object-fit: cover;
     margin-right: 25px;
     border: 1px solid var(--border-color);
     flex-shrink: 0;
+    display: block; /* Ekranda kesin görünmesini sağlar */
 }
 
 .note-info {
@@ -94,7 +95,32 @@ a:hover { text-decoration: underline; }
     font-weight: 600;
 }
 
-/* PAYLAŞ/BEĞEN BUTONLARI KALDIRILDIĞI İÇİN GEREKSİZ STİLLERİ SİLDİK */
+.note-meta {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* === READ BUTONU === */
+.read-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.read-btn:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+    text-decoration: none;
+}
 /* ==================================== */
 
 
