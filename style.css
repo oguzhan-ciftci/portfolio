@@ -230,3 +230,37 @@ a:hover { text-decoration: underline; }
 /* İkonlar için basit bir görselleştirme */
 .icon-heart::before { content: "❤"; }
 .icon-share::before { content: "🔗"; }
+/* ==================================== */
+/* COMPACT COURSE LIST (DERSLER İÇİN)   */
+/* ==================================== */
+.course-list {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.course-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    background-color: #f8fafc; /* Hafif gri/mavi bir arka plan */
+    border-radius: 6px;
+    border-left: 4px solid var(--accent-color); /* Sol tarafta şık bir çizgi */
+    transition: background-color 0.2s ease;
+}
+
+.course-list li:hover {
+    background-color: #edf2f7; /* Üzerine gelince koyulaşma efekti */
+}
+
+.course-list li a {
+    font-weight: 600;
+}
+
+.course-list .date-right {
+    float: none; /* Artık sağa yaslama işini Flexbox yapıyor */
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
