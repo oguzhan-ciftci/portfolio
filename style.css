@@ -242,8 +242,8 @@ a:hover { text-decoration: underline; }
 }
 
 .course-list li {
-    display: flex;
-    /* justify-content: space-between; satırını sildik */
+    display: grid;
+    grid-template-columns: max-content 1fr max-content; /* Satırı 3 sütuna böler */
     align-items: center;
     padding: 12px 0;
     border-bottom: 1px solid var(--border-color);
@@ -251,24 +251,28 @@ a:hover { text-decoration: underline; }
 }
 
 .course-list li:last-child {
-    border-bottom: none; /* En son satırın altına çizgi koymaz */
+    border-bottom: none;
 }
 
 .course-list li:hover {
-    transform: translateX(6px); /* Üzerine gelince metni hafifçe sağa kaydırır */
+    transform: translateX(6px);
 }
 
 .course-list li a {
     font-weight: 600;
     font-size: 1.05rem;
-    margin-right: 8px; /* Ders kodu ile ismi arasına biraz boşluk ekler */
+    color: var(--accent-color); /* Linkleri sitemizin ana mavi rengi yapar */
+    text-decoration: none;
 }
 
-.course-list li a {
-    font-weight: 600;
-    font-size: 1.05rem;
+.course-list li a:hover {
+    text-decoration: underline;
+}
+
+.course-list .date-right {
+    font-size: 0.95rem;
     color: #666;
-    float: none; /* Flexbox hizalaması için float iptal */
+    text-align: right; /* Tarihi kusursuzca sağa yaslar */
 }
 
 /* ==================================== */
