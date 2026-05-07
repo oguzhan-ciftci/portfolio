@@ -269,7 +269,6 @@ a:hover { text-decoration: underline; }
     font-size: 1.05rem;
     color: #666;
     float: none; /* Flexbox hizalaması için float iptal */
-    margin-right: 8px; /* Ders kodu ile ismi arasına biraz boşluk ekler */
 }
 
 /* ==================================== */
