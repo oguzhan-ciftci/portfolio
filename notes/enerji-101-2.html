@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enerji 101: 2. Enerji Nedir? - Oğuzhan Çiftçi</title>
+    <link rel="icon" href="../picture.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <img src="../picture.jpg" alt="Oğuzhan Çiftçi" class="profile-photo">
+        <h1 class="site-title">Oğuzhan Çiftçi</h1>
+        <p class="site-description">Electrical and Electronics Engineering<br>PhD Candidate @ Marmara University</p>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../cv.html">Brief CV</a></li>
+                <li><a href="../teaching.html">Teaching</a></li>
+                <li><a href="../publications.html">Publication</a></li>
+                <li><a href="../notes.html" class="active">Notes</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            &copy; 2026 Oğuzhan Çiftçi.<br>All rights reserved.
+        </div>
+    </aside>
+
+    <main class="content">
+        <a href="../notes.html" class="back-link">Geri Dön</a>
+        
+        <article class="article-detail">
+            <!-- Kapak Fotoğrafı İçin Alan -->
+            <img src="../images/enerji102-hero.jpg" alt="Enerji 101: 2. Enerji Nedir Kapak" class="article-img" style="margin-top: 0; width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+
+            <div class="article-header" style="margin-top: 20px;">
+                <h2>Enerji 101: 2. Enerji Nedir?</h2>
+                <span class="article-date">17 Ekim 2020</span>
+            </div>
+
+            <div class="article-content">
+                <p>Herhangi bir konuda araştırma yapmaya başlanırken atılması gereken belki de ilk adım, konu hakkında sorular sormaktır. Bu sorular elbette ilk etapta çok karmaşık olmak zorunda da değil. Mesela, tipik 5N1K sorularından başlamak, bizi konu hakkında daha derin düşünmeye sevk edebilir. Konu hakkında bildiklerimiz arttıkça da, daha sofistike sorular aklımıza gelir ve bu bizi bir zincirleme reaksiyon gibi başka araştırma konularına yöneltir. Enerji 101 serimizde bu metodolojiyi uygulayacağız. O halde ilk sorumuz gelsin.</p>
+                
+                <h3>Enerji Nedir?</h3>
+                <p>Sorunun bu kadar kısa olması bizi yanıltmasın. Her ne kadar internet üzerinde yapılan ilk araştırmalarda enerji, nesneler üzerinde iş yapılabilme kapasitesidir veya iş yapabilme yeteneğidir gibi klişe cümlelerle tanımlanmaya cüret edilse de, aslında bu önemli soruyu tam olarak cevaplamak için yeterli değiller. Çünkü, bu cümlelerde dikkati çeken kavram olan iş’in ne demek olduğu bile her koşul için ifade edilemeyebilir. Örneğin, mekanik bir sistem üzerine düşünüldüğünde, iş dinamik bir parametre olarak ifade edilebilirken, konu elektromanyetik alanlar olduğunda nasıl ifade edilebilir ki ? Veya daha da ileri gidersek Quantum mekaniğinde iş tanımı nasıl yapılabilir ? Bu yüzden, klişelerden vazgeçip, enerjinin neyi ifade edebileceğini bir daha düşünmekte fayda var. Ama bunu yaparken anlaşılabilirliği artırmak adına özelden genele bir çıkarımda bulunmak faydalı olacaktır.</p>
+                
+                <p>Enerji, klasik Newton fiziği ele alındığında 2 farklı formda karşımıza çıkar: Kinetik enerji ve potansiyel enerji. Kinetik enerji, kütlesi olan bir parçacığın hızının bir fonksiyonunu ifade ederken, potansiyel enerji yine kütleli bir parçacığın pozisyonunun bir fonksiyonu şeklinde ifade edilir. Kinetik enerji ile potansiyel enerjinin toplamı da bize toplam enerjiyi verir. Örneğin, alttaki şekildeki gibi bir harmonik osilatör sistemini ele alalım ve bu sistemde, m kütleli bir cisim ve yay katsayısı k olarak verilen bir yay kullanılmış olsun.</p>
+
+                <!-- Görsel 1: Harmonik Osilatör sistemi -->
+                <img src="../images/harmonik-osilator.png" alt="Harmonik Osilatör sistemi" class="article-img">
+                <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: -20px;"><em>Harmonik Osilatör sistemi</em></p>
+
+                <p>Bu sistem için toplam enerji, yayda depolanan potansiyel enerji ve m kütleli cismin yer değiştirmesinden (hızından) kaynaklanan kinetik enerjinin toplamı şeklinde alttaki gibi ifade edilebilir.</p>
+
+                <!-- Görsel 2: Sistemin sahip olduğu toplam enerjinin matematiksel gösterimi -->
+                <img src="../images/enerji-formul.png" alt="Sistemin sahip olduğu toplam enerjinin matematiksel gösterimi" class="article-img">
+                <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: -20px;"><em>Sistemin sahip olduğu toplam enerjinin matematiksel gösterimi</em></p>
+
+                <p>Üstteki matematiksel ifadeden enerjinin, pozisyon ve hız değişkenlerine bağımlı olduğu çıkarımını yapabiliriz. Çünkü diğer 2 parametre, kütle ve yay katsayısı, sabit değerler. O halde pozisyon (x) ve hız (v) uzayında düşünecek olursak, (x,v) ikilisi bu sistemin enerjisinin uzaydaki durumunu tanımlar.</p>
+
+                <p>Ayrıca görüldüğü üzere, enerji matematiksel ifade gereği direkt olarak zamana bağlı bir mefhum değildir. Bu yüzden, enerjinin zamana bağlı değişimi (zamana göre türevi) 0 olur. Bu da bize enerjinin korunumunu gösterir. Yani, enerji miktarı sabittir ve yalnızca bir türden başka bir türe dönüşümü vardır diyebiliriz. O halde yukarıda verilen enerji fonksiyonunu herhangi sabit bir c ye eşitlersek, farklı c değerlerine göre farklı elips yörüngelerini alttaki gibi grafiksel olarak ifade edip, gösterebiliriz.</p>
+
+                <!-- Görsel 3: Grafik -->
+                <img src="../images/enerji-grafik.png" alt="Enerji yörüngeleri grafiği" class="article-img">
+
+                <p>Peki, bu görsel bize tam olarak neyi ifade ediyor olabilir sizce ? Üzerine düşünelim. En içteki elipsi ele alalım. Bu elips bize farklı (x,v) ikilileri için aynı enerjinin takip edildiğini gösteriyor değil mi ? Yani, örneğin, cismin hızı azalırken, yayın yer değiştirmesi artıyor veya tam tersi. İşte böylece, sürtünmesiz ortamda, bu harmonik hareket sonsuza kadar devam edecek ve toplam enerji her zaman için c’ye eşit olarak kalacak. Hiç bir zaman enerji yani c değeri artmayacak veya azalmayacak.</p>
+
+                <p>Tüm bunları göz önüne aldığımızda, aslında enerji dediğimiz mefhum, herhangi bir sistem için bir kısıtı ifade ediyor. Yani fiziksel olarak yorumladığımızda, enerji, bir sistemin olası durumları üzerinde bir kısıtlama belirten bir sayı olduğunu söyleyebiliriz.</p>
+
+                <p>Bu soruya Erkcan Özcan hoca tarafından verilen bir cevaba da <a href="https://sarkac.org/2019/11/enerji-nedir-korunumu-ne-demektir/" target="_blank">buradan</a> ulaşabilirsiniz.</p>
+
+                <p>Şimdi gelin, yeni sorular sorarak devam edelim.</p>
+
+                <div class="contact-block">
+                    <p>Enerji, sabit değeri ifade ediyorsa, evrende bu sayıyı oluşturan bileşenler neler ? Fiziksel olarak düşündüğümüzde, bu enerjinin en büyük bileşeni nedir ? Bu bileşenler sabit ama aynı zamanda sınırsız da olabilir mi ? Enerjinin kendisi, sistem üzerinde bir kısıtı ifade ediyorsa, bunu en verimli şekilde nasıl kullanabiliriz ?</p>
+                </div>
+
+                <p>Önümüzdeki haftalarda, bu ve benzeri sorulara yanıt arayacağız. Görüşmek üzere.</p>
+
+                <!-- Etiketler (Keywords) -->
+                <div class="article-tags">
+                    <span class="tag-pill">Energy</span>
+                    <span class="tag-pill">Efficiency</span>
+                    <span class="tag-pill">Türkçe</span>
+                </div>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
