@@ -243,10 +243,10 @@ a:hover { text-decoration: underline; }
 
 .course-list li {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; satırını sildik */
     align-items: center;
-    padding: 12px 0; /* Alt ve üst boşluklar tam kararında */
-    border-bottom: 1px solid var(--border-color); /* Sadece alta ince bir ayraç çizgisi */
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
     transition: transform 0.2s ease;
 }
 
@@ -261,13 +261,15 @@ a:hover { text-decoration: underline; }
 .course-list li a {
     font-weight: 600;
     font-size: 1.05rem;
+    margin-right: 8px; /* Ders kodu ile ismi arasına biraz boşluk ekler */
 }
 
-.course-list .date-right {
-    margin: 0;
-    font-size: 0.95rem;
+.course-list li a {
+    font-weight: 600;
+    font-size: 1.05rem;
     color: #666;
     float: none; /* Flexbox hizalaması için float iptal */
+    margin-right: 8px; /* Ders kodu ile ismi arasına biraz boşluk ekler */
 }
 
 /* ==================================== */
