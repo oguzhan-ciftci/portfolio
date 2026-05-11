@@ -254,10 +254,10 @@ a:hover { text-decoration: underline; }
 /* Satırın Tıklanabilir Başlık Kısmı */
 .course-header {
     display: grid;
-    grid-template-columns: max-content 1fr max-content;
+    grid-template-columns: max-content 1fr; /* Sadece 2 sütun: Kod ve İsim */
     align-items: center;
     padding: 12px 0;
-    cursor: pointer; /* Tıklanabilir olduğunu imleci değiştirerek belli eder */
+    cursor: pointer;
     transition: transform 0.2s ease;
 }
 
@@ -319,6 +319,14 @@ a:hover { text-decoration: underline; }
 .course-actions {
     display: flex;
     gap: 15px;
+}
+
+/* Tarih artık içeride olduğu için bu sınıfa gerek kalmadı, silebilirsin veya tutabilirsin */
+.course-details .taught-semesters {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+    display: block;
 }
 
 .course-actions .read-btn {
