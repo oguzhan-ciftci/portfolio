@@ -233,7 +233,7 @@ a:hover { text-decoration: underline; }
 
 
 /* ==================================== */
-/* MINIMAL COURSE LIST (DERSLER İÇİN)   */
+/* EXPANDABLE COURSE LIST (DERSLER İÇİN)*/
 /* ==================================== */
 .course-list {
     list-style: none;
@@ -242,37 +242,108 @@ a:hover { text-decoration: underline; }
 }
 
 .course-list li {
-    display: grid;
-    grid-template-columns: max-content 1fr max-content; /* Satırı 3 sütuna böler */
-    align-items: center;
-    padding: 12px 0;
+    display: block; /* Izgara yapısını alt katmana (header'a) taşıdık */
+    padding: 0;
     border-bottom: 1px solid var(--border-color);
-    transition: transform 0.2s ease;
 }
 
 .course-list li:last-child {
     border-bottom: none;
 }
 
-.course-list li:hover {
+/* Satırın Tıklanabilir Başlık Kısmı */
+.course-header {
+    display: grid;
+    grid-template-columns: max-content 1fr max-content;
+    align-items: center;
+    padding: 12px 0;
+    cursor: pointer; /* Tıklanabilir olduğunu imleci değiştirerek belli eder */
+    transition: transform 0.2s ease;
+}
+
+.course-header:hover {
     transform: translateX(6px);
 }
 
-.course-list li a {
+.course-header a {
     font-weight: 600;
     font-size: 1.05rem;
-    color: var(--accent-color); /* Linkleri sitemizin ana mavi rengi yapar */
+    color: var(--accent-color);
     text-decoration: none;
+    margin-right: 8px;
 }
 
-.course-list li a:hover {
+.course-header a:hover {
     text-decoration: underline;
 }
 
-.course-list .date-right {
+.course-header .date-right {
     font-size: 0.95rem;
     color: #666;
-    text-align: right; /* Tarihi kusursuzca sağa yaslar */
+    text-align: right;
+}
+
+/* Açılır Kapanır Bilgi Kartı (Accordion) */
+.course-details {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.4s ease;
+    background-color: #f8fafc; /* Kartın içini belli eden hafif mavi/gri ton */
+    border-radius: 6px;
+    padding: 0 20px;
+    margin-bottom: 0;
+}
+
+/* Tıklanınca tetiklenen sınıf */
+.course-details.open {
+    max-height: 800px;
+    opacity: 1;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+}
+
+.course-details p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.course-materials h4 {
+    font-size: 1rem;
+    color: var(--heading-color);
+    margin-bottom: 12px;
+}
+
+.course-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.course-actions .read-btn {
+    margin-left: 0; /* Butonların yan yana durması için eski ayarı sıfırlar */
+}
+
+/* WATCH Butonu (YouTube Kırmızısı) */
+.watch-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: transparent;
+    color: #e52d27;
+    border: 1px solid #e52d27;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.watch-btn:hover {
+    background-color: #e52d27;
+    color: #fff;
+    text-decoration: none;
 }
 
 /* ==================================== */
