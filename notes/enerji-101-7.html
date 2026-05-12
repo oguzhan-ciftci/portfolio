@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 7: Elektrik Enerjisi İletim Hatları - Oğuzhan Çiftçi</title>
+    <link rel="icon" href="../picture.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <img src="../picture.jpg" alt="Oğuzhan Çiftçi" class="profile-photo">
+        <h1 class="site-title">Oğuzhan Çiftçi</h1>
+        <p class="site-description">Electrical and Electronics Engineering<br>PhD Candidate @ Marmara University</p>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../cv.html">Brief CV</a></li>
+                <li><a href="../teaching.html">Teaching</a></li>
+                <li><a href="../publications.html">Publication</a></li>
+                <li><a href="../notes.html" class="active">Notes</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            &copy; 2026 Oğuzhan Çiftçi.<br>All rights reserved.
+        </div>
+    </aside>
+
+    <main class="content">
+        <a href="../notes.html" class="back-link">Geri Dön</a>
+        
+        <article class="article-detail">
+            <img src="../images/enerji1052-hero.jpg" alt="Chapter 7 Kapak" class="article-img" style="margin-top: 0; width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+
+            <div class="article-header" style="margin-top: 20px;">
+                <h2>Chapter 7: Elektrik Enerjisi İletim Hatları</h2>
+                <span class="article-date">6 Aralık 2020</span>
+            </div>
+
+            <div class="article-content">
+                <p>Son bir kaç makalemizde hep elektrik enerjisi üzerine konuştuk. Elektriğin maddelerin iç yapılarındaki (atom) dinamik etkilerden meydana geldiğini söyledik. Doğada kendiliğinden (statik elektrik) oluşabileceği gibi çeşitli birincil enerji kaynaklarını kimyasal veya radyoaktif tepkimelerde kullanmak suretiyle, elektrik enerjisini üretebilmekteyiz.</p>
+                
+                <p>Özellikle bir önceki makalemizde, elektrik enerjisinin nasıl üretilebileceği konusuna değinmiştik. Üretilen bu elektrik enerjisinin, evlerimizdeki prizlere nasıl ulaştırıldığını da bu makalemizde inceleyeceğiz. Öncelikle kullanılabilir elektrik 2 farklı formda bulunabiliyor: Doğru akım ve alternatif akım.</p>
+                
+                <p>Üretilen elektrik, her bir evin duvarlarında mevcut olan prizlere, alternatif akım formuyla gelir. Bunun başlıca sebebi, alternatif akım formundaki elektrik enerjisinin, gerilim değerinin bazı cihazlar aracılığıyla manyetik alanlar teorisi kullanılarak kolay bir şekilde değiştirilebilmesi denebilir. Bu cihazlara, transformatör denir. Bir başka ismiyle trafo.</p>
+
+                <img src="../images/trafo.jpg" alt="Transformatör (Trafo)" class="article-img">
+
+                <p>Yandaki resim küçük bir trafodur. Görüldüğü üzere, etrafında iletken kablo sarılmış ve karşılıklı yerleştirilmiş 2 adet bobin mevcut. Bu bobinler genellikle demir bloklara sarılırlar (siyah renkli görünen blok). Sargılı 2 bobinden birine elektrik enerjisi verildiğinde, içindeki demir blok bir elektromanyetik akı oluşturur. Bu akı diğer taraftaki bobinde sarılı olan iletken tellerde sarım ve akı yönüne uygun olarak bir elektrik akımı oluşturur. Ancak burada dikkat edilmesi gereken en mühim nokta, birinci bobine uygulanan gerilim sabit olursa diğer bobinde herhangi bir gerilim meydana gelmez. Bu yüzden uygulanan akım alternatifi akım formunda olmalıdır.</p>
+                
+                <p>Bir transformatörün çıkış sargısı, giriş sargılarından daha fazla sayıda ise çıkış gerilimi büyüyecektir. Akım miktarı ise, bu oranın tersiyle değişir. Transformatörler yardımıyla gerilimi yükseltmek mümkün olduğu gibi, düşürmek de mümkündür. Bu özelliği sayesinde çok uzak mesafelere elektrik enerjisisinin taşınabilmesi mümkün olabiliyor.</p>
+
+                <img src="../images/iletim-hatlari.jpg" alt="Yüksek Gerilim İletim Hatları" class="article-img">
+
+                <p>Elektrik enerjisi, elektrik santrallerinde üretildikten sonra transformatörler aracılığıyla gerilim değerleri artırılır ve 765.000 volta kadar bir gerilime sahip olabilirler. Bu gerilim miktarını evlerimizdeki prizlerde eriştiğimiz 220 volt ile kıyaslarsak durumun ciddiyetini anlayabiliriz sanıyorum. Bu yüksek volt değerindeki elektrik gerilimini sayesinde elektrik, uzun mesafelere taşınabilir hale gelir. Bu yükseklikteki gerilim değerlerine şehirler arası elektrik taşınmasında, elektriği taşıyan bakır veya alüminyum tellerin kendi iç dirençlerinden kaynaklanan kayıpları azaltmak amacıyla ulaşılır. Bunu genel güç formülünden hemen görebiliriz:</p>
+
+                <img src="../images/guc-kaybi-formul.png" alt="Güç Kaybı Formülü" class="article-img" style="max-width: 200px;">
+
+                <p>Burada P, kablodan geçen akım (I) sebebiyle direnci (R) belli olan iletim kablosunda oluşan güç kaybını ifade eder. Gücün bir başka tanımı ise</p>
+
+                <img src="../images/transfer-guc-formul.png" alt="Transfer Gücü Formülü" class="article-img" style="max-width: 200px;">
+
+                <p>şeklinde verilebilir. Buradan transfer edilmek istenen güç P_trans, iletim telinden geçen akım (I) ve gerilim (V) ile doğru orantılı olduğu görülebilir. Transfer edilecek olan gücün sabit olduğundan gerilim (V) arttıkça, telden geçen akım (I) miktarı azalır. Böylece, kaybedilecek olan güç miktarı azaltılmış olunur.</p>
+
+                <p>Şehir merkezlerine yaklaşıldığında ise transformatörler bu sefer indirici trafo merkezlerinde, santrallerden alınan elektriği daha alçak seviyede gerilim değerlerine düşürür. Bu sayede üretilen elektrik enerjisi kontrol edilebilir seviyelere getirilmiş olur. Buradan da elektrik dağıtım şebekelerine gelinir ve elektrik enerjisi son kullanıcıya teslim edilmek üzere tekrardan işlemlerden geçer.</p>
+                
+                <p>Santrallerde üretilen elektrik enerjisi neredeyse anlık olarak yüzlerce kilometre ötelerdeki evlere, fabrikalara ulaştırılır. Bu yüzden de santrallerde oluşturulan elektrik depolanmadan direkt olarak kullanılmak durumundadır. Bu da aslında anlık talep ne kadar azaltılırsa, o kadar az üretilmek durumunda kalınır demek oluyor. Örneğin, tasarruflu ampul, enerji verimliliği yüksek beyaz eşyalar gibi sürekli kullanımda olan cihazlar ne kadar tercih edilirse, elektrik enerjisi talebi önemli ölçüde azaltılmış olacaktır. Daha az talep daha az üretim ve daha az birincil kaynak tüketimi demektir.</p>
+                
+                <p>Unutmayalım, damlaya damlaya göl olur.</p>
+
+                <img src="../images/tasarruf.jpg" alt="Enerji Tasarrufu" class="article-img">
+
+                <p>Olabildiğince çevremizde lüzumsuz yere az bile olsa elektrik harcayan, bir küçük lamba veya hazırda uzun süre bekleyen bilgisayarlar gibi cihazları kapatmaya gayret göstermeliyiz. Bireysel olarak bakıldığında küçük görünen hareketler eğer tüm toplumda benimsenip yapılabilirse, çok ciddi ölçülerde tasarruf sağlanabilir.</p>
+
+                <div class="contact-block">
+                    <p><strong>Kaynakça:</strong></p>
+                    <ul>
+                        <li><a href="#" target="_blank">Electrical transmission — Energy Education</a></li>
+                        <li><a href="#" target="_blank">Follow Electricity’s Journey Through the Transmission System — YouTube</a></li>
+                        <li><a href="#" target="_blank">Electric power distribution — Wikipedia</a></li>
+                        <li><a href="#" target="_blank">Transformatör — Vikipedi (wikipedia.org)</a></li>
+                    </ul>
+                </div>
+
+                <div class="article-tags">
+                    <span class="tag-pill">Energy</span>
+                    <span class="tag-pill">Efficiency</span>
+                    <span class="tag-pill">Türkçe</span>
+                </div>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
