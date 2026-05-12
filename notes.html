@@ -93,6 +93,50 @@
             </li>
             
         </ul>
+
+        <div class="pagination" id="pagination"></div>
+
+        <script>
+            const list = document.querySelector('.notes-list');
+            const items = Array.from(list.querySelectorAll('.note-item'));
+            const itemsPerPage = 4; // Her sayfada kaç yazı görünecek
+            const pagination = document.getElementById('pagination');
+
+            function displayPage(page) {
+                items.forEach((item, index) => {
+                    // Sadece o sayfaya ait olan 4 öğeyi flex (görünür) yap, diğerlerini gizle
+                    item.style.display = (index >= (page - 1) * itemsPerPage && index < page * itemsPerPage) ? 'flex' : 'none';
+                });
+                
+                // Aktif olan sayfa butonunu mavi yap
+                Array.from(pagination.children).forEach((btn, index) => {
+                    btn.classList.toggle('active', index + 1 === page);
+                });
+                
+                // Sayfa değiştiğinde yumuşakça sayfanın üstüne kaydır
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function setupPagination() {
+                const pageCount = Math.ceil(items.length / itemsPerPage);
+                
+                // Eğer 4 veya daha az yazı varsa sayfalama butonlarını gösterme
+                if(pageCount <= 1) return; 
+
+                for (let i = 1; i <= pageCount; i++) {
+                    const btn = document.createElement('button');
+                    btn.classList.add('page-btn');
+                    if (i === 1) btn.classList.add('active'); // İlk sayfayı aktif başlat
+                    btn.innerText = i;
+                    btn.addEventListener('click', () => displayPage(i));
+                    pagination.appendChild(btn);
+                }
+            }
+
+            // Kodu çalıştır
+            setupPagination();
+            displayPage(1);
+        </script>
     </main>
 </body>
 </html>
