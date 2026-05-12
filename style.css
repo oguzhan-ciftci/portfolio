@@ -381,3 +381,34 @@ a:hover { text-decoration: underline; }
 .tag-pill:hover {
     background-color: #e0e0e0;
 }
+
+/* ==================================== */
+/* PAGINATION (SAYFALANDIRMA BUTONLARI) */
+/* ==================================== */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.page-btn {
+    padding: 8px 14px;
+    border: 1px solid var(--accent-color);
+    background-color: transparent;
+    color: var(--accent-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.page-btn:hover {
+    background-color: #f0f7ff;
+}
+
+.page-btn.active {
+    background-color: var(--accent-color);
+    color: #fff;
+}
