@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kısıtlı Matematiksel Eniyileme: 1. Giriş - Oğuzhan Çiftçi</title>
+    <link rel="icon" href="../picture.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <img src="../picture.jpg" alt="Oğuzhan Çiftçi" class="profile-photo">
+        <h1 class="site-title">Oğuzhan Çiftçi</h1>
+        <p class="site-description">Electrical and Electronics Engineering<br>PhD Candidate @ Marmara University</p>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../cv.html">Brief CV</a></li>
+                <li><a href="../teaching.html">Teaching</a></li>
+                <li><a href="../publications.html">Publication</a></li>
+                <li><a href="../notes.html" class="active">Notes</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            &copy; 2026 Oğuzhan Çiftçi.<br>All rights reserved.
+        </div>
+    </aside>
+
+    <main class="content">
+        <a href="../notes.html" class="back-link">Geri Dön</a>
+        
+        <article class="article-detail">
+            <!-- Kapak Fotoğrafı İçin Alan -->
+            <img src="../images/opt-1-cover.png" alt="Optimizasyon 1 Kapak" class="article-img" style="margin-top: 0; width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+
+            <div class="article-header" style="margin-top: 20px;">
+                <h2>Kısıtlı Matematiksel Eniyileme (Optimizasyon): 1. Giriş</h2>
+                <span class="article-date">5 Temmuz 2020</span>
+            </div>
+
+            <div class="article-content">
+                <p>Genel manada eniyileme, bir durumu sonuca götürmek için uygulanabilecek birkaç seçenek arasından en iyisini seçmek olarak söylenebilir. Ancak bu en iyi seçeneğin tüm seçenekler arasından hangisi olacağı, durumun isterlerine ve kısıtlara göre belirlenebilir. Bunu daha iyi açıklayabilmek için bir kaç örnek inceleyelim.</p>
+                
+                <p>İlk örnek durumumuzda diyelim ki İstanbuldan Ankara’ya gitmeyi istiyorsunuz ve önünüzde bir kaç seçeneğiniz var: uçağa binebilirsiniz, Bolu üzerinden kendi aracınızla veya otobüsle gidebilirsiniz ya da Eskişehir üzerinden, Osmangazi köprüsünü de kullanarak yine kendi aracınızla veya otobüsle gidebilirsiniz.</p>
+
+                <img src="../images/harita_ulasim.png" alt="İstanbul-Ankara arası ulaşım seçenekleri, Google Haritalar" class="article-img">
+                <p style="text-align: center; font-size: 0.9em; color: #666; margin-top: -10px;">İstanbul-Ankara arası ulaşım seçenekleri, Google Haritalar.</p>
+
+                <p>Görüldüğü gibi elinizde birkaç seçenek mevcut. Ancak sizin bu yolculuk için önceden belirlediğiniz bazı kısıtlarınız da var. Bu kısıtlarlar, kendi aracınızla gitmek ve olabilecek en kısa sürede bu yolculuğu tamamlamak. Bu iki kısıtı da gerçekleyebilmeniz için, yukarıdaki haritada da tavsiye edildiği gibi, mavi renkle belirtilmiş güzergah diğer seçenekler arasında en uygun olarak görülüyor.</p>
+                
+                <p>Diğer bir durum olarak da, bir sabit kanatlı insansız hava aracı tasarladığımızı düşünelim. Bu hava aracının uçuş sırasında, bizim önceden belirlediğimiz kısıtlara göre hareket etmesini isteriz. Bu kısıtlara örnek vermek gerekirse havada kalma yani görev süresinin mümkün olduğu kadar fazla olması bizim önceliğimizdir. Bunu da ancak yakıt tüketimini, burada yakıt hem petrol türevi olarak hem de bataryalardaki elektrik akımı olarak anlaşılabilir, belirli seviyelerde tutarak gerçekleyebiliriz.</p>
+                
+                <img src="../images/anka_iha.png" alt="Anka İHA, TUSAŞ" class="article-img">
+                <p style="text-align: center; font-size: 0.9em; color: #666; margin-top: -10px;">Anka İHA, TUSAŞ.*</p>
+                
+                <p>İşte bu noktada bir hava aracının yakıt tüketimini nelerin etkileyebileceğini belirlememiz gerekiyor. Öncelikle hava aracının toplam kütlesinin bir limitin altında tutulması önemlidir. Bunu dengelemek için ise hava aracının görev tanımı iyi belirlenmeli ve faydalı yüklerinin, aracın görev tanımına uygun olarak seçilip, araca yerleştirilmesi gereklidir. Yakıt tüketimini etkileyen bir diğer etmen ise aracın aerodinamik yapısıdır. Bunun için en verimli malzemelerin kullanılması, yakıt tüketimini en verimli şekilde kullanmaya katkı sunacaktır.</p>
+
+                <p>Bir uçağın hareket etmesinden görevini yerine getirip tekrar kullanılabilir halde üsse geri dönmesine kadar geçen sürede etkili olan etmenler elbette ki yukarı da bahsedilenler kadar az değildir. Ancak temel bir anlayış oluşturmak için, uçağın üretim maliyeti ve parçaların temin süresi gibi etmenleri de problemimizin birer parçası olarak söyleyebiliriz. Böylece ulaşmak istediğimiz hedeflerin sayısı da artırılıp, hepsini en iyi, en verimli şekilde gerçekleyebilecek parametreler, bizim için uçağın üretim sürecinde etkin rol oynamış olur.</p>
+
+                <p>Son olarak bir örnek durum daha inceleyim. Altta bir odanın ışıklandırma şematiği verilmiştir. Buna göre odaya, 8 tane ışık kaynağı, {x1, x2,…, x8} ve 5 tane de ışık miktarını algılayan sensör yerleştirilmiştir, {y1, y2,…, y5}.</p>
+
+                <img src="../images/oda_isiklandirma.png" alt="Odanın ışıklandırma şematiği" class="article-img">
+
+                <p>Bizden istenilen ise, odanın belirli yerlerindeki ışık miktarını algılayan sensörler vasıtasıyla, belirli zaman aralıklarında ölçülen aydınlanma miktarına göre, ışık kaynaklarının parlaklıklarının kendiliğinden ayarlanması için bir kontrolcü tasarlamak. Burada asıl istenilen ise ışık kaynaklarının çektikleri akım miktarlarının belirli seviyeler arasında tutulması ve en verimli biçimde odanın her yerinde istenilen miktarlarda aydınlanmanın sağlanması.</p>
+                
+                <p>Bu problemin aslında sonsuz çözümü bulunabilir bu yüzden de çözümler arasında bizim kısıtlarımıza en yakın çözümü bulmamız gerekmektedir. Bu probleme ilerleyen makalelerimizde tekrar döneceğiz. Bununla ilgili çözüm önerimizi de orada paylaşacağız.</p>
+                
+                <p>Bu örnek uygulamalara daha pek çok ekleme yapılabilir. Örneğin, bir fabrikanın deposunun yerinin belirlenmesi veya bir nehrin üzerine inşa edilecek asma köprünün konumunun tespiti veya akıllı şebeke sistemlerinin kontrolü için optimizasyon problemleri oluşturulabilir. Ayrıca ekonomi alanında bu problemlerin tanımlarından ve çözüm algoritmalarından oldukça faydalanılmaktadır. En güncel ve revaçta olan kullanım yerlerinden birisi de yapay sinir ağlarının matematiksel modellemesi olarak karşımıza çıkıyor.</p>
+                
+                <p>Uygulama örneklerinden de anlaşıldığı üzere, eniyileme yapmak demek, problemin çözümü için uymamız gereken kısıtlamalara göre, ulaşmak istediğimiz amaca en yakın olarak gerçekleştirmeye çalışmaktır. Bu amaca artık amaç fonksiyonu diyeceğiz ve çözüm önerilerimizi hep bu fonsiyonun alabileceği en küçük (min) veya en büyük (max) değerini bulmaya yönelik olarak sunacağız.</p>
+
+                <p>Bir eniyileme problemini aşağıdaki gibi matematiksel olarak ifade edebiliriz.</p>
+                
+                <img src="../images/opt_formulu.png" alt="Matematiksel Optimizasyon Formülü" class="article-img" style="max-width: 400px; margin: 20px auto; display: block;">
+
+                <p>Burada f(x) fonksiyonu amaç fonksiyonu, h(x) fonksiyonu eşitlik kısıtı ve g(x) de eşitsizlik kısıtı olarak problemimizde verilmiştir. Yukarıdaki tanımda verilen ‘k.s.’ ise kısıtları ifade etmektedir. Bu yabancı kaynaklarda ‘s.t.’ veya ‘subject to’ olarak gösterilir. Amaç fonksiyonunun değerini azaltırken seçilecek x değerlerinin reel sayılar kümesinde olması gerektiği de ‘min’ ifadesi altında belirtilmiştir.</p>
+                
+                <p>Kısıtlı matematiksel optimizasyon serimizin ilk kısmının böylece sonuna geldik. Bu makalemizde, genel manada optimizasyon problemlerinin neyi ifade ettiğinden bahsettik. Bir kaç uygulama örneğiyle de kavramsal olarak daha iyi anlaşılmasına çalıştım. Serinin ilerleyen makalelerinde, bu problemlerin biraz daha matematiksel altyapılarından bahsetmeyi planlıyorum.</p>
+
+                <p>→ <a href="#">Kısıtlı Matematiksel Eniyileme (Optimizasyon): 2. Modelleme</a></p>
+
+                <h3>Kaynakça:</h3>
+                <ul>
+                    <li><a href="https://www.tusas.com/urun/anka" target="_blank">https://www.tusas.com/urun/anka</a></li>
+                    <li><a href="http://home.ku.edu.tr/~mturkay/indr501/Optimizasyon.pdf" target="_blank">http://home.ku.edu.tr/~mturkay/indr501/Optimizasyon.pdf</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Mathematical_optimization" target="_blank">https://en.wikipedia.org/wiki/Mathematical_optimization</a></li>
+                    <li><a href="https://sites.math.washington.edu/~burke/crs/515/notes/nt_1.pdf" target="_blank">https://sites.math.washington.edu/~burke/crs/515/notes/nt_1.pdf</a></li>
+                </ul>
+
+                <!-- Etiketler (Keywords) -->
+                <div class="article-tags">
+                    <span class="tag-pill">Optimization</span>
+                    <span class="tag-pill">Artificial Neural Network</span>
+                    <span class="tag-pill">Smart Grid</span>
+                    <span class="tag-pill">Türkçe</span>
+                    <span class="tag-pill">Mathematics</span>
+                </div>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
