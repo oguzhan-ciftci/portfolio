@@ -6,6 +6,97 @@
     <title>Oğuzhan Çiftçi - Publications</title>
     <link rel="icon" href="picture.jpg" type="image/jpeg">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .note-item {
+            flex-direction: column;
+            align-items: stretch;
+            padding: 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .publication-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            cursor: pointer;
+            padding: 20px 0;
+            transition: background-color 0.2s ease;
+        }
+        .publication-header:hover .note-title {
+            color: var(--accent-color);
+        }
+        .toggle-arrow {
+            display: inline-block;
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+        .publication-details {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
+            background-color: #f8fafc;
+            border-radius: 6px;
+            padding: 0 20px;
+            margin-bottom: 0;
+        }
+        .publication-details.open {
+            max-height: 1200px;
+            opacity: 1;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+        .publication-details p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .cite-box {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 12px 15px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.85rem;
+            color: #334155;
+            position: relative;
+            margin-top: 8px;
+            line-height: 1.4;
+            padding-right: 90px;
+        }
+        .cite-text {
+            display: block;
+            word-break: break-word;
+        }
+        .copy-btn {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-family: inherit;
+            font-weight: 500;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .copy-btn:hover {
+            background: #1d4ed8;
+        }
+        .copy-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+        .copy-btn.copied {
+            background: #10b981;
+        }
+    </style>
 </head>
 <body>
     <aside class="sidebar">
@@ -30,79 +121,159 @@
         <h2>Publications</h2>
         
         <ul class="notes-list">
+            <!-- Paper 1 -->
             <li class="note-item">
-                <div class="note-info">
-                    <h3 class="note-title">Blockchain-based Decentralized Digitalization of the Prominent Geothermal District Heating System Services</h3>
-                    <span class="note-meta">ACDSA, February 2026 • Boracay Island, Philippines</span>
+                <div class="publication-header" onclick="toggleCard(this)">
+                    <div class="note-info">
+                        <h3 class="note-title">Blockchain-based Decentralized Digitalization of the Prominent Geothermal District Heating System Services <span class="toggle-arrow">▼</span></h3>
+                        <span class="note-meta">ACDSA, February 2026 • Boracay Island, Philippines</span>
+                    </div>
+                    <a href="papers/Blockchain-Based_Decentralized_Digitalization_of_the_Prominent_Geothermal_District_Heating_System_Services.pdf" class="read-btn" target="_blank" onclick="event.stopPropagation();">Read</a>
                 </div>
-                <a href="papers/Blockchain-Based_Decentralized_Digitalization_of_the_Prominent_Geothermal_District_Heating_System_Services.pdf" class="read-btn" target="_blank">Read</a>
+                <div class="publication-details">
+                    <p><strong>Conference Details:</strong> Proc. of International Conference on Artificial Intelligence, Computer, Data Sciences and Applications (ACDSA 2026), 5-7 February 2026, Boracay Island-Philippines</p>
+                    <p><strong>Abstract:</strong> The digitalization of mainstream services in critical energy infrastructures and major industrial processes has become increasingly essential and has accelerated in recent years. Among various district heating options, geothermal-sourced district heating networks offer a cleaner pathway toward a low-carbon future, especially when compared to systems based on coal-fired boilers, natural gas, waste heat recovery, waste-to-energy, biomass, or oil-fired boilers, all of which produce significant emissions. In the context of emerging 4th and 5th generation (4G and 5G) heating systems, decentralized digitalization plays a central role, and blockchain technology holds significant potential to support this transformation. This study explores key services within geothermal-sourced district heating networks that can be primarily digitalized using blockchain-based platforms. The study also provides valuable insights for the smart contracts, functions, and stakeholder/user authorization tailored to these.</p>
+                    <div style="margin-top: 15px;">
+                        <strong>APA Citation:</strong>
+                        <div class="cite-box">
+                            <span class="cite-text">Buyukkaya, A., Eguz, B., Budak, A., Ciftci, O., Iskenderoglu, A., Ozsoy, M., Bakla, B. S., Kucuktezcan, C. F., Gulbahce, M. O., Zehir, M. A., & Kocaarslan, I. (2026, February). Blockchain-based Decentralized Digitalization of the Prominent Geothermal District Heating System Services. In Proceedings of the International Conference on Artificial Intelligence, Computer, Data Sciences and Applications (ACDSA 2026), Boracay Island, Philippines.</span>
+                            <button class="copy-btn" onclick="event.stopPropagation(); copyCitation(this)">Copy</button>
+                        </div>
+                    </div>
+                </div>
             </li>
 
+            <!-- Paper 2 -->
             <li class="note-item">
-                <div class="note-info">
-                    <h3 class="note-title">An Optimized Traffic Lights Scheduling</h3>
-                    <span class="note-meta">International Open-Source Conference (UAKK), December 2024 • Istanbul, Turkiye</span>
+                <div class="publication-header" onclick="toggleCard(this)">
+                    <div class="note-info">
+                        <h3 class="note-title">An Optimized Traffic Lights Scheduling <span class="toggle-arrow">▼</span></h3>
+                        <span class="note-meta">International Open-Source Conference (UAKK), December 2024 • Istanbul, Turkiye</span>
+                    </div>
+                    <a href="papers/An_Optimized_Traffic_Lights_Scheduling.pdf" class="read-btn" target="_blank" onclick="event.stopPropagation();">Read</a>
                 </div>
-                <a href="papers/An_Optimized_Traffic_Lights_Scheduling.pdf" class="read-btn" target="_blank">Read</a>
+                <div class="publication-details">
+                    <p><strong>Conference Details:</strong> International Open-Source Conference (UAKK), December 2024, Istanbul, Turkiye</p>
+                    <p><strong>Abstract:</strong> In this paper, we study on the optimal scheduling problem of the traffic lights on a map by utilizing the number of vehicles that use predefined routes. This paper considers modeling an optimization problem to minimize the number of vehicles on the map. We present the analytical solution of the optimization problem and the numerical solution approach by using an Open-Source library CVX implemented in Matlab. Also, we discuss the applications of our approach.</p>
+                    <div style="margin-top: 15px;">
+                        <strong>APA Citation:</strong>
+                        <div class="cite-box">
+                            <span class="cite-text">Ciftci, O. (2024, December). An Optimized Traffic Lights Scheduling. In Proceedings of the International Open-Source Conference (UAKK), Istanbul, Turkiye.</span>
+                            <button class="copy-btn" onclick="event.stopPropagation(); copyCitation(this)">Copy</button>
+                        </div>
+                    </div>
+                </div>
             </li>
 
+            <!-- Paper 3 -->
             <li class="note-item">
-                <div class="note-info">
-                    <h3 class="note-title">Solving Linear Algebraic Equations by using Distributed Memory Programming</h3>
-                    <span class="note-meta">International Open-Source Conference (UAKK), December 2024 • Istanbul, Turkiye</span>
+                <div class="publication-header" onclick="toggleCard(this)">
+                    <div class="note-info">
+                        <h3 class="note-title">Solving Linear Algebraic Equations by using Distributed Memory Programming <span class="toggle-arrow">▼</span></h3>
+                        <span class="note-meta">International Open-Source Conference (UAKK), December 2024 • Istanbul, Turkiye</span>
+                    </div>
+                    <a href="papers/Solving_Linear_Algebraic_Equations_by_using_Distributed_Memory_Programming.pdf" class="read-btn" target="_blank" onclick="event.stopPropagation();">Read</a>
                 </div>
-                <a href="papers/Solving_Linear_Algebraic_Equations_by_using_Distributed_Memory_Programming.pdf" class="read-btn" target="_blank">Read</a>
+                <div class="publication-details">
+                    <p><strong>Conference Details:</strong> International Open-Source Conference (UAKK), December 2024, Istanbul, Turkiye</p>
+                    <p><strong>Abstract:</strong> In this paper, we study solving of linear algebraic equations with the form of Ax = b in a distributed manner by using distributed memory programming. We consider open-source message passing interface (MPI) approach to model our simulations. Also we review the sequential programming approach and make comparison with MPI on the performances under different network topologies.</p>
+                    <div style="margin-top: 15px;">
+                        <strong>APA Citation:</strong>
+                        <div class="cite-box">
+                            <span class="cite-text">Ciftci, O. (2024, December). Solving Linear Algebraic Equations by using Distributed Memory Programming. In Proceedings of the International Open-Source Conference (UAKK), Istanbul, Turkiye.</span>
+                            <button class="copy-btn" onclick="event.stopPropagation(); copyCitation(this)">Copy</button>
+                        </div>
+                    </div>
+                </div>
             </li>
 
+            <!-- Paper 4 -->
             <li class="note-item">
-                <div class="note-info">
-                    <h3 class="note-title">Solution of a Traffic Network Problem by Using A Continuous-Time Distributed Algorithm</h3>
-                    <span class="note-meta">21st National Conference on Automatic Control, September 2019 • Muğla, Turkey</span>
+                <div class="publication-header" onclick="toggleCard(this)">
+                    <div class="note-info">
+                        <h3 class="note-title">Solution of a Traffic Network Problem by Using A Continuous-Time Distributed Algorithm <span class="toggle-arrow">▼</span></h3>
+                        <span class="note-meta">21st National Conference on Automatic Control, September 2019 • Muğla, Turkey</span>
+                    </div>
+                    <a href="papers/Solution of a Traffic Network Problem by Using a Continuous-Time.pdf " class="read-btn" target="_blank" onclick="event.stopPropagation();">Read</a>
                 </div>
-                <a href="papers/Solution of a Traffic Network Problem by Using a Continuous-Time.pdf " class="read-btn" target="_blank">Read</a>
+                <div class="publication-details">
+                    <p><strong>Conference Details:</strong> 21st National Conference on Automatic Control (TOK), September 2019, Muğla, Turkey</p>
+                    <p><strong>Özetçe:</strong> Bu bildiride, bir trafik ağı probleminin, sürekli-zamanda tanımlı ve Ax = b formundaki doğrusal denklem çözmek için geliştirilmiş bir dağıtık algoritma kullanılarak çözümü incelenmiştir. Söz konusu trafik ağı problemi, çok etmenli sistemlerde her etmenin denklem sisteminin yalnızca bir satırını bildiği ve denklem sisteminin eşsiz çözümüne ulaşmayı hedeflediği bir formülasyon olarak ifade edilmiştir. Trafik ağındaki sensörler önlerinden birim zamanda geçen araç sayısını ölçebilmekte ve kendilerine yakın olan komşu sensörlerle veri paylaşımı yapabilmekte olduğu varsayımıyla, her bir güzergahtan birim zamanda geçen araç sayısının belirlenebilmesine çalışmaktadır. Sensörler arası iletişimin zamanla değiştiği ancak çizge dizisinin tekrarlı birlikte kuvvetli bağlı olduğu bir durum için trafik ağı probleminin çözüldüğü benzetim çalışmaları ile gösterilmiştir.</p>
+                    <p><strong>Abstract:</strong> In this paper, we investigate the solution of a traffic network problem by using a continuous-time distributed algorithm designed for solution of linear equations in the form of Ax = b. We express the traffic network problem as the solution of a linear equation defined in a multi-agent system where each agent knows a single line of the equation system and aims to find the unique solution. In the traffic network, sensors are able to measure the number of vehicles passing in front of them in unit time, and try to determine the number of vehicles passing from each route in unit time, assuming that sensors can share data with neighboring sensors close to them. Simulation studies have shown that the traffic network problem can be solved when the underlying topology of the network is time varying and repeatedly jointly strongly connected.</p>
+                    <div style="margin-top: 15px;">
+                        <strong>APA Citation:</strong>
+                        <div class="cite-box">
+                            <span class="cite-text">Ciftci, O., & Cihan, O. (2019, September). Bir Trafik Ağı Probleminin Sürekli-Zamanlı Dağıtık Algoritma Kullanılarak Çözümü [Solution of a Traffic Network Problem by Using a Continuous-Time Distributed Algorithm]. In 21st National Conference on Automatic Control (TOK), Muğla, Turkey.</span>
+                            <button class="copy-btn" onclick="event.stopPropagation(); copyCitation(this)">Copy</button>
+                        </div>
+                    </div>
+                </div>
             </li>
         </ul>
 
         <div class="pagination" id="pagination"></div>
 
         <script>
+            // Açılır Kapanır Kart Fonksiyonu
+            function toggleCard(header) {
+                const details = header.nextElementSibling;
+                const arrow = header.querySelector('.toggle-arrow');
+                details.classList.toggle('open');
+                if (details.classList.contains('open')) {
+                    arrow.style.transform = 'rotate(180deg)';
+                } else {
+                    arrow.style.transform = 'rotate(0deg)';
+                }
+            }
+
+            // Atıf Kopyalama Fonksiyonu
+            function copyCitation(btn) {
+                const citeText = btn.previousElementSibling.innerText;
+                navigator.clipboard.writeText(citeText).then(() => {
+                    const originalText = btn.innerText;
+                    btn.innerText = 'Copied!';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.innerText = originalText;
+                        btn.classList.remove('copied');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            }
+
+            // Sayfalama (Pagination) Mantığı
             const list = document.querySelector('.notes-list');
             const items = Array.from(list.querySelectorAll('.note-item'));
-            const itemsPerPage = 4; // Her sayfada kaç yazı görünecek
+            const itemsPerPage = 4;
             const pagination = document.getElementById('pagination');
 
             function displayPage(page) {
                 items.forEach((item, index) => {
-                    // Sadece o sayfaya ait olan 4 öğeyi flex (görünür) yap, diğerlerini gizle
                     item.style.display = (index >= (page - 1) * itemsPerPage && index < page * itemsPerPage) ? 'flex' : 'none';
                 });
                 
-                // Aktif olan sayfa butonunu mavi yap
                 Array.from(pagination.children).forEach((btn, index) => {
                     btn.classList.toggle('active', index + 1 === page);
                 });
                 
-                // Sayfa değiştiğinde yumuşakça sayfanın üstüne kaydır
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
             function setupPagination() {
                 const pageCount = Math.ceil(items.length / itemsPerPage);
-                
-                // Eğer 4 veya daha az yazı varsa sayfalama butonlarını gösterme
                 if(pageCount <= 1) return; 
 
                 for (let i = 1; i <= pageCount; i++) {
                     const btn = document.createElement('button');
                     btn.classList.add('page-btn');
-                    if (i === 1) btn.classList.add('active'); // İlk sayfayı aktif başlat
+                    if (i === 1) btn.classList.add('active');
                     btn.innerText = i;
                     btn.addEventListener('click', () => displayPage(i));
                     pagination.appendChild(btn);
                 }
             }
 
-            // Kodu çalıştır
             setupPagination();
             displayPage(1);
         </script>
