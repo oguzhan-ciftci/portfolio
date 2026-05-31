@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kısıtlı Matematiksel Eniyileme: 3. Problem Sınıflandırma - Oğuzhan Çiftçi</title>
+    <link rel="icon" href="../picture.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <img src="../picture.jpg" alt="Oğuzhan Çiftçi" class="profile-photo">
+        <h1 class="site-title">Oğuzhan Çiftçi</h1>
+        <p class="site-description">Electrical and Electronics Engineering<br>PhD Candidate @ Marmara University</p>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../cv.html">Brief CV</a></li>
+                <li><a href="../teaching.html">Teaching</a></li>
+                <li><a href="../publications.html">Publication</a></li>
+                <li><a href="../notes.html" class="active">Notes</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            &copy; 2026 Oğuzhan Çiftçi.<br>All rights reserved.
+        </div>
+    </aside>
+
+    <main class="content">
+        <a href="../notes.html" class="back-link">Geri Dön</a>
+        
+        <article class="article-detail">
+            <!-- Kapak Fotoğrafı İçin Alan -->
+            <img src="../images/opt-3-cover.png" alt="Optimizasyon 3 Kapak" class="article-img" style="margin-top: 0; width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+
+            <div class="article-header" style="margin-top: 20px;">
+                <h2>Kısıtlı Matematiksel Eniyileme (Optimizasyon): 3. Problem Sınıflandırma</h2>
+                <span class="article-date">22 Temmuz 2020</span>
+            </div>
+
+            <div class="article-content">
+                <p>Bu makalenin başlığı ilk bakışta çok çarpıcı görünmese de, bizi problemin çözümüne götüren yolda mihenk taşlarından birini ifade ediyor. Şimdiye kadar ki makalelerimizde (<a href="kisitli-matematiksel-eniyileme-1.html">1</a>, <a href="kisitli-matematiksel-eniyileme-2.html">2</a>), çözmeye çalıştığımız bir problemden ve bunun matematiksel modelini (optimizasyon problemi) oluşturmaktan bahsettik. Bu makalemizde ise bu problemi oluşturan amaç fonksiyonunun ve kısıt fonksiyonlarının, ne tür fonksiyonlar olarak ifade edilebileceğine değineceğiz. Böylece optimizasyon problemimizin hangi sınıfa dahil olduğunu tespit edebileceğiz.</p>
+
+                <p>Optimizasyon problemleri, amaç ve kısıt fonksiyonlarının tanımlarına göre sınıflandırılırlar. Eğer amaç ve kısıt fonksiyonları lineer (doğrusal) olarak tanımlısa, bu optimizasyon problemleri lineer (linear) programlar olarak anılırlar. Bir <em>f</em> fonksiyonu, eğer alttaki koşulu sağlıyorsa lineer fonksiyon olarak tanımlanır:</p>
+
+                <!-- LINEARITY EQUATION -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.25rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        f(&alpha;x + &beta;y) = &alpha;f(x) + &beta;f(y)
+                    </div>
+                    <div style="font-size: 0.95rem; color: #555; font-style: italic; margin-top: 8px;">
+                        her x, y &in; dom f &nbsp;ve&nbsp; &alpha;, &beta; &in; &reals; &nbsp;için
+                    </div>
+                </div>
+
+                <p>Buna karşın, eğer optimizasyon problemi lineer değilse, lineer olmayan (nonlinear) program olarak anılır.</p>
+
+                <p>Optimizasyon problem sınıfları arasında en önemli yere sahip olan ise dışbükey (convex) optimizasyon problemleridir. Eğer amaç ve kısıt fonksiyonları dışbükey (convex) olacak şekilde alttaki eşitsizliğe uygun olarak tanımlandıysa, bu optimizasyon problemleri dışbükey (convex) optimizasyon problemi olarak ifade edilirler.</p>
+
+                <!-- CONVEXITY EQUATION -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.25rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        f(&theta;x + (1-&theta;)y) &le; &theta;f(x) + (1-&theta;)f(y)
+                    </div>
+                    <div style="font-size: 0.95rem; color: #555; font-style: italic; margin-top: 8px;">
+                        her x, y &in; dom f &nbsp;ve&nbsp; 0 &le; &theta; &le; 1 &nbsp;için
+                    </div>
+                </div>
+
+                <p>Üstteki iki tanımı karşılaştırdığımızda, dışbükeylik tanımının lineerlik tanımından daha genel olduğunu görüyoruz. Çünkü lineerlik tanımında daha sınırlayıcı olan eşitlik varken, dışbükeylik tanımında bir küçük-eşit olma eşitsizliği ve bunun belirli alpha ve beta değerleri için sağlanması gerekliliği veriliyor. Böylece her lineer program aslında bir dışbükey (convex) optimizasyon problemidir denilebilir. Yani dışbükey (convex) optimizasyon problemleri, lineer programlar için bir genelleştirmedir.</p>
+
+                <p>Problemimizin tanımlı olduğu kümeyi belirlemek, problemi sınıflandırmamıza olanak sağlar. Örneğin, bir fonksiyonun dışbükey (convex) olabilmesi için, fonksiyonun tanımlı olduğu kümenin (dom f) dışbükey olması gerekir. Bu küme tanımlarını yapmaya geçmeden önce, 2 önemli temel tanımın üzerinde biraz durmak istiyorum.</p>
+
+                <p>Öncelikle doğru ve doğru parçası neyi ifade ediyor bunlara bakalım. Birbirinden farklı herhangi 2 noktayı ele alalım (<em>x<sub>1</sub></em> ve <em>x<sub>2</sub></em>, &reals;<sup>n</sup> de tanımlı).</p>
+
+                <!-- LINE EQUATION -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.25rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        y = &theta;x<sub>1</sub> + (1-&theta;)x<sub>2</sub>
+                    </div>
+                    <div style="font-size: 0.95rem; color: #555; font-style: italic; margin-top: 8px;">
+                        &theta; &in; &reals;
+                    </div>
+                </div>
+
+                <p>Bu 2 noktadan geçen bir doğru üstteki gibi ifade edilebilir. Buradaki &theta; gerçel sayılar kümesinde, &reals;, tanımlı herhangi bir sayıyı ifade ediyor. Eğer &theta;, [0,1] arasında bir değer alırsa da, bu 2 noktayı birleştiren doğru parçası matematiksel olarak ifade edilmiş olur. Bunu alttaki şekilde görebilirsiniz.</p>
+
+                <!-- GEOMETRIC DIAGRAM 1: LINE AND SEGMENT -->
+                <div style="background: #fdfdfd; border: 1px solid var(--border-color); border-radius: 6px; padding: 15px; margin: 20px auto; max-width: 550px;">
+                    <svg viewBox="0 0 500 150" width="100%" height="auto" style="display: block;">
+                        <!-- The Line -->
+                        <line x1="20" y1="75" x2="480" y2="75" stroke="#ccc" stroke-width="2" stroke-dasharray="4,4" />
+                        <line x1="10" y1="75" x2="490" y2="75" stroke="#aaa" stroke-width="1.5" />
+                        <!-- The highlighted Segment -->
+                        <line x1="150" y1="75" x2="350" y2="75" stroke="var(--accent-color)" stroke-width="4" />
+                        <!-- Points -->
+                        <circle cx="150" cy="75" r="6" fill="var(--heading-color)" stroke="#fff" stroke-width="2" />
+                        <circle cx="350" cy="75" r="6" fill="var(--heading-color)" stroke="#fff" stroke-width="2" />
+                        <!-- Labels -->
+                        <text x="145" y="60" font-family="-apple-system, sans-serif" font-size="14px" fill="var(--text-color)" font-weight="600">x₁</text>
+                        <text x="345" y="60" font-family="-apple-system, sans-serif" font-size="14px" fill="var(--text-color)" font-weight="600">x₂</text>
+                        <text x="250" y="105" font-family="-apple-system, sans-serif" font-size="13px" fill="var(--accent-color)" font-weight="500" text-anchor="middle">Doğru Parçası (&theta; &in; [0,1])</text>
+                        <text x="70" y="105" font-family="-apple-system, sans-serif" font-size="13px" fill="#777" text-anchor="middle">Doğru (&theta; &in; &reals;)</text>
+                    </svg>
+                    <p style="text-align: center; font-size: 0.9em; color: #666; margin: 5px 0 0 0;">Doğru üzerinde verilen 2 noktayı (x₁ ve x₂) birleştiren doğru parçası koyu renkle gösterilmiştir.</p>
+                </div>
+
+                <p>Bu 2 temel tanımımızı yaptığımıza göre, sıkça kullanacağımız 2 küme tanımına geçebiliriz. Bunlardan ilki, afin (affine) kümeler olarak literatüre geçmiştir. Üsteki şekli ele aldığımızda, x₁ ve x₂ noktalarından geçen doğru üzerindeki tüm noktalar, afin kümesinin elemanlarını ifade eder.</p>
+
+                <p>Diğer küme tanımı ise dışbükey (convex) kümedir. Bir kümenin dışbükey (convex) olarak tanımlı olabilmesi için, küme içindeki 2 noktayı birleştiren doğru parçasının küme içerisinde bulunması gerekir. Bu da yalnızca &theta; değerinin [0,1] arasında değerler aldığı durumda mümkün olmaktadır. Alttaki küme örneklerini birlikte inceleyelim.</p>
+
+                <!-- GEOMETRIC DIAGRAM 2: CONVEX & NON-CONVEX SETS -->
+                <div style="background: #fdfdfd; border: 1px solid var(--border-color); border-radius: 6px; padding: 20px; margin: 30px auto; max-width: 800px;">
+                    <svg viewBox="0 0 750 240" width="100%" height="auto" style="display: block;">
+                        <!-- Left: Convex Set (Hexagon) -->
+                        <g transform="translate(10, 10)">
+                            <polygon points="60,20 140,20 180,90 140,160 60,160 20,90" fill="#f0f7ff" stroke="var(--accent-color)" stroke-width="2" />
+                            <!-- Points inside -->
+                            <circle cx="70" cy="60" r="4" fill="var(--heading-color)" />
+                            <circle cx="130" cy="120" r="4" fill="var(--heading-color)" />
+                            <!-- Line segment connecting them -->
+                            <line x1="70" y1="60" x2="130" y2="120" stroke="var(--heading-color)" stroke-width="2" />
+                            <!-- Label -->
+                            <text x="100" y="195" font-family="-apple-system, sans-serif" font-size="14px" fill="var(--heading-color)" font-weight="bold" text-anchor="middle">Dışbükey (Convex) Küme</text>
+                        </g>
+
+                        <!-- Middle: Non-Convex Set -->
+                        <g transform="translate(265, 10)">
+                            <path d="M 30,50 C 30,20 150,10 150,50 C 150,75 100,80 100,100 C 100,120 170,125 150,150 C 130,175 30,160 30,120 C 30,90 70,90 30,50 Z" fill="#fff5f5" stroke="#e53e3e" stroke-width="2" />
+                            <!-- Points inside -->
+                            <circle cx="60" cy="55" r="4" fill="#e53e3e" />
+                            <circle cx="120" cy="130" r="4" fill="#e53e3e" />
+                            <!-- Line segment connecting them (crossing outside) -->
+                            <line x1="60" y1="55" x2="120" y2="130" stroke="#e53e3e" stroke-width="2" stroke-dasharray="4,2" />
+                            <!-- Label -->
+                            <text x="100" y="195" font-family="-apple-system, sans-serif" font-size="14px" fill="#e53e3e" font-weight="bold" text-anchor="middle">Dışbükey Olmayan Küme</text>
+                        </g>
+
+                        <!-- Right: Non-Convex Set (Square with missing borders) -->
+                        <g transform="translate(520, 10)">
+                            <!-- Square background with dashed/missing border sections -->
+                            <rect x="30" y="20" width="140" height="140" fill="#fffaf0" stroke="#dd6b20" stroke-width="2" stroke-dasharray="140" opacity="0.1" />
+                            <!-- Specifically drawing borders with gaps -->
+                            <line x1="30" y1="20" x2="100" y2="20" stroke="#dd6b20" stroke-width="2" />
+                            <line x1="130" y1="20" x2="170" y2="20" stroke="#dd6b20" stroke-width="2" />
+                            <!-- Right border with gap -->
+                            <line x1="170" y1="20" x2="170" y2="80" stroke="#dd6b20" stroke-width="2" />
+                            <line x1="170" y1="110" x2="170" y2="160" stroke="#dd6b20" stroke-width="2" />
+                            <!-- Bottom border -->
+                            <line x1="170" y1="160" x2="30" y2="160" stroke="#dd6b20" stroke-width="2" />
+                            <!-- Left border with gap -->
+                            <line x1="30" y1="160" x2="30" y2="100" stroke="#dd6b20" stroke-width="2" />
+                            <line x1="30" y1="70" x2="30" y2="20" stroke="#dd6b20" stroke-width="2" />
+                            
+                            <!-- Gaps indicators (light dots) -->
+                            <circle cx="115" cy="20" r="3" fill="none" stroke="#dd6b20" stroke-width="1" stroke-dasharray="2,2" />
+                            <circle cx="170" cy="95" r="3" fill="none" stroke="#dd6b20" stroke-width="1" stroke-dasharray="2,2" />
+                            
+                            <!-- Point on the border where it's open -->
+                            <circle cx="115" cy="20" r="4" fill="#dd6b20" />
+                            <circle cx="70" cy="90" r="4" fill="#dd6b20" />
+                            <line x1="115" y1="20" x2="70" y2="90" stroke="#dd6b20" stroke-width="2" stroke-dasharray="4,2" />
+                            
+                            <!-- Label -->
+                            <text x="100" y="195" font-family="-apple-system, sans-serif" font-size="14px" fill="#dd6b20" font-weight="bold" text-anchor="middle">Sınırları Eksik Küme</text>
+                        </g>
+                    </svg>
+                    <p style="text-align: center; font-size: 0.9em; color: #666; margin: 10px 0 0 0;">Soldaki altıgen küme dışbükeydir. Ortadaki kümede seçilen iki noktayı bağlayan doğru parçası kümenin dışına taştığı için dışbükey değildir. Sağdaki kare kümenin kenarında eksik bölümler olduğu için dışbükeylik şartı sağlanmaz.</p>
+                </div>
+
+                <p>Bu makalemizde optimizasyon problemlerinin nasıl sınıflandırıldığını inceledik. Bundan sonra ilgileneceğimiz problemler de genelde dışbükey (convex) tanımlı olacağı için bu kısmın önemini bir kez daha belirtmekte fayda görüyorum. Bir sonraki makalemizde dışbükey fonksiyon tanımlarından bahsedeceğiz. Hoşçakalın.</p>
+
+                <p>&rarr; <a href="#">Kısıtlı Matematiksel Eniyileme (Optimizasyon): 4. Dışbükey (Convex) Fonksiyonlar</a></p>
+
+                <h3>Kaynakça:</h3>
+                <ul>
+                    <li><a href="https://web.stanford.edu/~boyd/cvxbook/" target="_blank">Convex Optimization - Stephen Boyd & Lieven Vandenberghe, Cambridge University Press 2009.</a></li>
+                    <li><a href="http://www.tubaterim.gov.tr/" target="_blank">TÜBA Terimler Sözlüğü</a></li>
+                </ul>
+
+                <!-- Etiketler (Keywords) -->
+                <div class="article-tags">
+                    <span class="tag-pill">Mathematics</span>
+                    <span class="tag-pill">Optimization</span>
+                    <span class="tag-pill">Türkçe</span>
+                    <span class="tag-pill">Engineering</span>
+                </div>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
