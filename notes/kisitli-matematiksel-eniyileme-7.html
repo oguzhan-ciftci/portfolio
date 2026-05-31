@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kısıtlı Matematiksel Eniyileme: 7. Lagrange Eşiz (Dual) Problemi - Oğuzhan Çiftçi</title>
+    <link rel="icon" href="../picture.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <img src="../picture.jpg" alt="Oğuzhan Çiftçi" class="profile-photo">
+        <h1 class="site-title">Oğuzhan Çiftçi</h1>
+        <p class="site-description">Electrical and Electronics Engineering<br>PhD Candidate @ Marmara University</p>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../cv.html">Brief CV</a></li>
+                <li><a href="../teaching.html">Teaching</a></li>
+                <li><a href="../publications.html">Publication</a></li>
+                <li><a href="../notes.html" class="active">Notes</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            &copy; 2026 Oğuzhan Çiftçi.<br>All rights reserved.
+        </div>
+    </aside>
+
+    <main class="content">
+        <a href="../notes.html" class="back-link">Geri Dön</a>
+        
+        <article class="article-detail">
+            <!-- Kapak Fotoğrafı İçin Alan -->
+            <img src="../images/opt-7-cover.png" alt="Optimizasyon 7 Kapak" class="article-img" style="margin-top: 0; width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+
+            <div class="article-header" style="margin-top: 20px;">
+                <h2>Kısıtlı Matematiksel Eniyileme (Optimizasyon): 7. Lagrange Eşiz (Dual) Problemi</h2>
+                <span class="article-date">2 Eylül 2020</span>
+            </div>
+
+            <div class="article-content">
+                <p>Serimizin bu makalesinde, daha önce kısaca bahsettiğimiz Lagrangian ve Lagrange çarpanları üzerinde duracağız.</p>
+
+                <!-- EQUATION 7.1: OPTIMIZATION PROBLEM -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">minimize</span>
+                        <span>f<sub>0</sub>(x)</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; margin-bottom: 5px;">
+                            <span style="font-weight: bold; width: 60px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                            <span>f<sub>i</sub>(x) &le; 0, &nbsp;&nbsp;&nbsp; i = 1, &dots;, m</span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>h<sub>i</sub>(x) = 0, &nbsp;&nbsp;&nbsp; i = 1, &dots;, p</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>7.1 Optimizasyon Problemi Tanımı</p>
+
+                <p>Elimizde üstteki formda verilmiş bir optimizasyon problemi olsun. Lagrangian eşizliğindeki ana fikir, amaç fonksiyonunu kısıt fonksiyonlarının ağırlıklı toplamı ile artırarak (7.1)’deki kısıtları hesaba katmaktır.</p>
+
+                <p>Lagrange fonksiyonunu alttaki gibi gösterebiliriz.</p>
+
+                <!-- EQUATION 7.2: LAGRANGE FUNCTION -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        L(x, &lambda;, &mu;) = f<sub>0</sub>(x) + &sum;<sub>i=1</sub><sup>m</sup> &lambda;<sub>i</sub>f<sub>i</sub>(x) + &sum;<sub>i=1</sub><sup>p</sup> &mu;<sub>i</sub>h<sub>i</sub>(x)
+                    </div>
+                </div>
+
+                <p>7.2 Lagrange Fonksiyonu</p>
+
+                <p>Yukarıda söylediğimiz gibi kısıt fonksiyonlarının değerlerini birer skalar değer ile çarpıp, amaç fonksiyonu ile topladığımızda, optimizasyon problemimizin Lagrangian Eşiz fonksiyonunu hesaplamış oluyoruz. Burada verilen \lambda ve \mu değerleri Lagrangian çarpanları olarak isimlendiriliyorlar.</p>
+
+                <p>Lagrange Eşiz (Dual) Fonksiyonu ise, Lagrangian fonksiyonun alabileceği en düşük değer olarak tanımlanır.</p>
+
+                <!-- EQUATION 7.3: DUAL FUNCTION -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        g(&lambda;, &mu;) = inf<sub>x &in; D</sub> L(x, &lambda;, &mu;)
+                    </div>
+                </div>
+
+                <p>7.3 Lagrange Eşiz (Dual) Fonksiyonu</p>
+
+                <p>Bu Eşiz fonksiyonun en büyük avantajı, elimizdeki optimizasyon problemimiz convex olarak tanımlanmış olmasa bile, her durumda concave (içbükey) olarak tanımlıdır. Bildiğiniz üzere eğer bir fonksiyon f(x), concave ise -f(x) convex bir fonksiyonu ifade eder. Böylece, daha önce convex fonksiyonlar için verdiğimiz özellikler ve daha fazılası, Dual fonksiyon için de geçerli olur.</p>
+
+                <p>Bu verilen Eşiz (Dual) Fonksiyonunun değeri aynı zamanda optimal değer olan p* için de bir alt sınır belirtir. (Bunun ispatı için Boyd’un kitabında sayfa 216'ya müracaat ediniz.)</p>
+
+                <!-- EQUATION 7.4: LOWER BOUND -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        g(&lambda;, &mu;) &le; p<sup>*</sup>
+                    </div>
+                    <div style="font-size: 0.95rem; color: #555; font-style: italic; margin-top: 8px;">
+                        &lambda; &ge; 0 için
+                    </div>
+                </div>
+
+                <p>7.4 Optimal değer için alt sınır eşitsizliği</p>
+
+                <p>Lagrange Dual Fonksiyonu için bir örnek problem:</p>
+
+                <p>Alttaki en küçük kareler problemini inceleyelim.</p>
+
+                <!-- EQUATION 7.5: LEAST SQUARES PROBLEM -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">minimize</span>
+                        <span>x<sup>T</sup>x</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; margin-bottom: 5px;">
+                            <span style="font-weight: bold; width: 60px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                            <span>Ax = b</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>7.5 En küçük kareler problemi (least-squares)</p>
+
+                <p>Görüldüğü gibi bu örnek problemde yalnızca eşitlik kısıtı verilmiştir. Bu problem için Lagrangian ise alttaki gibidir:</p>
+
+                <!-- EQUATION 7.6: LAGRANGIAN FOR LEAST SQUARES -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        L(x, &nu;) = x<sup>T</sup>x + &nu;<sup>T</sup>(Ax - b)
+                    </div>
+                </div>
+
+                <p>7.6 Lagrangian fonksiyonu</p>
+
+                <p>L(x,v) ikinci dereceden convex bir fonksiyon olarak tanımlandığı için, daha önceki makalemizde işlediğimiz optimallik koşulunu kullanarak, bu problem için fonksiyonu minimize eden x değerini aşağıdaki gibi bulabiliriz.</p>
+
+                <!-- EQUATION 7.7: GRADIENT OPTIMALITY -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        &nabla;<sub>x</sub>L(x, &nu;) = 2x + A<sup>T</sup>&nu; = 0 &nbsp;&rArr;&nbsp; x = -(1/2)A<sup>T</sup>&nu;
+                    </div>
+                </div>
+
+                <p>7.7 Optimallik koşulu uygulaması</p>
+
+                <p>Buradan x=-(1/2) A^T v. Böylece (7.3)’te verilen dual fonksiyon tanımı kullanılarak, bu optimum x değerine göre şöyle hesaplanabilir:</p>
+
+                <!-- EQUATION 7.8: DUAL FUNCTION FOR LEAST SQUARES -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        g(&nu;) = -(1/4)&nu;<sup>T</sup>AA<sup>T</sup>&nu; - b<sup>T</sup>&nu;
+                    </div>
+                </div>
+
+                <p>7.8 Eşiz (Dual) Fonksiyonu</p>
+
+                <p>Görüldüğü üzere (7.8)’te verilen fonksiyon ikinci dereceden concave bir fonksiyondur. Ayrıca (7.4)’te verilen eşitsizlik yardımıyla, (7.5)'te verilen optimizasyon probleminin optimal değeri p* için alt sınır ifadesini gösterebiliriz:</p>
+
+                <!-- EQUATION 7.9: LOWER BOUND FOR LEAST SQUARES -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        p<sup>*</sup> &ge; -(1/4)&nu;<sup>T</sup>AA<sup>T</sup>&nu; - b<sup>T</sup>&nu;
+                    </div>
+                </div>
+
+                <p>7.9 Optimal değer için alt sınır</p>
+
+                <p>Lagrange Eşiz (Dual) Problem:</p>
+
+                <p>(7.3)’te verilen Dual fonksiyonu, verilen her (\lambda ve \mu) değeri için farklı bir değer alırlar. O halde (7.4)’teki gibi bir alt sınır oluşturabilmek için bu Dual fonksiyonunu da bir optimizasyon problemi olarak çözebilirsek, İlk başta çözmeye çalıştığımız optimizasyon problemi de çözülmüş olur.</p>
+
+                <p>Daha evvel belirttiğimiz üzere, Dual fonksiyonlar her zaman için concave olarak tanımlıdırlar. Bu yüzden, Lagrange Dual Problemimizi alttaki gibi tanımlayabiliriz:</p>
+
+                <!-- EQUATION 7.10: DUAL PROBLEM GENERAL FORM -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">maximize</span>
+                        <span>g(&lambda;, &mu;)</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; margin-bottom: 5px;">
+                            <span style="font-weight: bold; width: 60px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                            <span>&lambda; &ge; 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>7.10 Dual Problem</p>
+
+                <p>Dual Problem için örnek:</p>
+
+                <p>Yukarıda verdiğimiz en küçük kareler probleminin aynısını esas alacağız. (7.5)’te verilen problem için (7.8)’te oluşturulan dual problemi alttaki gibi bir optimizasyon problemi olarak yazabiliriz.</p>
+
+                <!-- EQUATION 7.11: DUAL LEAST SQUARES PROBLEM -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">maximize</span>
+                        <span>-(1/4)&nu;<sup>T</sup>AA<sup>T</sup>&nu; - b<sup>T</sup>&nu;</span>
+                    </div>
+                </div>
+
+                <p>7.11 Dual Problem</p>
+
+                <p>Bu problem görüldüğü üzere ikinci dereceden kısıtsız bir optimizasyon problemidir.</p>
+
+                <p>Bu hafta Lagrange problemleri üzerinde durduk. Konu hakkında bu videoyu izlemenizi tavsiye ederim. Haftaya görüşmek üzere.</p>
+
+                <p>&rarr; <a href="#">Kısıtlı Matematiksel Eniyileme (Optimizasyon): 8. Optimallik Koşulları (KKT)</a></p>
+
+                <h3>KAYNAKÇA:</h3>
+                <ul>
+                    <li><a href="https://web.stanford.edu/~boyd/cvxbook/" target="_blank">Convex Optimization /Stephen Boyd & Lieven Vandenberghe, Cambridge University Press 2009.</a></li>
+                    <li><a href="http://www.tubaterim.gov.tr/" target="_blank">http://www.tubaterim.gov.tr/</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=3bbIRJllbSo&feature=youtu.be&t=1345" target="_blank">https://www.youtube.com/watch?v=3bbIRJllbSo&feature=youtu.be&t=1345</a></li>
+                </ul>
+
+                <!-- Etiketler (Keywords) -->
+                <div class="article-tags">
+                    <span class="tag-pill">Optimization</span>
+                    <span class="tag-pill">Mathematics</span>
+                    <span class="tag-pill">Türkçe</span>
+                    <span class="tag-pill">Engineering</span>
+                </div>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
