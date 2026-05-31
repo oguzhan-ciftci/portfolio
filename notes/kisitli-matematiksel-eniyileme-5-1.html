@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kısıtlı Matematiksel Eniyileme: 5.1 Dışbükey (Convex) Optimizasyon Problemleri - Oğuzhan Çiftçi</title>
+    <link rel="icon" href="../picture.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <img src="../picture.jpg" alt="Oğuzhan Çiftçi" class="profile-photo">
+        <h1 class="site-title">Oğuzhan Çiftçi</h1>
+        <p class="site-description">Electrical and Electronics Engineering<br>PhD Candidate @ Marmara University</p>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../cv.html">Brief CV</a></li>
+                <li><a href="../teaching.html">Teaching</a></li>
+                <li><a href="../publications.html">Publication</a></li>
+                <li><a href="../notes.html" class="active">Notes</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            &copy; 2026 Oğuzhan Çiftçi.<br>All rights reserved.
+        </div>
+    </aside>
+
+    <main class="content">
+        <a href="../notes.html" class="back-link">Geri Dön</a>
+        
+        <article class="article-detail">
+            <!-- Kapak Fotoğrafı İçin Alan -->
+            <img src="../images/opt-5-1-cover.png" alt="Optimizasyon 5.1 Kapak" class="article-img" style="margin-top: 0; width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+
+            <div class="article-header" style="margin-top: 20px;">
+                <h2>Kısıtlı Matematiksel Eniyileme (Optimizasyon): 5.1 Dışbükey (Convex) Optimizasyon Problemleri</h2>
+                <span class="article-date">12 Ağustos 2020</span>
+            </div>
+
+            <div class="article-content">
+                <p>Bu makalemize, şimdiye kadar yaptıklarımızın bir özetiyle başlamak istiyorum. Bir problemi optimize etmek, onu çözüme götüren bir çok çözüm önerisinden hangisi seçeceğimize karar vermek olarak söylenebilir. Peki neye göre karar verebiliriz. Bu elbette elimizdeki problemin ne olduğuna göre değişkenlik gösterir. Bazen üretimini yapacağımız bir malzemenin maliyetlerini düşürmek istenebilirken bazen de yine bu malzemenin birim zamanda üretim miktarını artırmak bizim çözmek durumunda kaldığımız problem olabilir. Matematiksel optimizasyon ise çözmemiz gereken bu problemi, bazı standart formlarda modelleyerek daha sistematik bir şekilde çözmemize imkan sağlıyor. Bu standart formlardan birisini de alttaki gibi gösterebiliriz.</p>
+
+                <!-- EQUATION 5.1: STANDARD FORM -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">minimize</span>
+                        <span>f<sub>0</sub>(x)</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; margin-bottom: 5px;">
+                            <span style="font-weight: bold; width: 60px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                            <span>f<sub>i</sub>(x) &le; 0, &nbsp;&nbsp;&nbsp; i = 1, &dots;, m</span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>h<sub>i</sub>(x) = 0, &nbsp;&nbsp;&nbsp; i = 1, &dots;, p</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>5.1 Optimizasyon problemi standart formu</p>
+
+                <p>Burada çözmek istediğimiz asıl problem f_0(x) amaç fonksiyonu ile belirtilmiş. Bunun dışında 2 tane daha fonksiyon tanımımız mevcut. Bunlar optimizasyon problemimin kısıtları olarak ifade ediliyor ve ilki eşitsizlik kısıtı iken diğeri eşitlik kısıtı olarak ifade ediliyor.</p>
+
+                <p>Amaç ve kısıt fonksiyonlarının sınıflarına göre problemimiz isimlendirilir. Örneğin, bir problemdeki fonksiyonlar eğer dışbükey (convex) bir kümede tanımlıysalar, buna convex optimizasyon problemi deniliyor. Ayrıca buradaki x optimizasyon değişkeni olarak isimlendiriliyor. Bu x değerinin olurlu (feasible) olması da üstte belirtilen kısıtları sağlamasına göre belirlenir.</p>
+
+                <p>Bu kısa özetimizden sonra bu haftanın asıl konusu olan dışbükey (convex) optimizasyon konusuna geçiş yapabiliriz. Bir convex optimizasyon problem alttaki gibi bir forma sahip olur.</p>
+
+                <!-- EQUATION 5.2: CONVEX STANDARD FORM -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">minimize</span>
+                        <span>f<sub>0</sub>(x)</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; margin-bottom: 5px;">
+                            <span style="font-weight: bold; width: 60px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                            <span>f<sub>i</sub>(x) &le; 0, &nbsp;&nbsp;&nbsp; i = 1, &dots;, m</span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>a<sub>i</sub><sup>T</sup>x = b<sub>i</sub>, &nbsp;&nbsp;&nbsp; i = 1, &dots;, p</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>5.2 Convex optimizasyon problemi standart formu</p>
+
+                <p>burada f_0,…,f_m fonksiyonlarının hepsi convex olarak tanımlıdır. Bu formu yukarıda ilk verilen form ile karşılaştırdığımızda, convex optimizasyon problemlerinin diğer optimizasyon problemlere ek olarak 3 farklı şartı daha sağlaması gerekir. Bunlar,</p>
+
+                <ul>
+                    <li>amaç fonksiyonun convex tanımlı olması,</li>
+                    <li>eşitsizlik kısıt fonksiyonlarının convex tanımlı olması,</li>
+                    <li>eşitlik kısıt fonksiyonlarının h_i(x) afin (affine) tanımlı olmasıdır.</li>
+                </ul>
+
+                <p>Elbette tüm problemler ilk bakışta yukarıda verilen formdaki gibi görünmeyebilir veya verilen amaç ve kısıt fonksiyonlarının convex olup olmadığı hemen anlaşılamayabilir. Bu durumda verilen problem üzerinde matematiksel olarak aynı şeyi ifade etmeleri koşulu ile değişiklikler yapılıp, yeni bir problem tanımı yapılabilir. Bunu daha iyi anlayabilmek için alttaki örneği inceleyelim.</p>
+
+                <!-- EQUATION 5.3: NON-CONVEX EXAMPLE -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">minimize</span>
+                        <span>x<sub>1</sub><sup>2</sup> + x<sub>2</sub><sup>2</sup></span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; margin-bottom: 5px;">
+                            <span style="font-weight: bold; width: 60px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                            <span>x<sub>1</sub> / (1 + x<sub>2</sub><sup>2</sup>) &le; 0</span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>(x<sub>1</sub> + x<sub>2</sub>)<sup>2</sup> = 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>5.3</p>
+
+                <p>Görüldüğü gibi amaç fonksiyonu ikinci dereceden bir denklem (quadratic) olarak verilmiş ve bir önceki makalemizde belirttiğimiz gibi bu fonksiyonun 2 defa parçalı türevi aldığımızda (Hessian), elimizde positif tanımlı bir matris (hatta birim matris) kalıyor. Ancak eşitsizlik kısıt matrisine baktığımızda convex tanımlı olup olmadığını hemen anlamamız kolay değil. Bunun yerine biraz mantık yürütelim. Paydadaki (1 + (x_2)²) nin her zaman için positif bir değer vereceğini biliyoruz. Ama bizim kısıtımızda f_1(x) fonksiyonun değerinin 0'dan küçük olması isteniyor. O halde pay kısmındaki x_1 in 0'dan küçük olup olmadığı kısıtının aranması, aslında bizim için yeterli olacaktır. Buna ek olarak eşitlik fonksiyonu da ikinci dereceden bir fonksiyon (quadratic) olarak verilmiş ki bunlar afin değildir. Ama biz şunu da biliyoruz ki karesi 0 olan bir değerin, kendisi de 0 olmalıdır. Bu da bizi (x_1 + x_2) = 0 kısıtının aranması, problemin çözümü için yeterli olacaktır demek oluyor.</p>
+
+                <p>Üstteki paragrafta uzun uzun anlattığım bu basit matematiksel değişiklikler sonucunda örnek problemimiz alttaki gibi gösterilebilir.</p>
+
+                <!-- EQUATION 5.4: REFORMULATED CONVEX EXAMPLE -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">minimize</span>
+                        <span>x<sub>1</sub><sup>2</sup> + x<sub>2</sub><sup>2</sup></span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; margin-bottom: 5px;">
+                            <span style="font-weight: bold; width: 60px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                            <span>x<sub>1</sub> &le; 0</span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>x<sub>1</sub> + x<sub>2</sub> = 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>5.4</p>
+
+                <p>Bu yeni oluşturduğumuz optimizasyon problemi orijinal problemle temelde aynı kısıt ve isteklere sahip ve daha da güzeli convex optimizasyon standart formunda, çünkü f_0 ve f’_1 dışbükey (convex) ve h’_1 afin olarak tanımlı.</p>
+
+                <p>Peki bir problemde bulunan sonucun optimal değer olduğunu nereden bilebiliriz. Varsayalım ki, bir convex optimizasyon probleminde amaç fonksiyonu f_0 türevlenebilir bir fonksiyon olsun. Bu durumda f_0 fonksiyonunun tanımlı olduğu kümeden seçilen herhangi 2 nokta için (x,y), alttaki eşitsizlik sağlanmalıdır.</p>
+
+                <!-- EQUATION 5.5: CONVEXITY CHARACTERIZATION -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        f<sub>0</sub>(y) &ge; f<sub>0</sub>(x) + &nabla;f<sub>0</sub>(x)<sup>T</sup>(y - x)
+                    </div>
+                </div>
+
+                <p>5.5</p>
+
+                <p>Buna önceki makalemizde biraz değinmiştik. Şimdi de aşağıdaki gibi X isminde bir olurlu (feasible) küme tanımlayalım.</p>
+
+                <!-- EQUATION 5.6: FEASIBLE SET DEFINITION -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        X = { x &in; dom f<sub>0</sub> | f<sub>i</sub>(x) &le; 0, i=1,&dots;,m, &nbsp; h<sub>i</sub>(x)=0, i=1,&dots;,p }
+                    </div>
+                </div>
+
+                <p>5.6</p>
+
+                <p>Bu küme aslında, optimizizasyon problemindeki kısıtları sağlayan tüm x değerlerini içinde barındıran bir küme olarak tanımlanıyor. Problemde tanımlı amaç fonksiyonunu sağlayan herhangi bir x değerinin optimal olması için bu X kümesinin bir elemanı olması ve alttaki eşitsizliği sağlaması gerekir.</p>
+
+                <!-- EQUATION 5.7: OPTIMALITY CONDITION -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        &nabla;f<sub>0</sub>(x)<sup>T</sup>(y - x) &ge; 0, &nbsp;&nbsp;&nbsp; her y &in; X için
+                    </div>
+                </div>
+
+                <p>5.7 Optimallik koşulu</p>
+
+                <p>Bu eşitsizlik ile (5.5)'te verilen koşulu birlikte düşündüğümüzde, bulduğumuz x değeri, herhangi başka bir y değeri için alttaki eşitsizliği sağlamış oluyor.</p>
+
+                <!-- EQUATION 5.8: OPTIMALITY RESULT -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        f<sub>0</sub>(y) &ge; f<sub>0</sub>(x)
+                    </div>
+                </div>
+
+                <p>5.8</p>
+
+                <p>Bu da x değerinin amaç fonksiyonunu en düşük değerine götürdüğünü göstermiş olur. Bunu daha iyi kavrayabilmek için alttaki şekli inceleyiniz.</p>
+
+                <!-- GEOMETRIC DIAGRAM 5.1: OPTIMALITY CONDITION GEOMETRY -->
+                <div style="background: #fdfdfd; border: 1px solid var(--border-color); border-radius: 6px; padding: 20px; margin: 30px auto; max-width: 550px;">
+                    <svg viewBox="0 0 500 320" width="100%" height="auto" style="display: block;">
+                        <!-- Feasible set X (shaded polygon/curve) -->
+                        <path d="M 180,180 C 170,120 280,100 380,150 C 420,180 400,260 300,270 C 200,280 190,240 180,180 Z" fill="#f0f7ff" stroke="var(--accent-color)" stroke-width="2" />
+                        
+                        <!-- Level curves (dashed lines) -->
+                        <path d="M 60,60 C 130,80 200,160 210,290" fill="none" stroke="#e53e3e" stroke-width="1.5" stroke-dasharray="4,4" />
+                        <path d="M 90,40 C 170,70 250,150 260,290" fill="none" stroke="#e53e3e" stroke-width="1.5" stroke-dasharray="4,4" />
+                        <!-- Tangent level curve passing through x* -->
+                        <path d="M 120,20 C 210,60 290,140 300,290" fill="none" stroke="#e53e3e" stroke-width="2" />
+                        
+                        <!-- Optimal point x* -->
+                        <circle cx="218" cy="98" r="6" fill="var(--heading-color)" stroke="#fff" stroke-width="2" />
+                        
+                        <!-- Another point y inside X -->
+                        <circle cx="310" cy="180" r="5" fill="#4a5568" />
+                        
+                        <!-- Line from x* to y -->
+                        <line x1="218" y1="98" x2="310" y2="180" stroke="#4a5568" stroke-width="2" stroke-dasharray="3,3" />
+                        
+                        <!-- Hyperplane tangent to X at x* (optimal condition boundary) -->
+                        <line x1="120" y1="40" x2="350" y2="180" stroke="var(--heading-color)" stroke-width="1.5" />
+                        
+                        <!-- Negative Gradient vector -grad f_0(x*) -->
+                        <line x1="218" y1="98" x2="160" y2="40" stroke="#e53e3e" stroke-width="2" />
+                        <!-- Arrowhead for negative gradient -->
+                        <polygon points="160,40 168,46 163,51" fill="#e53e3e" />
+                        
+                        <!-- Labels -->
+                        <text x="310" y="220" font-family="-apple-system, sans-serif" font-size="16px" fill="var(--accent-color)" font-weight="bold">X</text>
+                        <text x="210" y="85" font-family="-apple-system, sans-serif" font-size="14px" fill="var(--text-color)" font-weight="bold">x</text>
+                        <text x="325" y="180" font-family="-apple-system, sans-serif" font-size="14px" fill="#4a5568">y</text>
+                        <text x="140" y="30" font-family="-apple-system, sans-serif" font-size="13px" fill="#e53e3e">-&nabla;f₀(x)</text>
+                        <text x="290" y="270" font-family="-apple-system, sans-serif" font-size="12px" fill="#e53e3e">f₀ düzey eğrileri</text>
+                        <text x="240" y="115" font-family="-apple-system, sans-serif" font-size="12px" fill="var(--heading-color)">Destekleyici hiperdüzlem</text>
+                    </svg>
+                </div>
+
+                <p>Şekil 5.1 Optimal olma koşulunun geometric gösterimi</p>
+
+                <p>Şekil 5.1 de gösterilen ve X harfi ile tanımlanan taralı alan, feasible kümeyi göstermektedir. Yani bir diğer deyişle, problemdeki kısıtları sağlayan değerleri içeren küme. Kesikli olarak verilen eğriler ise, amaç fonksiyonunun alabileceği değerleri gösteren düzey eğrilerini (level curves) ifade etmektedir. Bu düzey eğrilerinden birinin kümeye teğet olduğu nokta, optimal noktayı göstermektedir.</p>
+
+                <p>Böylece sonunda convex optimizasyon problemlerine bir giriş yapmış olduk :) Önümüzdeki hafta, bu makaleyi daha fazla uzatmamak için kırptığım ve convex problemler için bilmemiz gereken bir kaç konuyu daha işleyeceğiz. Görüşmek üzere.</p>
+
+                <p>&rarr; <a href="#">Kısıtlı Matematiksel Eniyileme (Optimizasyon): 5.2 Dışbükey (Convex) Optimizasyon Problemleri</a></p>
+
+                <h3>Kaynakça:</h3>
+                <ul>
+                    <li><a href="https://web.stanford.edu/~boyd/cvxbook/" target="_blank">Convex Optimization /Stephen Boyd & Lieven Vandenberghe, Cambridge University Press 2009.</a></li>
+                    <li><a href="http://www.tubaterim.gov.tr/" target="_blank">http://www.tubaterim.gov.tr/</a></li>
+                </ul>
+
+                <!-- Etiketler (Keywords) -->
+                <div class="article-tags">
+                    <span class="tag-pill">Optimization</span>
+                    <span class="tag-pill">Mathematics</span>
+                    <span class="tag-pill">Türkçe</span>
+                </div>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
