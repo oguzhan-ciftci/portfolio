@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kısıtlı Matematiksel Eniyileme: 8. Optimallik Koşulları (KKT) - Oğuzhan Çiftçi</title>
+    <link rel="icon" href="../picture.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <img src="../picture.jpg" alt="Oğuzhan Çiftçi" class="profile-photo">
+        <h1 class="site-title">Oğuzhan Çiftçi</h1>
+        <p class="site-description">Electrical and Electronics Engineering<br>PhD Candidate @ Marmara University</p>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../cv.html">Brief CV</a></li>
+                <li><a href="../teaching.html">Teaching</a></li>
+                <li><a href="../publications.html">Publication</a></li>
+                <li><a href="../notes.html" class="active">Notes</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            &copy; 2026 Oğuzhan Çiftçi.<br>All rights reserved.
+        </div>
+    </aside>
+
+    <main class="content">
+        <a href="../notes.html" class="back-link">Geri Dön</a>
+        
+        <article class="article-detail">
+            <!-- Kapak Fotoğrafı İçin Alan -->
+            <img src="../images/opt-8-cover.png" alt="Optimizasyon 8 Kapak" class="article-img" style="margin-top: 0; width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+
+            <div class="article-header" style="margin-top: 20px;">
+                <h2>Kısıtlı Matematiksel Eniyileme (Optimizasyon): 8. Optimallik Koşulları (KKT)</h2>
+                <span class="article-date">9 Eylül 2020</span>
+            </div>
+
+            <div class="article-content">
+                <p>Daha önceki makalelerimizde çözdüğümüz convex optimizasyon problemleri için bulduğumuz x değerinin optimal değer olup olmadığıyla ilgili bir koşulu göstermiştik. (bkz. makale 5.1) Şimdi ise daha genel olarak, optimizasyon problemimizin convex olma zorunluluğunu kaldıralım ve genel problem formumuzda olduğu gibi hem eşitlik hem de eşitsizlik kısıtlarımız olsun.</p>
+
+                <!-- EQUATION 8.1: STANDARD FORM -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">minimize</span>
+                        <span>f<sub>0</sub>(x)</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; margin-bottom: 5px;">
+                            <span style="font-weight: bold; width: 60px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                            <span>f<sub>i</sub>(x) &le; 0, &nbsp;&nbsp;&nbsp; i = 1, &dots;, m</span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>h<sub>i</sub>(x) = 0, &nbsp;&nbsp;&nbsp; i = 1, &dots;, p</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>8.1 Genel Optimizasyon problemi formu</p>
+
+                <p>Ayrıca, önceki makalemizde değindiğimiz eşizlik (duality) özelliğinden de faydalanarak, asıl optimizasyon problemimiz ile bunun eşiz karşılığı arasındaki ilişkiyi alttaki gibi gösterebiliriz.</p>
+
+                <!-- EQUATION 8.2: PRIMAL DUAL RELATION -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.15rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="line-height: 2;">
+                        f<sub>0</sub>(x<sup>*</sup>) = g(&lambda;<sup>*</sup>, &nu;<sup>*</sup>)<br>
+                        = inf<sub>x</sub> &lpar; f<sub>0</sub>(x) + &sum;<sub>i=1</sub><sup>m</sup> &lambda;<sub>i</sub><sup>*</sup>f<sub>i</sub>(x) + &sum;<sub>i=1</sub><sup>p</sup> &nu;<sub>i</sub><sup>*</sup>h<sub>i</sub>(x) &rpar;<br>
+                        &le; f<sub>0</sub>(x<sup>*</sup>) + &sum;<sub>i=1</sub><sup>m</sup> &lambda;<sub>i</sub><sup>*</sup>f<sub>i</sub>(x<sup>*</sup>) + &sum;<sub>i=1</sub><sup>p</sup> &nu;<sub>i</sub><sup>*</sup>h<sub>i</sub>(x<sup>*</sup>)<br>
+                        &le; f<sub>0</sub>(x<sup>*</sup>)
+                    </div>
+                </div>
+
+                <p>8.2</p>
+
+                <p>Burada x* asıl problem için optimal noktayı, ( λ* ve ν*) ise eşiz problem için optimal noktayı ifade ediyor.</p>
+
+                <p>Şimdi gelin beraberce 8.2'de verilen eşitsizliği kavramaya çalışalım. Öncelikle ilk satırı inceleyelim. Hatırlayacağınız üzere, eğer x*, λ* ve ν* değerleri verilen problemler için optimal değerleri ifade ediyorsa, ki bu şekilde tanımladık, bu değerleri asıl ve eşiz problemde yerlerine yazdığımızda aynı sonucu elde etmemiz gerekir. Yani bir başka deyişle bu iki problemin sonucu arasındaki açıklık (duality gap) sıfır, 0, olmalıdır. İkinci satırda verilen infimum probleminin eşiz (dual) fonksiyonun tanımı olduğunu bir önceki makalemizde göstermiştik.</p>
+
+                <p>Üçüncü satırda ise x’e göre Lagrangianın infimumunun asıl problemin x* da aldığı değerden az veya buna eşit olduğunu ifade ediyor. Tüm bunlardan sonra ise son satırda, üçüncü satırda yapılan manipülasyonlar sonucu eşitlik sonucuna erişiliyor. Bahsettiğim manipülasyonlar aslında asıl problemin tanımından elde edilen sonuçlar: λi* ≥ 0, fi(x*) ≤ 0, i = 1, . . . ,m ve hi(x*) = 0, i = 1, . . . , p.</p>
+
+                <p>8.2'de verilen eşitsizliklerden bazı sonuçlar çıkartabiliriz. Örneğin, üçüncü satırda verilen eşitsizliğin aslında eşitlik olduğu anlaşıldığına göre, x* değerinin, Lagrangianı, L(x, λ*, ν*), minimize ettiğini söyleyebiliriz. Buna ek olarak, yine üçüncü satırdaki eşitlik sebebiyle, Σ λi* fi(x*) = 0 olduğu sonucunu çıkartabiliriz. Bu da bizi aslında, λ*i fi(x*) = 0, i = 1, . . . ,m sonucuna götürüyor. Bu koşula, literatürde tümler gevşeklik (complementary slackness) deniyor. Bu koşul da bizi şu iki sonuçtan birine yönlendiriyor:</p>
+
+                <!-- EQUATION 8.3: COMPLEMENTARY SLACKNESS CONDITIONAL -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        &lambda;<sub>i</sub><sup>*</sup> &gt; 0 &nbsp;&rArr;&nbsp; f<sub>i</sub>(x<sup>*</sup>) = 0
+                    </div>
+                    <div>
+                        f<sub>i</sub>(x<sup>*</sup>) &lt; 0 &nbsp;&rArr;&nbsp; &lambda;<sub>i</sub><sup>*</sup> = 0
+                    </div>
+                </div>
+
+                <p>8.3</p>
+
+                <p>Karush Kuhn Tucker (KKT) Optimallik Koşulları:</p>
+
+                <p>Bu alt başlıkta verilecek olan problemde dışbükeylik (convex) durumu aranmak zorunda değil. Ancak genel formda (8.1) verilen amaç ve kısıt fonksiyonlarının hepsinin türevlenebilir olması önkoşulu isteniyor. (Eğer bir fonksiyon türevlenebilirse, açık bir kümede (domain) tanımlı olduğu biliniyor demektir.)</p>
+
+                <p>8.2'de ilk satırdaki eşitliği de uygun olarak duality açıklığının sıfır olduğunu optimallik için ilk koşul olarak alalım. Buna göre, x* değeri, L(x, λ*, ν*), Lagrangianı minimize eder diyebiliriz. Bu da aslında gradient’in x*’da sönümleneceğini garanti eder,</p>
+
+                <!-- EQUATION 8.4: STATIONARITY -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        &nabla;f<sub>0</sub>(x<sup>*</sup>) + &sum;<sub>i=1</sub><sup>m</sup> &lambda;<sub>i</sub><sup>*</sup>&nabla;f<sub>i</sub>(x<sup>*</sup>) + &sum;<sub>i=1</sub><sup>p</sup> &nu;<sub>i</sub><sup>*</sup>&nabla;h<sub>i</sub>(x<sup>*</sup>) = 0
+                    </div>
+                </div>
+
+                <p>8.4</p>
+
+                <p>Buna ek olarak, asıl problemimizde verilen kısıtlarımızla complementary slackness koşulumuzla birlikte alttaki gibi toparlanabilir:</p>
+
+                <!-- EQUATION 8.5: KKT CONDITIONS -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.15rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: left; padding-left: 40px;">
+                    <div style="margin-bottom: 6px;">1. f<sub>i</sub>(x<sup>*</sup>) &le; 0, &nbsp;&nbsp;&nbsp; i = 1, &dots;, m</div>
+                    <div style="margin-bottom: 6px;">2. h<sub>i</sub>(x<sup>*</sup>) = 0, &nbsp;&nbsp;&nbsp; i = 1, &dots;, p</div>
+                    <div style="margin-bottom: 6px;">3. &lambda;<sub>i</sub><sup>*</sup> &ge; 0, &nbsp;&nbsp;&nbsp; i = 1, &dots;, m</div>
+                    <div style="margin-bottom: 6px;">4. &lambda;<sub>i</sub><sup>*</sup>f<sub>i</sub>(x<sup>*</sup>) = 0, &nbsp;&nbsp;&nbsp; i = 1, &dots;, m</div>
+                    <div style="margin-bottom: 6px;">5. &nabla;f<sub>0</sub>(x<sup>*</sup>) + &sum;<sub>i=1</sub><sup>m</sup> &lambda;<sub>i</sub><sup>*</sup>&nabla;f<sub>i</sub>(x<sup>*</sup>) + &sum;<sub>i=1</sub><sup>p</sup> &nu;<sub>i</sub><sup>*</sup>&nabla;h<sub>i</sub>(x<sup>*</sup>) = 0</div>
+                </div>
+
+                <p>8.5</p>
+
+                <p>Tüm bu koşullar birlikte, KKT optimallik koşulları olarak isimlendiriliyor ve türevlenebilir amaç ve kısıt fonksiyonlarıyla tanımlanmış herhangi bir optimizasyon probleminin optimal çözümünü bulabilmek için bu koşullar sağlanmak zorundadır.</p>
+
+                <p>Bir örnek problem üzerinden KKT optimallik koşulları:</p>
+
+                <p>Diyelim ki elimizde alttaki gibi bir optimizasyon problemi, ikinci dereceden bir amaç fonksiyonu ve bir eşitlik kısıtı ile birlikte tanımlanmış olsun.</p>
+
+                <!-- EQUATION 8.6: EXAMPLE PROBLEM -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">minimize</span>
+                        <span>(1/2)x<sup>T</sup>Px + q<sup>T</sup>x + r</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; margin-bottom: 5px;">
+                            <span style="font-weight: bold; width: 60px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                            <span>Ax = b</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>8.6 örnek optimizasyon problemi</p>
+
+                <p>Bu problem için KKT koşulları alttaki gibi yazılır:</p>
+
+                <!-- EQUATION 8.7: EXAMPLE KKT CONDITIONS -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        Ax<sup>*</sup> = b
+                    </div>
+                    <div>
+                        Px<sup>*</sup> + q + A<sup>T</sup>&nu;<sup>*</sup> = 0
+                    </div>
+                </div>
+
+                <p>8.7 KKT koşulları</p>
+
+                <p>Bunu da matris formunda şu şekilde yazabilir ve x* ve ν* optimal değerlerini çözebiliriz:</p>
+
+                <!-- EQUATION 8.8: KKT MATRIX SYSTEM -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <!-- KKT Matrix -->
+                        <span style="display: inline-flex; align-items: center; border-left: 2px solid #333; border-right: 2px solid #333; padding: 0 8px; margin-right: 8px; border-radius: 4px;">
+                            <span style="display: flex; flex-direction: column; text-align: center; font-size: 1.05rem; line-height: 1.5;">
+                                <span>P &nbsp;&nbsp; A<sup>T</sup></span>
+                                <span>A &nbsp;&nbsp;&nbsp; 0</span>
+                            </span>
+                        </span>
+                        <!-- Variables vector -->
+                        <span style="display: inline-flex; align-items: center; border-left: 2px solid #333; border-right: 2px solid #333; padding: 0 8px; margin-right: 8px; border-radius: 4px;">
+                            <span style="display: flex; flex-direction: column; text-align: center; font-size: 1.05rem; line-height: 1.4;">
+                                <span>x<sup>*</sup></span>
+                                <span>&nu;<sup>*</sup></span>
+                            </span>
+                        </span>
+                        <!-- Equals -->
+                        <span style="margin-right: 8px;">=</span>
+                        <!-- RHS vector -->
+                        <span style="display: inline-flex; align-items: center; border-left: 2px solid #333; border-right: 2px solid #333; padding: 0 8px; border-radius: 4px;">
+                            <span style="display: flex; flex-direction: column; text-align: center; font-size: 1.05rem; line-height: 1.4;">
+                                <span>-q</span>
+                                <span>b</span>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <p>8.8</p>
+
+                <p>Böylece KKT optimallik koşullarını da incelemiş olduk. Önümüzdeki tekrardan görüşmek üzere.</p>
+
+                <p>&rarr; <a href="#">Kısıtlı Matematiksel Eniyileme (Optimizasyon): 9. Norm Yaklaşımı Problemleri</a></p>
+
+                <h3>KAYNAKÇA:</h3>
+                <ul>
+                    <li><a href="https://web.stanford.edu/~boyd/cvxbook/" target="_blank">Convex Optimization /Stephen Boyd & Lieven Vandenberghe, Cambridge University Press 2009.</a></li>
+                    <li><a href="http://www.tubaterim.gov.tr/" target="_blank">http://www.tubaterim.gov.tr/</a></li>
+                </ul>
+
+                <!-- Etiketler (Keywords) -->
+                <div class="article-tags">
+                    <span class="tag-pill">Optimization</span>
+                    <span class="tag-pill">Mathematics</span>
+                    <span class="tag-pill">Türkçe</span>
+                </div>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
