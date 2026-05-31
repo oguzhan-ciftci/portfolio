@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kısıtlı Matematiksel Eniyileme: 6. Lineer (Doğrusal) Optimizasyon - Oğuzhan Çiftçi</title>
+    <link rel="icon" href="../picture.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <img src="../picture.jpg" alt="Oğuzhan Çiftçi" class="profile-photo">
+        <h1 class="site-title">Oğuzhan Çiftçi</h1>
+        <p class="site-description">Electrical and Electronics Engineering<br>PhD Candidate @ Marmara University</p>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../cv.html">Brief CV</a></li>
+                <li><a href="../teaching.html">Teaching</a></li>
+                <li><a href="../publications.html">Publication</a></li>
+                <li><a href="../notes.html" class="active">Notes</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            &copy; 2026 Oğuzhan Çiftçi.<br>All rights reserved.
+        </div>
+    </aside>
+
+    <main class="content">
+        <a href="../notes.html" class="back-link">Geri Dön</a>
+        
+        <article class="article-detail">
+            <!-- Kapak Fotoğrafı İçin Alan -->
+            <img src="../images/opt-6-cover.png" alt="Optimizasyon 6 Kapak" class="article-img" style="margin-top: 0; width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+
+            <div class="article-header" style="margin-top: 20px;">
+                <h2>Kısıtlı Matematiksel Eniyileme (Optimizasyon): 6. Lineer (Doğrusal) Optimizasyon</h2>
+                <span class="article-date">26 Ağustos 2020</span>
+            </div>
+
+            <div class="article-content">
+                <p>Optimizasyon problemlerinin çeşitli formlarda karşımıza çıkabileceğinden, 3. makalemizde bahsetmiştik. Bunlardan birini dışbükey (convex) problemler olarak tanımladık ve serimizin 5.1 ile 5.2 bölümlerinde bu tür problemlerin tanımlarından ve bulunan x* değerinin optimal olma koşullarından bahsettik. Bu makalemizde ise convex problemlerin özel bir durumu olarak lineer (doğrusal) optimizasyon problemlerinden bahsedeceğiz.</p>
+
+                <p>Bir optimizasyon probleminde amaç ve kısıt fonksiyonları afin (affine) olarak tanımlandıysa, bu problem lineer program (LP) olarak isimlendirilir. Lineer programların genel formu alttaki gibi gösterilebilir:</p>
+
+                <!-- EQUATION 6.1: LP GENERAL FORM -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">minimize</span>
+                        <span>c<sup>T</sup>x + d</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; margin-bottom: 5px;">
+                            <span style="font-weight: bold; width: 60px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                            <span>Gx &le; h</span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>Ax = b</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>6.1 Lineer program genel formu</p>
+
+                <p>Tekrar belirtmekte fayda var ki, lineer programlar yine birer convex optimizasyon problemleridirler. Bu yüzden de, convex optimizasyon problemleri için geçerli koşullar lineer programlar için de uygulanabilirler.</p>
+
+                <p>Geometrik olarak lineer programlar alttaki gibi yorumlanabilir. Burada P, kısıtları tanımlayan feasible kümeyi ifade ediyor. Amaç fonksiyonu lineer olduğundan düzey eğrileri de lineer olarak gösterilmiş ve ayrıca bir çokgenle ifade edilmiş olan kümeyi, -c vektörüne dik olacak şekilde kestiği teğet noktası, x*, optimal değerimiz oluyor.</p>
+
+                <!-- GEOMETRIC DIAGRAM 6.2: LP GEOMETRIC INTERPRETATION -->
+                <div style="background: #fdfdfd; border: 1px solid var(--border-color); border-radius: 6px; padding: 20px; margin: 30px auto; max-width: 500px;">
+                    <svg viewBox="0 0 500 320" width="100%" height="auto" style="display: block;">
+                        <!-- Polyhedron feasible set P (shaded area) -->
+                        <polygon points="120,100 240,60 380,120 340,240 180,260 100,180" fill="#f0f7ff" stroke="var(--accent-color)" stroke-width="2" />
+                        
+                        <!-- Linear Level curves (dashed lines) -->
+                        <line x1="80" y1="40" x2="320" y2="280" stroke="#e53e3e" stroke-width="1.5" stroke-dasharray="4,4" />
+                        <line x1="120" y1="20" x2="370" y2="270" stroke="#e53e3e" stroke-width="1.5" stroke-dasharray="4,4" />
+                        <!-- Tangent level curve passing through x* -->
+                        <line x1="170" y1="10" x2="420" y2="260" stroke="#e53e3e" stroke-width="2" />
+                        
+                        <!-- Optimal point x* -->
+                        <circle cx="380" cy="120" r="6" fill="var(--heading-color)" stroke="#fff" stroke-width="2" />
+                        
+                        <!-- Vector -c perpendicular to level lines -->
+                        <line x1="380" y1="120" x2="440" y2="180" stroke="var(--heading-color)" stroke-width="2" />
+                        <polygon points="440,180 432,174 437,169" fill="var(--heading-color)" />
+                        
+                        <!-- Labels -->
+                        <text x="220" y="160" font-family="-apple-system, sans-serif" font-size="16px" fill="var(--accent-color)" font-weight="bold">P</text>
+                        <text x="375" y="105" font-family="-apple-system, sans-serif" font-size="14px" fill="var(--text-color)" font-weight="bold">x*</text>
+                        <text x="445" y="195" font-family="-apple-system, sans-serif" font-size="13px" fill="var(--text-color)">-c</text>
+                        <text x="320" y="20" font-family="-apple-system, sans-serif" font-size="12px" fill="#e53e3e">cᵀx = sabit düzey eğrileri</text>
+                    </svg>
+                </div>
+
+                <p>6.2 Lineer programların geometrik yorumu</p>
+
+                <p>Standart ve eşitsizlik kısıt formlu lineer programlar (LP):</p>
+
+                <p>Lineer programlar genel formda, 6.1 de verilebilecekleri gibi, yine de lineer programlar daha çok 2 özel formda karşımıza çıkarlar. Bunlardan ilki standart formlu LP olarak isimlendirilir ki, x çözüm vektörünün tüm bileşenlerinin negatif olmayan şekilde tanımlı olması kısıtını arar. Bunu alttaki gibi formülize edebiliriz:</p>
+
+                <!-- EQUATION 6.3: STANDARD FORM LP -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">minimize</span>
+                        <span>c<sup>T</sup>x</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; margin-bottom: 5px;">
+                            <span style="font-weight: bold; width: 60px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                            <span>Ax = b</span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>x &ge; 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>6.3 Standart form LP</p>
+
+                <p>Diğeri ise eşitsizlik formlu LP olarak isimlendiriliyor ve genelde alttaki gibi bir formda gösterilir:</p>
+
+                <!-- EQUATION 6.4: INEQUALITY FORM LP -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">minimize</span>
+                        <span>c<sup>T</sup>x</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; margin-bottom: 5px;">
+                            <span style="font-weight: bold; width: 60px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                            <span>Gx &le; h</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>6.4 Eşitsizlik formlu LP</p>
+
+                <p>Bir lineer programı üstteki 2 formdan birini esas alarak çözmek için çeşitli algoritmalar geliştirilmiştir. Bu yüzden, örneğin 6.1'deki gibi genel formda verilen bir LP’yi bu iki formdan birine dönüştürmek kimi zaman çözüme daha kolay ulaşmamızı sağlayabilir.</p>
+
+                <p>Diyelim ki, 6.1 deki gibi genel formda verilen bir LP’yi 6.3 teki gibi standart formda yazmak istiyoruz. Bunun için, ilk adımda eşitsizlik kısıtını artıran değişkenler (slack variables, “s”) yardımıyla eşitlik kısıtına dönüştürebiliriz. Bu da bizi alttaki sonuca ulaştırır:</p>
+
+                <!-- EQUATION 6.5: INTRODUCING SLACK VARIABLES -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">minimize</span>
+                        <span>c<sup>T</sup>x + d</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; margin-bottom: 5px;">
+                            <span style="font-weight: bold; width: 60px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                            <span>Gx + s = h</span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>Ax = b</span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>s &ge; 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>6.5</p>
+
+                <p>İkinci adım olarak ise, x değişkenini negatif olmayan 2 farklı değişkenin toplamı olarak yazıp yerine koyarsak, alttaki gibi bir form elde ederiz.</p>
+
+                <!-- EQUATION 6.6: DECOMPOSING x -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.15rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">minimize</span>
+                        <span>c<sup>T</sup>x<sup>+</sup> - c<sup>T</sup>x<sup>-</sup> + d</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; margin-bottom: 5px;">
+                            <span style="font-weight: bold; width: 60px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                            <span>Gx<sup>+</sup> - Gx<sup>-</sup> + s = h</span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>Ax<sup>+</sup> - Ax<sup>-</sup> = b</span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>x<sup>+</sup> &ge; 0, &nbsp;&nbsp; x<sup>-</sup> &ge; 0, &nbsp;&nbsp; s &ge; 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>6.6</p>
+
+                <p>6.6 da verilen form 3 değişkenli standart LP formunda bir problem tanımı olarak söylenebilir.</p>
+
+                <p>Peki bir Lineer Program için optimal sonucu nasıl bulabiliriz? Yukarıda verdiğimiz standart formda bir lineer programı, Simplex Algoritmasın kullanılarak çözülebilir. Bunun için Simplex Tablosu oluşturmak gerekiyor. Simplex tablosunu temel olarak içerisinde amaç ve kısıt fonksiyonlarındaki, değişkenlerin katsayılarının belirli bir formda yerleştirilmesinden ibarettir.</p>
+
+                <!-- EQUATION 6.7: SIMPLEX TABLEAU TEMPLATE -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 600px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: center; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid #333;">
+                                <th style="padding: 8px;">Temel Değ.</th>
+                                <th style="padding: 8px; border-right: 1px solid #ccc;">c₀</th>
+                                <th style="padding: 8px; border-right: 2px solid #333;">RHS (b)</th>
+                                <th style="padding: 8px;">x₁</th>
+                                <th style="padding: 8px;">x₂</th>
+                                <th style="padding: 8px; font-style: italic;">&dots;</th>
+                                <th style="padding: 8px;">x<sub>n</sub></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 8px; font-weight: bold;">x₀₁</td>
+                                <td style="padding: 8px; border-right: 1px solid #ccc;">c₀₁</td>
+                                <td style="padding: 8px; border-right: 2px solid #333;">b₁</td>
+                                <td style="padding: 8px;">a₁₁</td>
+                                <td style="padding: 8px;">a₁₂</td>
+                                <td style="padding: 8px; font-style: italic;">&dots;</td>
+                                <td style="padding: 8px;">a₁<sub>n</sub></td>
+                            </tr>
+                            <tr style="border-bottom: 2px solid #333;">
+                                <td style="padding: 8px; font-weight: bold;">x₀₂</td>
+                                <td style="padding: 8px; border-right: 1px solid #ccc;">c₀₂</td>
+                                <td style="padding: 8px; border-right: 2px solid #333;">b₂</td>
+                                <td style="padding: 8px;">a₂₁</td>
+                                <td style="padding: 8px;">a₂₂</td>
+                                <td style="padding: 8px; font-style: italic;">&dots;</td>
+                                <td style="padding: 8px;">a₂<sub>n</sub></td>
+                            </tr>
+                            <tr style="font-weight: bold; background: #f0f4f8;">
+                                <td style="padding: 8px;">Z Row</td>
+                                <td style="padding: 8px; border-right: 1px solid #ccc;">-</td>
+                                <td style="padding: 8px; border-right: 2px solid #333;">Cost (Z)</td>
+                                <td style="padding: 8px;">c₁ - z₁</td>
+                                <td style="padding: 8px;">c₂ - z₂</td>
+                                <td style="padding: 8px; font-style: italic;">&dots;</td>
+                                <td style="padding: 8px;">c<sub>n</sub> - z<sub>n</sub></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p>6.7 Simplex Tablosu</p>
+
+                <p>Burada x0 temel değişkenleri ifade ederken, c0 bu temel değişkenlerin amaç fonksiyonundaki katsayılarını gösterir.</p>
+
+                <p>Bunu bir örnek üzerinden göstermek istiyorum. Öncelikle alttaki formda verilen problemi ele alalım.</p>
+
+                <!-- EQUATION 6.8: ORIGINAL UNRESTRICTED PROBLEM -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">minimize</span>
+                        <span>-120x<sub>1</sub> - 80x<sub>2</sub></span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; margin-bottom: 5px;">
+                            <span style="font-weight: bold; width: 60px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                            <span>2x<sub>1</sub> + x<sub>2</sub> &le; 6</span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>7x<sub>1</sub> + 8x<sub>2</sub> &le; 28</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>6.8</p>
+
+                <p>Üstteki problemi standart formda yazarsak,</p>
+
+                <!-- EQUATION 6.9: STANDARD REFORMULATION WITH SLACKS AND UNRESTRICTED SUBS -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.15rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">minimize</span>
+                        <span>-120y<sub>1</sub> + 120z<sub>1</sub> - 80y<sub>2</sub> + 80z<sub>2</sub></span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; margin-bottom: 5px;">
+                            <span style="font-weight: bold; width: 60px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                            <span>2y<sub>1</sub> - 2z<sub>1</sub> + y<sub>2</sub> - z<sub>2</sub> + w<sub>1</sub> = 6</span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>7y<sub>1</sub> - 7z<sub>1</sub> + 8y<sub>2</sub> - 8z<sub>2</sub> + w<sub>2</sub> = 28</span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>y<sub>1</sub>, z<sub>1</sub>, y<sub>2</sub>, z<sub>2</sub>, w<sub>1</sub>, w<sub>2</sub> &ge; 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>6.9</p>
+
+                <p>Şimdi kısıtları kullanarak x* için bir başlangıç değeri bulalım. Yeni problem tanımımızda, x* = [y1 z1 y2 z2 w1 w2]’ olarak gösterilebilir. Bir feasible başlangıç değeri olarak x* = [0 0 0 0 6 28]’ alabiliriz. Temel değişkenleri ifade eden (x* da 0 olmayan değerlere karşılık gelen değişkenler) x0 = [w1 w2]' ve bunların amaç fonksiyonundaki katsayıları ise c0 = [0 0]'. Şimdi, elimizdeki tüm bu verileri, 6.7 de verilen Simplex tablosunda yerlerine yazalım.</p>
+
+                <!-- EQUATION 6.10: INITIAL SIMPLEX TABLEAU -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 600px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: center; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid #333;">
+                                <th style="padding: 8px;">Temel Değ.</th>
+                                <th style="padding: 8px; border-right: 1px solid #ccc;">c₀</th>
+                                <th style="padding: 8px; border-right: 2px solid #333;">RHS</th>
+                                <th style="padding: 8px;">y₁</th>
+                                <th style="padding: 8px;">z₁</th>
+                                <th style="padding: 8px;">y₂</th>
+                                <th style="padding: 8px;">z₂</th>
+                                <th style="padding: 8px;">w₁</th>
+                                <th style="padding: 8px;">w₂</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 8px; font-weight: bold;">w₁</td>
+                                <td style="padding: 8px; border-right: 1px solid #ccc;">0</td>
+                                <td style="padding: 8px; border-right: 2px solid #333;">6</td>
+                                <td style="padding: 8px;">2</td>
+                                <td style="padding: 8px;">-2</td>
+                                <td style="padding: 8px;">1</td>
+                                <td style="padding: 8px;">-1</td>
+                                <td style="padding: 8px;">1</td>
+                                <td style="padding: 8px;">0</td>
+                            </tr>
+                            <tr style="border-bottom: 2px solid #333;">
+                                <td style="padding: 8px; font-weight: bold;">w₂</td>
+                                <td style="padding: 8px; border-right: 1px solid #ccc;">0</td>
+                                <td style="padding: 8px; border-right: 2px solid #333;">28</td>
+                                <td style="padding: 8px;">7</td>
+                                <td style="padding: 8px;">-7</td>
+                                <td style="padding: 8px;">8</td>
+                                <td style="padding: 8px;">-8</td>
+                                <td style="padding: 8px;">0</td>
+                                <td style="padding: 8px;">1</td>
+                            </tr>
+                            <tr style="font-weight: bold; background: #f0f4f8;">
+                                <td style="padding: 8px;">Z Row</td>
+                                <td style="padding: 8px; border-right: 1px solid #ccc;">-</td>
+                                <td style="padding: 8px; border-right: 2px solid #333;">0</td>
+                                <td style="padding: 8px; color: #e53e3e;">-120</td>
+                                <td style="padding: 8px;">120</td>
+                                <td style="padding: 8px; color: #e53e3e;">-80</td>
+                                <td style="padding: 8px;">80</td>
+                                <td style="padding: 8px;">0</td>
+                                <td style="padding: 8px;">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p>6.10</p>
+
+                <p>Bu tabloyu oluşturduktan sonra, en alt satırda bulunan değerlerin hepsi negatif olmayan değerler haline gelene kadar manipülasyon yapılır ve bu yukarıda verilen örnek için alttaki değerler bulunur.</p>
+
+                <!-- EQUATION 6.11: FINAL SIMPLEX TABLEAU -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 600px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: center; font-family: 'Times New Roman', Times, serif; font-size: 1.1rem;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid #333;">
+                                <th style="padding: 8px;">Temel Değ.</th>
+                                <th style="padding: 8px; border-right: 1px solid #ccc;">c₀</th>
+                                <th style="padding: 8px; border-right: 2px solid #333;">RHS</th>
+                                <th style="padding: 8px;">y₁</th>
+                                <th style="padding: 8px;">z₁</th>
+                                <th style="padding: 8px;">y₂</th>
+                                <th style="padding: 8px;">z₂</th>
+                                <th style="padding: 8px;">w₁</th>
+                                <th style="padding: 8px;">w₂</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 8px; font-weight: bold;">y₁</td>
+                                <td style="padding: 8px; border-right: 1px solid #ccc;">-120</td>
+                                <td style="padding: 8px; border-right: 2px solid #333;">20/9</td>
+                                <td style="padding: 8px;">1</td>
+                                <td style="padding: 8px;">-1</td>
+                                <td style="padding: 8px;">0</td>
+                                <td style="padding: 8px;">0</td>
+                                <td style="padding: 8px;">8/9</td>
+                                <td style="padding: 8px;">-1/9</td>
+                            </tr>
+                            <tr style="border-bottom: 2px solid #333;">
+                                <td style="padding: 8px; font-weight: bold;">y₂</td>
+                                <td style="padding: 8px; border-right: 1px solid #ccc;">-80</td>
+                                <td style="padding: 8px; border-right: 2px solid #333;">14/9</td>
+                                <td style="padding: 8px;">0</td>
+                                <td style="padding: 8px;">0</td>
+                                <td style="padding: 8px;">1</td>
+                                <td style="padding: 8px;">-1</td>
+                                <td style="padding: 8px;">-7/9</td>
+                                <td style="padding: 8px;">2/9</td>
+                            </tr>
+                            <tr style="font-weight: bold; background: #f0f4f8;">
+                                <td style="padding: 8px;">Z Row</td>
+                                <td style="padding: 8px; border-right: 1px solid #ccc;">-</td>
+                                <td style="padding: 8px; border-right: 2px solid #333;">-3520/9</td>
+                                <td style="padding: 8px;">0</td>
+                                <td style="padding: 8px;">0</td>
+                                <td style="padding: 8px;">0</td>
+                                <td style="padding: 8px;">0</td>
+                                <td style="padding: 8px;">400/9</td>
+                                <td style="padding: 8px;">40/9</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p>6.11</p>
+
+                <p>Bu son tablodan anladıklarımız ise şunlar: Optimal çözüm, [y1 y2]’ = [20/9 14/9]’, z1= z2 = w1 = w2 = 0. Optimal cost: -3520/9 ve orijinal değişkenlerin değerleri de x1 = 20/9 ve x2 = 14/9.</p>
+
+                <p>Bu manipülasyonun nasıl yapıldığı ve diğer ayrıntılar için alttaki videolardan (5 adet) faydalanabilirsiniz. Görüşmek üzere..</p>
+
+                <p>&rarr; <a href="#">Kısıtlı Matematiksel Eniyileme (Optimizasyon): 7. Lagrange Eşiz (Dual) Problemi</a></p>
+
+                <h3>KAYNAKÇA:</h3>
+                <ul>
+                    <li><a href="https://web.stanford.edu/~boyd/cvxbook/" target="_blank">Convex Optimization /Stephen Boyd & Lieven Vandenberghe, Cambridge University Press 2009.</a></li>
+                    <li><a href="http://www.tubaterim.gov.tr/" target="_blank">http://www.tubaterim.gov.tr/</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=3bbIRJllbSo&feature=youtu.be&t=1345" target="_blank">Simplex Algoritması video anlatım.</a></li>
+                </ul>
+
+                <!-- Etiketler (Keywords) -->
+                <div class="article-tags">
+                    <span class="tag-pill">Mathematics</span>
+                    <span class="tag-pill">Optimization</span>
+                    <span class="tag-pill">Türkçe</span>
+                    <span class="tag-pill">Linear Programming</span>
+                </div>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
