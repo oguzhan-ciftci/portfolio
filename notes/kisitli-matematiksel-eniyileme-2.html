@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kısıtlı Matematiksel Eniyileme: 2. Modelleme - Oğuzhan Çiftçi</title>
+    <link rel="icon" href="../picture.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <img src="../picture.jpg" alt="Oğuzhan Çiftçi" class="profile-photo">
+        <h1 class="site-title">Oğuzhan Çiftçi</h1>
+        <p class="site-description">Electrical and Electronics Engineering<br>PhD Candidate @ Marmara University</p>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../cv.html">Brief CV</a></li>
+                <li><a href="../teaching.html">Teaching</a></li>
+                <li><a href="../publications.html">Publication</a></li>
+                <li><a href="../notes.html" class="active">Notes</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            &copy; 2026 Oğuzhan Çiftçi.<br>All rights reserved.
+        </div>
+    </aside>
+
+    <main class="content">
+        <a href="../notes.html" class="back-link">Geri Dön</a>
+        
+        <article class="article-detail">
+            <!-- Kapak Fotoğrafı İçin Alan -->
+            <img src="../images/opt-2-cover.png" alt="Optimizasyon 2 Kapak" class="article-img" style="margin-top: 0; width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+
+            <div class="article-header" style="margin-top: 20px;">
+                <h2>Kısıtlı Matematiksel Eniyileme (Optimizasyon): 2. Modelleme</h2>
+                <span class="article-date">15 Temmuz 2020</span>
+            </div>
+
+            <div class="article-content">
+                <p>Bir problemi çözmek için öncelikle problemi anlamak elzemdir. Hatta bu konuda Einstein’e atfedilen bir söz oldukça dikkat çekici. Bu hayatımızın her anında ve karşılaştığımız her durum için geçerli aslında. Öyleyse bir problemi çözmeye girişmeden evvel, sorunu anlamaya ve tanımaya vakit ayırmak daha akıllıca bir adım olacaktır.</p>
+                
+                <p>Peki ya problemin tek muhatabı biz değilsek, o zaman problemin herkesçe anlaşılabilir olması nasıl sağlanabilir? Bu konuda da Hz. Mevlana’ya atfedilen bir söz aklıma geliyor, kısaca ‘söylediklerimiz karşımızdakilerin anlayabildiği kadardır’. Belki bu sözden çıkarılabilecek manalardan biri de, ortak bir dil kullanmanın, problemin anlaşılmasını kolaylaştıran etmenlerden birisi olduğudur.</p>
+
+                <p>Matematiksel modelleme, işte tam da bu noktada önemini ortaya koyuyor. Daha önceki makalemizde sunduğumuz uygulama örneklerimizi tanımlarken, bir çok kelime kullandık, belki cümle düşüklükleri, anlatım bozuklukları yaptık ve herkes tarafından anlaşılmasını zorlaştırdık. Şimdi ise bu uygulama örneklerini, uygun matematiksel terimler vasıtasıyla tanımlayabileceğimizi göstermeye çalışacağız. Böylece hem problemlerin daha derlitoplu ifade edilebileceklerini görmüş olacağız hem de çözüme giden yolda daha hızlı mesafe alabileceğiz.</p>
+
+                <p>İnsansız hava aracı operasyonuyla ilgili verdiğimiz örneği inceleyerek işe başlayalım. Bu operasyonda bizden istenilen, görev süresinin uzatılması. Bunu da birim zamanda harcanan yakıt miktarını minimize ederek sağlayabiliriz.</p>
+                
+                <p>Bu amacı gerçekleyebilmek için uçağın toplam ağırlığının <em>x<sub>1</sub></em> ve uçağın aerodinamik yapısıyla ilgili yapılan hesaplarda bulunan 4 değişkenin <em>{x<sub>2</sub>, &dots;, x<sub>5</sub>}</em> değerlerinin belirli bir üst sınır altında olması gerektiği belirlenmiştir. (Burada temel bir model üzerinden gideceğimiz için, bu kısıtlar, rastgele ve sadece eşitsizlik ifadeleri olarak tanımlandı. Bunlar haricinde eşitlik kısıtları da olabilir.)</p>
+
+                <p>Böylece yine bir önceki makalemizde üzerinden geçtiğimiz optimizasyon problem tanımı şablonumuzda, verilenleri yerine koyabiliriz.</p>
+
+                <!-- FORMULA 1 BLOCK -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">minimize</span>
+                        <span>f(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>, x<sub>4</sub>, x<sub>5</sub>)</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: flex-start; flex-direction: column; width: fit-content; margin: 0 auto;">
+                        <div style="display: flex; margin-bottom: 5px;">
+                            <span style="font-weight: bold; width: 60px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                            <span>x<sub>1</sub> &le; b<sub>1</sub></span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>x<sub>2</sub> &le; b<sub>2</sub></span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>x<sub>3</sub> &le; b<sub>3</sub></span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>x<sub>4</sub> &le; b<sub>4</sub></span>
+                        </div>
+                        <div style="display: flex; margin-bottom: 5px; margin-left: 60px;">
+                            <span>x<sub>5</sub> &le; b<sub>5</sub></span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>Burada <em>f</em> amaç fonksiyonu içerisine 5 tane parametre almış ve bu parametreler fonksiyonun optimizasyon değişkenlerini gösteriyor. Böylece bu parametrelerin değerleri kullanılarak, fonksiyondan bir sonuç elde edilip, amaç fonksiyonunun en küçük yani ‘min’ değerinin bulunması hedefleniyor. Kısıt olarak gösterilen eşitsizliklerde de bu parametrelerinin en yüksek alabilecekleri değerler verilmiştir.</p>
+
+                <p>Yukarıdaki gibi tanımlanmış bir optimizasyon problemini, daha da derlitoplu halde göstermek istersek, kısıtları matris tanımını kullanarak tekrardan yazabiliriz.</p>
+
+                <!-- FORMULA 2 (MATRIX) BLOCK -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 450px; font-family: 'Times New Roman', Times, serif; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 15px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">minimize</span>
+                        <span>f(x)</span>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+                        <span style="font-weight: bold; margin-right: 10px; color: var(--heading-color); font-style: italic;">k.s.</span>
+                        <span>x &le; b</span>
+                    </div>
+                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 15px 0;">
+                    <div style="display: flex; justify-content: space-around; align-items: center; font-size: 1.1rem; margin-top: 10px;">
+                        <div style="display: flex; align-items: center;">
+                            <span style="margin-right: 8px; font-style: italic;">x</span> &nbsp;=
+                            <span style="display: inline-flex; align-items: center; border-left: 2px solid #333; border-right: 2px solid #333; padding: 0 8px; margin-left: 8px; border-radius: 4px;">
+                                <span style="display: flex; flex-direction: column; text-align: center; font-size: 0.95rem; line-height: 1.4;">
+                                    <span>x<sub>1</sub></span>
+                                    <span>x<sub>2</sub></span>
+                                    <span>x<sub>3</sub></span>
+                                    <span>x<sub>4</sub></span>
+                                    <span>x<sub>5</sub></span>
+                                </span>
+                            </span>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <span style="margin-right: 8px; font-style: italic;">b</span> &nbsp;=
+                            <span style="display: inline-flex; align-items: center; border-left: 2px solid #333; border-right: 2px solid #333; padding: 0 8px; margin-left: 8px; border-radius: 4px;">
+                                <span style="display: flex; flex-direction: column; text-align: center; font-size: 0.95rem; line-height: 1.4;">
+                                    <span>b<sub>1</sub></span>
+                                    <span>b<sub>2</sub></span>
+                                    <span>b<sub>3</sub></span>
+                                    <span>b<sub>4</sub></span>
+                                    <span>b<sub>5</sub></span>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 20px; font-size: 0.95rem; color: #555; font-style: italic;">
+                        x, b &in; &reals;<sup>5</sup>
+                    </div>
+                </div>
+
+                <p>Görüldüğü üzere problemimiz artık bir insansız hava aracı kontrolü problemi olmaktan çıkıp tamamen bir matematik problemi haline döndü. Daha da önemlisi, bu problem, bir optimizasyon problemi olarak gösterilmiş oldu. Böylece amaç fonksiyonu ile kısıtların özelliklerine göre, literatürde halihazırda uygulanabilirliği gösterilmiş algoritmalar vasıtasıyla çözüme ulaşabilmek mümkün hale gelecek. Ancak öncelikle bu özelliklerin neler olduğunu incelememiz gerekiyor.</p>
+
+                <p>Kısıtlı matematiksel optimizasyon serimizin ikinci makalesinde, problem modellemenin önemine değindik ve bir uygulama örneği üzerinden, optimizasyon problem modelimizi tanımladık. Serinin ilerleyen makalelerinde görüşmek üzere.</p>
+
+                <p>&rarr; <a href="#">Kısıtlı Matematiksel Eniyileme (Optimizasyon): 3. Problem Sınıflandırma</a></p>
+
+                <h3>Kaynakça:</h3>
+                <ul>
+                    <li><a href="https://www.mat.univie.ac.at/~neum/model.html#:~:text=Mathematical%20modeling%20is%20the%20art,is%20indispensable%20in%20many%20applications" target="_blank">Mathematical Modeling Lecture Notes</a></li>
+                    <li><a href="https://people.maths.bris.ac.uk/~madjl/course_text.pdf" target="_blank">Optimization Methods Lecture Notes</a></li>
+                    <li><a href="https://web.stanford.edu/~boyd/cvxbook/" target="_blank">Convex Optimization - Stephen Boyd & Lieven Vandenberghe, Cambridge University Press 2009.</a></li>
+                </ul>
+
+                <!-- Etiketler (Keywords) -->
+                <div class="article-tags">
+                    <span class="tag-pill">Mathematics</span>
+                    <span class="tag-pill">Optimization</span>
+                    <span class="tag-pill">Türkçe</span>
+                    <span class="tag-pill">Uav</span>
+                </div>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
