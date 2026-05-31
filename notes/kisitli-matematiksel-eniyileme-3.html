@@ -39,9 +39,9 @@
             </div>
 
             <div class="article-content">
-                <p>Bu makalenin başlığı ilk bakışta çok çarpıcı görünmese de, bizi problemin çözümüne götüren yolda mihenk taşlarından birini ifade ediyor. Şimdiye kadar ki makalelerimizde (<a href="kisitli-matematiksel-eniyileme-1.html">1</a>, <a href="kisitli-matematiksel-eniyileme-2.html">2</a>), çözmeye çalıştığımız bir problemden ve bunun matematiksel modelini (optimizasyon problemi) oluşturmaktan bahsettik. Bu makalemizde ise bu problemi oluşturan amaç fonksiyonunun ve kısıt fonksiyonlarının, ne tür fonksiyonlar olarak ifade edilebileceğine değineceğiz. Böylece optimizasyon problemimizin hangi sınıfa dahil olduğunu tespit edebileceğiz.</p>
+                <p>Bu makalenin başlığı ilk bakışta çok çarpıcı görünmese de, bizi problemin çözümüne götüren yolda mihenk taşlarından birini ifade ediyor. Şimdiye kadar ki makalelerimizde (1,2), çözmeye çalıştığımız bir problemden ve bunun matematiksel modelini (optimizasyon problemi) oluşturmaktan bahsettik. Bu makalemizde ise bu problemi oluşturan amaç fonksiyonunun ve kısıt fonksiyonlarının, ne tür fonksiyonlar olarak ifade edilebileceğine değineceğiz. Böylece optimizasyon problemimizin hangi sınıfa dahil olduğunu tespit edebileceğiz.</p>
 
-                <p>Optimizasyon problemleri, amaç ve kısıt fonksiyonlarının tanımlarına göre sınıflandırılırlar. Eğer amaç ve kısıt fonksiyonları lineer (doğrusal) olarak tanımlısa, bu optimizasyon problemleri lineer (linear) programlar olarak anılırlar. Bir <em>f</em> fonksiyonu, eğer alttaki koşulu sağlıyorsa lineer fonksiyon olarak tanımlanır:</p>
+                <p>Optimizasyon problemleri, amaç ve kısıt fonksiyonlarının tanımlarına göre sınıflandırılırlar. Eğer amaç ve kısıt fonksiyonları lineer (doğrusal) olarak tanımlıysa, bu optimizasyon problemleri lineer (linear) programlar olarak anılırlar. Bir f fonksiyonu, eğer alttaki koşulu sağlıyorsa lineer fonksiyon olarak tanımlanır:</p>
 
                 <!-- LINEARITY EQUATION -->
                 <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.25rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
@@ -71,7 +71,7 @@
 
                 <p>Problemimizin tanımlı olduğu kümeyi belirlemek, problemi sınıflandırmamıza olanak sağlar. Örneğin, bir fonksiyonun dışbükey (convex) olabilmesi için, fonksiyonun tanımlı olduğu kümenin (dom f) dışbükey olması gerekir. Bu küme tanımlarını yapmaya geçmeden önce, 2 önemli temel tanımın üzerinde biraz durmak istiyorum.</p>
 
-                <p>Öncelikle doğru ve doğru parçası neyi ifade ediyor bunlara bakalım. Birbirinden farklı herhangi 2 noktayı ele alalım (<em>x<sub>1</sub></em> ve <em>x<sub>2</sub></em>, &reals;<sup>n</sup> de tanımlı).</p>
+                <p>Öncelikle doğru ve doğru parçası neyi ifade ediyor bunlara bakalım. Birbirinden farklı herhangi 2 noktayı ele alalım (x1 ve x2, R^n de tanımlı).</p>
 
                 <!-- LINE EQUATION -->
                 <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.25rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
@@ -83,7 +83,7 @@
                     </div>
                 </div>
 
-                <p>Bu 2 noktadan geçen bir doğru üstteki gibi ifade edilebilir. Buradaki &theta; gerçel sayılar kümesinde, &reals;, tanımlı herhangi bir sayıyı ifade ediyor. Eğer &theta;, [0,1] arasında bir değer alırsa da, bu 2 noktayı birleştiren doğru parçası matematiksel olarak ifade edilmiş olur. Bunu alttaki şekilde görebilirsiniz.</p>
+                <p>Bu 2 noktadan geçen bir doğru üstteki gibi ifade edilebilir. Buradaki theta gerçel sayılar kümesinde, R, tanımlı herhangi bir sayıyı ifade ediyor. Eğer theta, [0,1] arasında bir değer alırsa da, bu 2 noktayı birleştiren doğru parçası matematiksel olarak ifade edilmiş olur. Bunu alttaki şekilde görebilirsiniz.</p>
 
                 <!-- GEOMETRIC DIAGRAM 1: LINE AND SEGMENT -->
                 <div style="background: #fdfdfd; border: 1px solid var(--border-color); border-radius: 6px; padding: 15px; margin: 20px auto; max-width: 550px;">
@@ -102,12 +102,12 @@
                         <text x="250" y="105" font-family="-apple-system, sans-serif" font-size="13px" fill="var(--accent-color)" font-weight="500" text-anchor="middle">Doğru Parçası (&theta; &in; [0,1])</text>
                         <text x="70" y="105" font-family="-apple-system, sans-serif" font-size="13px" fill="#777" text-anchor="middle">Doğru (&theta; &in; &reals;)</text>
                     </svg>
-                    <p style="text-align: center; font-size: 0.9em; color: #666; margin: 5px 0 0 0;">Doğru üzerinde verilen 2 noktayı (x₁ ve x₂) birleştiren doğru parçası koyu renkle gösterilmiştir.</p>
+                    <p style="text-align: center; font-size: 0.9em; color: #666; margin: 5px 0 0 0;">Doğru üzerinde verilen 2 noktayı (x1 ve x2) birleştiren doğru parçası koyu renkle gösterilmiştir.</p>
                 </div>
 
-                <p>Bu 2 temel tanımımızı yaptığımıza göre, sıkça kullanacağımız 2 küme tanımına geçebiliriz. Bunlardan ilki, afin (affine) kümeler olarak literatüre geçmiştir. Üsteki şekli ele aldığımızda, x₁ ve x₂ noktalarından geçen doğru üzerindeki tüm noktalar, afin kümesinin elemanlarını ifade eder.</p>
+                <p>Bu 2 temel tanımımızı yaptığımıza göre, sıkça kullanacağımız 2 küme tanımına geçebiliriz. Bunlardan ilki, afin (affine) kümeler olarak literatüre geçmiştir. Üsteki şekli ele aldığımızda, x1 ve x2 noktalarından geçen doğru üzerindeki tüm noktalar, afin kümesinin elemanlarını ifade eder.</p>
 
-                <p>Diğer küme tanımı ise dışbükey (convex) kümedir. Bir kümenin dışbükey (convex) olarak tanımlı olabilmesi için, küme içindeki 2 noktayı birleştiren doğru parçasının küme içerisinde bulunması gerekir. Bu da yalnızca &theta; değerinin [0,1] arasında değerler aldığı durumda mümkün olmaktadır. Alttaki küme örneklerini birlikte inceleyelim.</p>
+                <p>Diğer küme tanımı ise dışbükey (convex) kümedir. Bir kümenin dışbükey (convex) olarak tanımlı olabilmesi için, küme içindeki 2 noktayı birleştiren doğru parçasının küme içerisinde bulunması gerekir. Bu da yalnızca theta değerinin [0,1] arasında değerler aldığı durumda mümkün olmaktadır. Alttaki küme örneklerini birlikte inceleyelim.</p>
 
                 <!-- GEOMETRIC DIAGRAM 2: CONVEX & NON-CONVEX SETS -->
                 <div style="background: #fdfdfd; border: 1px solid var(--border-color); border-radius: 6px; padding: 20px; margin: 30px auto; max-width: 800px;">
@@ -165,7 +165,7 @@
                             <text x="100" y="195" font-family="-apple-system, sans-serif" font-size="14px" fill="#dd6b20" font-weight="bold" text-anchor="middle">Sınırları Eksik Küme</text>
                         </g>
                     </svg>
-                    <p style="text-align: center; font-size: 0.9em; color: #666; margin: 10px 0 0 0;">Soldaki altıgen küme dışbükeydir. Ortadaki kümede seçilen iki noktayı bağlayan doğru parçası kümenin dışına taştığı için dışbükey değildir. Sağdaki kare kümenin kenarında eksik bölümler olduğu için dışbükeylik şartı sağlanmaz.</p>
+                    <p style="text-align: center; font-size: 0.9em; color: #666; margin: 10px 0 0 0;">Soldaki altıgen şeklinde verilmiş olan kümemiz, dışbükey (convex) bir küme oluşturur. Ortadaki kümemize baktığımızda, kümede tanımlı olan herhangi 2 noktayı birbirine bağlayan doğru parçasının bazı kısımlarının, kümenin dışında kaldığını görüyoruz. Bu yüzden bu kümemiz, dışbükey (convex) değildir. Sağdaki kümemiz bir kare şeklinde tanımlanmış ancak kenarlarının bazı kısımları kümede tanımlı değiller ve silinmiş görünüyorlar. Bu yüzden, kenarlardan seçilen herhangi 2 noktayı birleştiren doğru parçası her zaman için kümede tanımlı olmayacaktır. Bu da kümemizin dışbükey (convex) olmadığı göstermektedir.</p>
                 </div>
 
                 <p>Bu makalemizde optimizasyon problemlerinin nasıl sınıflandırıldığını inceledik. Bundan sonra ilgileneceğimiz problemler de genelde dışbükey (convex) tanımlı olacağı için bu kısmın önemini bir kez daha belirtmekte fayda görüyorum. Bir sonraki makalemizde dışbükey fonksiyon tanımlarından bahsedeceğiz. Hoşçakalın.</p>
@@ -174,8 +174,8 @@
 
                 <h3>Kaynakça:</h3>
                 <ul>
-                    <li><a href="https://web.stanford.edu/~boyd/cvxbook/" target="_blank">Convex Optimization - Stephen Boyd & Lieven Vandenberghe, Cambridge University Press 2009.</a></li>
-                    <li><a href="http://www.tubaterim.gov.tr/" target="_blank">TÜBA Terimler Sözlüğü</a></li>
+                    <li><a href="https://web.stanford.edu/~boyd/cvxbook/" target="_blank">Convex Optimization /Stephen Boyd & Lieven Vandenberghe, Cambridge University Press 2009.</a></li>
+                    <li><a href="http://www.tubaterim.gov.tr/" target="_blank">http://www.tubaterim.gov.tr/</a></li>
                 </ul>
 
                 <!-- Etiketler (Keywords) -->
