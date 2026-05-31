@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kısıtlı Matematiksel Eniyileme: 4. Dışbükey (Convex) Fonksiyonlar - Oğuzhan Çiftçi</title>
+    <link rel="icon" href="../picture.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <img src="../picture.jpg" alt="Oğuzhan Çiftçi" class="profile-photo">
+        <h1 class="site-title">Oğuzhan Çiftçi</h1>
+        <p class="site-description">Electrical and Electronics Engineering<br>PhD Candidate @ Marmara University</p>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../cv.html">Brief CV</a></li>
+                <li><a href="../teaching.html">Teaching</a></li>
+                <li><a href="../publications.html">Publication</a></li>
+                <li><a href="../notes.html" class="active">Notes</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            &copy; 2026 Oğuzhan Çiftçi.<br>All rights reserved.
+        </div>
+    </aside>
+
+    <main class="content">
+        <a href="../notes.html" class="back-link">Geri Dön</a>
+        
+        <article class="article-detail">
+            <!-- Kapak Fotoğrafı İçin Alan -->
+            <img src="../images/opt-4-cover.png" alt="Optimizasyon 4 Kapak" class="article-img" style="margin-top: 0; width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+
+            <div class="article-header" style="margin-top: 20px;">
+                <h2>Kısıtlı Matematiksel Eniyileme (Optimizasyon): 4. Dışbükey (Convex) Fonksiyonlar</h2>
+                <span class="article-date">29 Temmuz 2020</span>
+            </div>
+
+            <div class="article-content">
+                <p>Bir önceki makalemizde bir dışbükey (convex) kümenin tanımından bahsettik. Şimdi ise bu kümelerde tanımlı fonksiyonlardan bahsedeceğiz.</p>
+
+                <p>Önceki makalemizden hatırlayacağınız üzere, bir fonksiyonu tanımlı olduğu kümeye göre isimlendiriyoruz. Buna göre bir fonksiyonun dışbükey tanımlı olabilmesi için, bu fonksiyonun dışbükey bir kümede tanımlı olması ve bu kümede tanımlı tüm x, y değerlerinin aşağıdaki eşitsizliği 0 ile 1 arasındaki \theta değerleri için sağlanması gerekir:</p>
+
+                <!-- EQUATION 1: BASIC CONVEXITY -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.25rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        f(&theta;x + (1-&theta;)y) &le; &theta;f(x) + (1-&theta;)f(y)
+                    </div>
+                </div>
+
+                <p>Buradaki eşitsizlik ifadesi aslında, (x,f(x)) ile (y,f(y)) arasındaki doğru parçasını ifade ediyor. Bunu alttaki şekilde görebilirsiniz:</p>
+
+                <!-- GEOMETRIC DIAGRAM 1: CONVEX FUNCTION GRAPH -->
+                <div style="background: #fdfdfd; border: 1px solid var(--border-color); border-radius: 6px; padding: 20px; margin: 30px auto; max-width: 550px;">
+                    <svg viewBox="0 0 500 280" width="100%" height="auto" style="display: block;">
+                        <!-- Curved function f(x) -->
+                        <path d="M 80,220 Q 250,260 420,80" fill="none" stroke="var(--accent-color)" stroke-width="3" />
+                        <!-- Secant Line Segment between x and y -->
+                        <line x1="120" y1="216" x2="380" y2="114" stroke="#e53e3e" stroke-width="2" />
+                        
+                        <!-- Dashed lines down to axes -->
+                        <line x1="120" y1="216" x2="120" y2="245" stroke="#aaa" stroke-width="1.5" stroke-dasharray="3,3" />
+                        <line x1="380" y1="114" x2="380" y2="245" stroke="#aaa" stroke-width="1.5" stroke-dasharray="3,3" />
+                        
+                        <!-- Dot points on graph -->
+                        <circle cx="120" cy="216" r="5" fill="var(--heading-color)" />
+                        <circle cx="380" cy="114" r="5" fill="var(--heading-color)" />
+                        
+                        <!-- Axes -->
+                        <line x1="50" y1="245" x2="450" y2="245" stroke="var(--heading-color)" stroke-width="1.5" />
+                        <line x1="50" y1="30" x2="50" y2="245" stroke="var(--heading-color)" stroke-width="1.5" />
+                        
+                        <!-- Labels -->
+                        <text x="120" y="263" font-family="-apple-system, sans-serif" font-size="13px" fill="var(--text-color)" text-anchor="middle">x</text>
+                        <text x="380" y="263" font-family="-apple-system, sans-serif" font-size="13px" fill="var(--text-color)" text-anchor="middle">y</text>
+                        
+                        <text x="105" y="205" font-family="-apple-system, sans-serif" font-size="13px" fill="var(--text-color)">(x, f(x))</text>
+                        <text x="390" y="110" font-family="-apple-system, sans-serif" font-size="13px" fill="var(--text-color)">(y, f(y))</text>
+                        
+                        <text x="430" y="75" font-family="-apple-system, sans-serif" font-size="13px" fill="var(--accent-color)" font-weight="600">f(x)</text>
+                        <text x="250" y="145" font-family="-apple-system, sans-serif" font-size="13px" fill="#e53e3e" text-anchor="middle">&theta;f(x) + (1-&theta;)f(y)</text>
+                    </svg>
+                </div>
+
+                <p>Görüldüğü üzere, fonksiyonu sağlayan 2 nokta arasında çizilen doğru parçasının tamamı, dışbükey bir alanın içinde kalıyor. Bu yüzden verilen örnek bir dışbükey (convex) fonksiyon örneğidir.</p>
+
+                <p>Bu tanımın dışında, verilen fonksiyonun türevinin alınabilmesi koşulu ile de tanımlar mevcut. Bunların ilki literatürde, birinci dereceden koşul (first-order condition) olarak veriliyor. Buna göre, türevi alınabilir bir f fonksiyonu varsayılıyor. Bir başka değişle, fonksiyonun tanımlı olduğu kümedeki tüm noktalar (dom f) için gradyanının olduğu biliniyor. (gradyan, f fonksiyonu için tüm bileşenlere göre türevi ifade ediyor, grad(f) veya tersüçgen f olarak gösterilir.) Böylece, verilen bu f fonksiyonu, convex bir dom f ve bu kümede tanımlı tüm x,y için geçerli alttaki eşitsizlik sağlandığı gerek ve yeter koşulları gereğince, dışbükey (convex) olarak tanımlanır. (^T, vektör için devriğinin alınması işlemini ifade eder.)</p>
+
+                <!-- EQUATION 2: FIRST-ORDER CONDITION -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.25rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        f(y) &ge; f(x) + &nabla;f(x)<sup>T</sup>(y - x)
+                    </div>
+                </div>
+
+                <p>1. dereceden koşul</p>
+                <p>Bu 1. dereceden koşul, 1. dereceden Taylor yaklaşımı metodu kullanılarak elde edilir. Aynı zamanda gradyan inişi (gradient descent) olarak da ifade edilmektedir. Alttaki şekilde, bu 1. dereceden yaklaşımın bir gösterimini verilmiştir.</p>
+
+                <!-- GEOMETRIC DIAGRAM 2: TAYLOR APPROXIMATION -->
+                <div style="background: #fdfdfd; border: 1px solid var(--border-color); border-radius: 6px; padding: 20px; margin: 30px auto; max-width: 550px;">
+                    <svg viewBox="0 0 500 280" width="100%" height="auto" style="display: block;">
+                        <!-- Curved function f -->
+                        <path d="M 80,220 Q 250,260 420,80" fill="none" stroke="var(--accent-color)" stroke-width="3" />
+                        
+                        <!-- Tangent line at x -->
+                        <line x1="80" y1="230" x2="350" y2="160" stroke="#48bb78" stroke-width="2" />
+                        
+                        <!-- Dot at point of tangency (x, f(x)) -->
+                        <circle cx="210" cy="196" r="5" fill="var(--heading-color)" />
+                        
+                        <!-- Point y on function and corresponding linear approximation -->
+                        <circle cx="340" cy="126" r="5" fill="var(--accent-color)" />
+                        <circle cx="340" cy="162" r="5" fill="#48bb78" />
+                        
+                        <!-- Dotted line showing the gap -->
+                        <line x1="340" y1="126" x2="340" y2="162" stroke="#aaa" stroke-width="1.5" stroke-dasharray="3,3" />
+                        <line x1="210" y1="196" x2="210" y2="245" stroke="#aaa" stroke-width="1.5" stroke-dasharray="3,3" />
+                        <line x1="340" y1="126" x2="340" y2="245" stroke="#aaa" stroke-width="1.5" stroke-dasharray="3,3" />
+                        
+                        <!-- Axes -->
+                        <line x1="50" y1="245" x2="450" y2="245" stroke="var(--heading-color)" stroke-width="1.5" />
+                        <line x1="50" y1="30" x2="50" y2="245" stroke="var(--heading-color)" stroke-width="1.5" />
+                        
+                        <!-- Labels -->
+                        <text x="210" y="263" font-family="-apple-system, sans-serif" font-size="13px" fill="var(--text-color)" text-anchor="middle">x</text>
+                        <text x="340" y="263" font-family="-apple-system, sans-serif" font-size="13px" fill="var(--text-color)" text-anchor="middle">y</text>
+                        <text x="180" y="185" font-family="-apple-system, sans-serif" font-size="13px" fill="var(--text-color)">(x, f(x))</text>
+                        <text x="350" y="125" font-family="-apple-system, sans-serif" font-size="13px" fill="var(--accent-color)">f(y)</text>
+                        <text x="350" y="175" font-family="-apple-system, sans-serif" font-size="13px" fill="#48bb78">f(x) + &nabla;f(x)ᵀ(y-x)</text>
+                    </svg>
+                </div>
+
+                <p>Bununla beraber, f fonksiyonun iki defa türevlenebildiği durum için de bir dışbükeylik tanımı yapılmıştır. Bu sefer bu fonksiyonun, dom f de tanımlı tüm noktalar için, Hessian’ının veya ikinci türevinin tanımlı olduğu varsayılıyor. Bu durumda, f fonksiyonunun dışbükey (convex) olabilmesi için dom f in dışbükey tanımlı olması ve Hessian’ının yarı-kesin pozitif tanımlı bir matrix olması gereklidir.</p>
+
+                <!-- EQUATION 3: SECOND-ORDER CONDITION -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.25rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        &nabla;<sup>2</sup>f(x) &ge; 0
+                    </div>
+                </div>
+
+                <p>Gelin şimdi bunu bir örnek üzerinden inceleyelim. Elimizde R^n den R a tanımlı ikinci dereceden bir foksiyonumuz olduğunu varsayalım. Bu fonksiyon alttaki gibi gösterilebilir.</p>
+
+                <!-- EQUATION 4: QUADRATIC FUNCTION EXAMPLE -->
+                <div class="math-block" style="background: #f8fafc; border-left: 4px solid var(--accent-color); padding: 20px; border-radius: 6px; margin: 30px auto; max-width: 500px; font-family: 'Times New Roman', Times, serif; font-size: 1.25rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                    <div style="margin-bottom: 8px;">
+                        f(x) = (1/2)x<sup>T</sup>Px + q<sup>T</sup>x + r
+                    </div>
+                    <div style="font-size: 0.95rem; color: #555; font-style: italic; margin-top: 8px;">
+                        P &in; S<sup>n</sup>, &nbsp; q &in; &reals;<sup>n</sup>, &nbsp; r &in; &reals;
+                    </div>
+                </div>
+
+                <p>Bu fonksiyonun Hessian’ı, yani ikinci türevi, P’ye eşittir. Bu fonksiyonun dışbükey (convex) tanımlı olabilmesi için ise alttaki üstteki koşulun sağlanması gereklidir. Bu yüzden, P matrisi yarı-kesin pozitif tanımlı olmalıdır. Eğer P matrisi pozitif tanımlı ise f, kesin dışbükey fonksiyon olarak isimlendirilir. Matrislerin bu tanımlarının ne demek olduğu ile ilgili bilgi için buradan faydanılabilirsiniz.</p>
+
+                <p>Bu konu ile ilgili daha geniş bilgi için Kaynakçada verilen Boyd’un kitabında 69–71 sayfalarını inceleyiniz.</p>
+
+                <p>Bir sonraki makalemizde convex fonksiyonlardan oluşan optimizasyon problemlerini tanımlayacağız. Görüşmek üzere.</p>
+
+                <p>&rarr; <a href="#">Kısıtlı Matematiksel Eniyileme (Optimizasyon): 5.1 Dışbükey (Convex) Optimizasyon Problemleri</a></p>
+
+                <h3>KAYNAKÇA</h3>
+                <ul>
+                    <li><a href="https://web.stanford.edu/~boyd/cvxbook/" target="_blank">Convex Optimization /Stephen Boyd & Lieven Vandenberghe, Cambridge University Press 2009.</a></li>
+                    <li><a href="http://www.tubaterim.gov.tr/" target="_blank">http://www.tubaterim.gov.tr/</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Definite_symmetric_matrix" target="_blank">https://en.wikipedia.org/wiki/Definite_symmetric_matrix</a></li>
+                </ul>
+
+                <!-- Etiketler (Keywords) -->
+                <div class="article-tags">
+                    <span class="tag-pill">Optimization</span>
+                    <span class="tag-pill">Mathematics</span>
+                    <span class="tag-pill">Türkçe</span>
+                    <span class="tag-pill">Engineering</span>
+                </div>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
