@@ -1,0 +1,4 @@
+# Exclude raw data Excel files with student IDs
+data/
+~$*.xlsx
+*.xlsx
