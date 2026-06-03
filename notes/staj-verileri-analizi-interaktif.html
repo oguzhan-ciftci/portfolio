@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bölüm Staj Verileri Analizi - Oğuzhan Çiftçi</title>
+    <link rel="icon" href="../picture.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="../style.css">
+    <!-- Chart.js for premium dynamic charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Interactive Dashboard Premium Styles */
+        .dashboard-container {
+            margin: 30px 0;
+            background: #ffffff;
+        }
+
+        /* Filter Panel Grid styling */
+        .filter-panel {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .filter-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--heading-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-title::before {
+            content: "🔍";
+            font-size: 1.1rem;
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .filter-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-select, .filter-input {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            background-color: #ffffff;
+            font-size: 0.9rem;
+            color: #1e293b;
+            outline: none;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        .filter-select:focus, .filter-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+        }
+
+        .filter-actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .reset-btn {
+            padding: 8px 16px;
+            background-color: #ef4444;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .reset-btn:hover {
+            background-color: #dc2626;
+        }
+
+        /* KPI Container cards */
+        .kpi-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .kpi-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+        }
+
+        .kpi-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 2px;
+        }
+
+        .kpi-title {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Charts visualization cards */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .chart-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-card.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .chart-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--heading-color);
+            margin-bottom: 15px;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 8px;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 280px;
+            width: 100%;
+        }
+
+        /* Paginated Data Table section */
+        .table-section {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .table-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--heading-color);
+        }
+
+        .table-count {
+            font-size: 0.8rem;
+            color: #475569;
+            background: #f1f5f9;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            text-align: left;
+        }
+
+        table.data-table th {
+            background-color: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+            padding: 10px 12px;
+            border-bottom: 2px solid var(--border-color);
+            white-space: nowrap;
+        }
+
+        table.data-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border-color);
+            color: #334155;
+            max-width: 250px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        table.data-table tbody tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .pagination-info {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .pagination-buttons {
+            display: flex;
+            gap: 4px;
+        }
+
+        .pag-btn {
+            padding: 6px 12px;
+            border: 1px solid #cbd5e1;
+            background-color: #ffffff;
+            color: #334155;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pag-btn:hover:not(:disabled) {
+            background-color: #f1f5f9;
+            border-color: #94a3b8;
+        }
+
+        .pag-btn.active {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border-color: var(--accent-color);
+        }
+
+        .pag-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .no-data-msg {
+            text-align: center;
+            padding: 30px;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+            .filter-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <img src="../picture.jpg" alt="Oğuzhan Çiftçi" class="profile-photo">
+        <h1 class="site-title">Oğuzhan Çiftçi</h1>
+        <p class="site-description">Electrical and Electronics Engineering<br>PhD Candidate @ Marmara University</p>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../cv.html">Brief CV</a></li>
+                <li><a href="../teaching.html">Teaching</a></li>
+                <li><a href="../publications.html">Publication</a></li>
+                <li><a href="../notes.html" class="active">Notes</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            &copy; 2026 Oğuzhan Çiftçi.<br>All rights reserved.
+        </div>
+    </aside>
+
+    <main class="content">
+        <a href="../notes.html" class="back-link">Geri Dön</a>
+        
+        <article class="article-detail">
+            <div class="article-header">
+                <h2>Bölüm Staj Verileri Analizi</h2>
+                <span class="article-date">Haziran 2026</span>
+            </div>
+
+            <div class="article-content">
+                <p>Uzun bir süredir günlük olarak aktif kullandığım tek sosyal medya platformu, LinkedIn. Burada özellikle öğrenci arkadaşlarımın projelerini ve başarılarını gördükçe motivasyonumun daha da arttığını fark ediyorum. Bahar yarıyılının sonuna yaklaştığımız bu günlerde, staj kabullerinin de iyice yoğunlaştığını görmeye başladım. Hal böyle olunca, bölümümüzdeki (Marmara Üniversitesi, Mühendislik Fakültesi Genel staj verileri) durumu merak ederek Staj Komisyonu’ndaki arkadaşlarımdan yardım istedim. Sağ olsunlar, ellerindeki ham veriyi benimle paylaştılar. Ben de bu verileri düzenleyerek hazırladığım interaktif analiz panelini ve öne çıkan istatistikleri aşağıda paylaşıyorum.</p>
+
+                <!-- INTERACTIVE INTERNSHIP DASHBOARD CONTAINER -->
+                <div class="dashboard-container">
+                    
+                    <!-- Filters section -->
+                    <div class="filter-panel">
+                        <div class="filter-title">Staj Veri Arama ve Filtreleme</div>
+                        
+                        <div class="filter-grid">
+                            <div class="filter-group">
+                                <label class="filter-label" for="companySearch">Firma Ara</label>
+                                <input type="text" id="companySearch" class="filter-input" placeholder="Örn: Turkcell, Aselsan...">
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label class="filter-label" for="departmentSelect">Bölüm</label>
+                                <select id="departmentSelect" class="filter-select">
+                                    <option value="ALL">Tümü (Tüm Bölümler)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label class="filter-label" for="entranceYearSelect">Giriş Yılı</label>
+                                <select id="entranceYearSelect" class="filter-select">
+                                    <option value="ALL">Tümü</option>
+                                </select>
+                            </div>
+
+                            <div class="filter-group">
+                                <label class="filter-label" for="internshipYearSelect">Staj Yılı</label>
+                                <select id="internshipYearSelect" class="filter-select">
+                                    <option value="ALL">Tümü</option>
+                                </select>
+                            </div>
+
+                            <div class="filter-group">
+                                <label class="filter-label" for="categorySelect">Sektör Kategorisi</label>
+                                <select id="categorySelect" class="filter-select">
+                                    <option value="ALL">Tümü</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="filter-actions">
+                            <button id="resetFilters" class="reset-btn">🧹 Filtreleri Temizle</button>
+                        </div>
+                    </div>
+
+                    <!-- KPI Indicator cards -->
+                    <div class="kpi-container">
+                        <div class="kpi-card">
+                            <div id="kpiTotalInternships" class="kpi-value">0</div>
+                            <div class="kpi-title">Toplam Staj</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div id="kpiUniqueCompanies" class="kpi-value">0</div>
+                            <div class="kpi-title">Farklı Firma</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div id="kpiAvgDuration" class="kpi-value">0</div>
+                            <div class="kpi-title">Ort. Süre (Gün)</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div id="kpiTopCategory" class="kpi-value">-</div>
+                            <div class="kpi-title">En Yoğun Sektör</div>
+                        </div>
+                    </div>
+
+                    <!-- Visualizations charts -->
+                    <div class="charts-grid">
+                        <div class="chart-card">
+                            <div class="chart-title">Sektörel Dağılım</div>
+                            <div class="chart-wrapper">
+                                <canvas id="categoryChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-card">
+                            <div class="chart-title">Yıllara Göre Staj Sayıları</div>
+                            <div class="chart-wrapper">
+                                <canvas id="trendChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-card full-width">
+                            <div class="chart-title">En Çok Tercih Edilen 25 Şirket</div>
+                            <div class="chart-wrapper" style="height: 380px;">
+                                <canvas id="companyChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic data table -->
+                    <div class="table-section">
+                        <div class="table-header">
+                            <div class="table-title">Staj Kayıtları Listesi</div>
+                            <div id="tableCount" class="table-count">Gösterilen: 0 / 0</div>
+                        </div>
+                        
+                        <div class="table-wrapper">
+                            <table class="data-table" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>Bölüm</th>
+                                        <th>Giriş Yılı</th>
+                                        <th>Staj Yılı</th>
+                                        <th>Staj Yeri (Firma)</th>
+                                        <th>Sektör Kategorisi</th>
+                                        <th>Süre (Gün)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody">
+                                    <!-- Rows will be injected by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="pagination-container">
+                            <div id="paginationInfo" class="pagination-info">Kayıt 1 - 25 gösteriliyor</div>
+                            <div class="pagination-buttons" id="paginationButtons">
+                                <!-- Pagination page buttons -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <h3>Son Notlar ve Analizler</h3>
+                <p>Toplanan verilerde 12,000'in üzerinde staj başvurusunu analiz ettik. Bu süreçte yaklaşık 7,600 farklı kurum, kuruluş ve firmada staj yapılmış durumdadır. Bu stajların sektörel dağılımına baktığımızda özellikle Yazılım/Bilişim, Metalurji/Ağır Sanayi ve Akademi/Üniversite Laboratuvarları başı çekiyor.</p>
+                
+                <p>Öğrencilerimizin staj yaptığı kurumlarda öne çıkan bazı detaylar şunlardır:</p>
+                <ul>
+                    <li><strong>Savunma Sanayii Artışı:</strong> Son yıllarda (2021-2025) özellikle ASELSAN, BAYKAR ve TUSAŞ (TAI) gibi Havacılık, Uzay ve Savunma Sanayii şirketlerine gönderdiğimiz stajyer oranlarında ciddi bir yükseliş mevcuttur.</li>
+                    <li><strong>Yazılım Sektörü Stabilitesi:</strong> Bilgisayar Mühendisliği başta olmak üzere Yazılım ve Bilişim teknolojileri alanındaki firmalar (OBSS, Uyumsoft, Softtech vb.) her dönem yüksek stajyer kabul oranlarına sahiptir.</li>
+                    <li><strong>Çevre ve Arıtma:</strong> Çevre Mühendisliği öğrencilerimiz özellikle İSKİ, İSTAÇ ve belediyelerin arıtma tesislerinde stajlarını tamamlamışlardır.</li>
+                </ul>
+
+                <h3>Firmalara Tavsiye</h3>
+                <p>Staj bulma süreci, öğrenciyi gerçek hayata hazırlayan en önemli süreçlerden birisi. Kimisi ilk başvurduğu yerden kabul alabilirken, kimisi onlarca başvurudan sonra bile ancak son dakikalarda bir fırsat yakalayabiliyor. Bazen kurum içi prosedürlere de takılıp kalınabiliyor. Ne kadar sancılı da olsa, tüm bunların hepsi bir tecrübe oluyor insanın hayatında. Umarım yapılan stajlar, pratik mühendislik açısından tüm öğrencilerimize fayda katar. Burada sorumluluk öğrencilerimizde olduğu kadar, staj imkanı veren şirketlere de düşüyor. Stajyer öğrencinin en az 1 projeye dahil edilmesini ve burada aktif rol almasını sağlamak çok mühim. Ayrıca firmaların stajyerlere bir ücret verilmesi konusunda da eli açık davranması herkesin faydasına olacaktır.</p>
+
+                <h3>Mezunlardan İstek</h3>
+                <p>Staj yeri bulmada belki de en önemli yapı taşı, bölümün kendi mezunları denilebilir. Bölüm mezunları çalıştıkları yerlerde güzel işler yapmaya başladıkça, yönetim kadrosu kendiliklerinden yeni stajyer adaylarını da bizim bölümümüzden daha çok ister oldurlar. Bunun çokça defa şahidi oldum. Bu sebeple bölüm mezunlarımıza da stajyer alımlarında genç arkadaşlarına mentorluk yapma konusunda iş düşüyor diyebilirim.</p>
+
+                <p>Sağlıcakla kalınız.</p>
+            </div>
+        </article>
+    </main>
+
+    <!-- Embedded Javascript logic and data connection -->
+    <script src="staj_data.js"></script>
+    <script>
+        // State variables
+        let filteredRecords = [];
+        let currentPage = 1;
+        const pageSize = 25;
+        
+        // Chart instances
+        let categoryChartInst = null;
+        let trendChartInst = null;
+        let companyChartInst = null;
+
+        // Turkish character case-insensitive normalizer
+        function turkishNormalize(str) {
+            if (!str) return '';
+            return str.toString()
+                .replace(/İ/g, 'i')
+                .replace(/I/g, 'i')
+                .replace(/ı/g, 'i')
+                .replace(/Ö/g, 'o')
+                .replace(/ö/g, 'o')
+                .replace(/Ü/g, 'u')
+                .replace(/ü/g, 'u')
+                .replace(/Ç/g, 'c')
+                .replace(/ç/g, 'c')
+                .replace(/Ş/g, 's')
+                .replace(/ş/g, 's')
+                .replace(/Ğ/g, 'g')
+                .replace(/ğ/g, 'g')
+                .toLowerCase()
+                .trim();
+        }
+
+        // Initialize selectors with options from data
+        function initFilters() {
+            // Department select
+            const deptSelect = document.getElementById('departmentSelect');
+            STAJ_DEPARTMENTS.forEach((dept, idx) => {
+                const opt = document.createElement('option');
+                opt.value = idx;
+                opt.textContent = dept;
+                deptSelect.appendChild(opt);
+            });
+
+            // Extract unique entrance years and sort
+            const entranceYears = [...new Set(STAJ_RECORDS.map(r => r[1]))]
+                .filter(y => y > 0)
+                .sort((a, b) => b - a); // Sort descending
+            const entranceSelect = document.getElementById('entranceYearSelect');
+            entranceYears.forEach(year => {
+                const opt = document.createElement('option');
+                opt.value = year;
+                opt.textContent = year;
+                entranceSelect.appendChild(opt);
+            });
+
+            // Extract unique internship years and sort
+            const internshipYears = [...new Set(STAJ_RECORDS.map(r => r[2]))]
+                .filter(y => y > 0)
+                .sort((a, b) => b - a); // Sort descending
+            const internshipSelect = document.getElementById('internshipYearSelect');
+            internshipYears.forEach(year => {
+                const opt = document.createElement('option');
+                opt.value = year;
+                opt.textContent = year;
+                internshipSelect.appendChild(opt);
+            });
+
+            // Category select
+            const catSelect = document.getElementById('categorySelect');
+            STAJ_CATEGORIES.forEach((cat, idx) => {
+                const opt = document.createElement('option');
+                opt.value = idx;
+                opt.textContent = cat;
+                catSelect.appendChild(opt);
+            });
+        }
+
+        // Apply filters to records
+        function applyFilters() {
+            const query = turkishNormalize(document.getElementById('companySearch').value);
+            const deptVal = document.getElementById('departmentSelect').value;
+            const entranceVal = document.getElementById('entranceYearSelect').value;
+            const internshipVal = document.getElementById('internshipYearSelect').value;
+            const catVal = document.getElementById('categorySelect').value;
+
+            filteredRecords = STAJ_RECORDS.filter(row => {
+                // 1. Company Search Filter
+                if (query) {
+                    const compName = STAJ_COMPANIES[row[3]];
+                    if (!compName || !turkishNormalize(compName).includes(query)) {
+                        return false;
+                    }
+                }
+                
+                // 2. Department Filter
+                if (deptVal !== 'ALL') {
+                    if (row[0] !== parseInt(deptVal)) return false;
+                }
+                
+                // 3. Entrance Year Filter
+                if (entranceVal !== 'ALL') {
+                    if (row[1] !== parseInt(entranceVal)) return false;
+                }
+                
+                // 4. Internship Done Year Filter
+                if (internshipVal !== 'ALL') {
+                    if (row[2] !== parseInt(internshipVal)) return false;
+                }
+                
+                // 5. Sector Category Filter
+                if (catVal !== 'ALL') {
+                    if (row[4] !== parseInt(catVal)) return false;
+                }
+
+                return true;
+            });
+        }
+
+        // Calculate and update KPIs in the DOM
+        function updateKPIs() {
+            const total = filteredRecords.length;
+            document.getElementById('kpiTotalInternships').textContent = total.toLocaleString();
+
+            if (total === 0) {
+                document.getElementById('kpiUniqueCompanies').textContent = '0';
+                document.getElementById('kpiAvgDuration').textContent = '0';
+                document.getElementById('kpiTopCategory').textContent = 'N/A';
+                return;
+            }
+
+            // Unique companies
+            const uniqueComps = new Set(filteredRecords.map(r => r[3])).size;
+            document.getElementById('kpiUniqueCompanies').textContent = uniqueComps.toLocaleString();
+
+            // Average duration
+            const totalDuration = filteredRecords.reduce((sum, r) => sum + r[5], 0);
+            const avgDuration = (totalDuration / total).toFixed(1);
+            document.getElementById('kpiAvgDuration').textContent = avgDuration;
+
+            // Top Sector category
+            const catCounts = {};
+            filteredRecords.forEach(r => {
+                catCounts[r[4]] = (catCounts[r[4]] || 0) + 1;
+            });
+            let maxCatIdx = -1;
+            let maxCount = -1;
+            for (let catIdx in catCounts) {
+                if (catCounts[catIdx] > maxCount) {
+                    maxCount = catCounts[catIdx];
+                    maxCatIdx = parseInt(catIdx);
+                }
+            }
+            const topSector = maxCatIdx !== -1 ? STAJ_CATEGORIES[maxCatIdx] : '-';
+            // Truncate sector name if too long for card UI
+            document.getElementById('kpiTopCategory').textContent = topSector.length > 18 ? topSector.substring(0, 16) + '...' : topSector;
+            document.getElementById('kpiTopCategory').title = topSector;
+        }
+
+        // Draw and update visual charts
+        function updateCharts() {
+            const total = filteredRecords.length;
+
+            if (total === 0) {
+                // Clear charts if no data
+                categoryChartInst.data.labels = [];
+                categoryChartInst.data.datasets[0].data = [];
+                categoryChartInst.update();
+
+                trendChartInst.data.labels = [];
+                trendChartInst.data.datasets[0].data = [];
+                trendChartInst.update();
+
+                companyChartInst.data.labels = [];
+                companyChartInst.data.datasets[0].data = [];
+                companyChartInst.update();
+                return;
+            }
+
+            // 1. Sector Category Distribution (Doughnut Chart)
+            const catCounts = {};
+            filteredRecords.forEach(r => {
+                catCounts[r[4]] = (catCounts[r[4]] || 0) + 1;
+            });
+
+            // Map and sort categories
+            const catData = Object.keys(catCounts).map(idx => {
+                return {
+                    name: STAJ_CATEGORIES[parseInt(idx)],
+                    count: catCounts[idx]
+                };
+            }).sort((a, b) => b.count - a.count);
+
+            // Group smaller sectors to keep legend tidy
+            const topSectorsToShow = 7;
+            let finalLabels = [];
+            let finalCounts = [];
+            let otherSum = 0;
+
+            catData.forEach((item, index) => {
+                if (index < topSectorsToShow) {
+                    finalLabels.push(item.name);
+                    finalCounts.push(item.count);
+                } else {
+                    otherSum += item.count;
+                }
+            });
+
+            if (otherSum > 0) {
+                finalLabels.push('Diğer Sektörler');
+                finalCounts.push(otherSum);
+            }
+
+            categoryChartInst.data.labels = finalLabels;
+            categoryChartInst.data.datasets[0].data = finalCounts;
+            categoryChartInst.update();
+
+            // 2. Internship Year Trend (Bar Chart)
+            const yearCounts = {};
+            filteredRecords.forEach(r => {
+                if (r[2] > 0) {
+                    yearCounts[r[2]] = (yearCounts[r[2]] || 0) + 1;
+                }
+            });
+
+            // Get range of years dynamically based on selection, or use a default standard range
+            const sortedYears = Object.keys(yearCounts).map(Number).sort((a, b) => a - b);
+            
+            trendChartInst.data.labels = sortedYears;
+            trendChartInst.data.datasets[0].data = sortedYears.map(y => yearCounts[y]);
+            trendChartInst.update();
+
+            // 3. Top 25 Companies (Horizontal Bar Chart)
+            const compCounts = {};
+            filteredRecords.forEach(r => {
+                compCounts[r[3]] = (compCounts[r[3]] || 0) + 1;
+            });
+
+            const topComps = Object.keys(compCounts).map(idx => {
+                return {
+                    name: STAJ_COMPANIES[parseInt(idx)],
+                    count: compCounts[idx]
+                };
+            }).sort((a, b) => b.count - a.count).slice(0, 25);
+
+            companyChartInst.data.labels = topComps.map(c => c.name.length > 25 ? c.name.substring(0, 22) + '...' : c.name);
+            companyChartInst.data.datasets[0].data = topComps.map(c => c.count);
+            companyChartInst.update();
+        }
+
+        // Render table page content
+        function renderTable() {
+            const tableBody = document.getElementById('tableBody');
+            const total = filteredRecords.length;
+            
+            tableBody.innerHTML = '';
+            document.getElementById('tableCount').textContent = `Gösterilen: ${total.toLocaleString()} staj`;
+
+            if (total === 0) {
+                tableBody.innerHTML = `<tr><td colspan="6" class="no-data-msg">Filtrelere uygun staj kaydı bulunamadı.</td></tr>`;
+                document.getElementById('paginationInfo').textContent = 'Kayıt yok';
+                document.getElementById('paginationButtons').innerHTML = '';
+                return;
+            }
+
+            const totalPages = Math.ceil(total / pageSize);
+            if (currentPage > totalPages) currentPage = totalPages;
+            if (currentPage < 1) currentPage = 1;
+
+            const startIdx = (currentPage - 1) * pageSize;
+            const endIdx = Math.min(startIdx + pageSize, total);
+
+            // Display Info
+            document.getElementById('paginationInfo').textContent = `${(startIdx + 1).toLocaleString()} - ${endIdx.toLocaleString()} arası gösteriliyor (Toplam ${total.toLocaleString()} kayıt)`;
+
+            // Slice data page
+            const pageRecords = filteredRecords.slice(startIdx, endIdx);
+
+            pageRecords.forEach(row => {
+                const tr = document.createElement('tr');
+                
+                const tdDept = document.createElement('td');
+                tdDept.textContent = STAJ_DEPARTMENTS[row[0]];
+                tdDept.title = STAJ_DEPARTMENTS[row[0]];
+                
+                const tdEntYear = document.createElement('td');
+                tdEntYear.textContent = row[1] > 0 ? row[1] : '-';
+                
+                const tdIntYear = document.createElement('td');
+                tdIntYear.textContent = row[2] > 0 ? row[2] : '-';
+                
+                const tdCompany = document.createElement('td');
+                tdCompany.textContent = STAJ_COMPANIES[row[3]];
+                tdCompany.title = STAJ_COMPANIES[row[3]];
+                
+                const tdCategory = document.createElement('td');
+                tdCategory.textContent = STAJ_CATEGORIES[row[4]];
+                tdCategory.title = STAJ_CATEGORIES[row[4]];
+                
+                const tdDuration = document.createElement('td');
+                tdDuration.textContent = row[5] > 0 ? `${row[5]} Gün` : '-';
+
+                tr.appendChild(tdDept);
+                tr.appendChild(tdEntYear);
+                tr.appendChild(tdIntYear);
+                tr.appendChild(tdCompany);
+                tr.appendChild(tdCategory);
+                tr.appendChild(tdDuration);
+
+                tableBody.appendChild(tr);
+            });
+
+            renderPaginationControls(totalPages);
+        }
+
+        // Draw pagination button items
+        function renderPaginationControls(totalPages) {
+            const container = document.getElementById('paginationButtons');
+            container.innerHTML = '';
+
+            // Previous button
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'pag-btn';
+            prevBtn.textContent = 'Önceki';
+            prevBtn.disabled = currentPage === 1;
+            prevBtn.onclick = () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderTable();
+                }
+            };
+            container.appendChild(prevBtn);
+
+            // Display page buttons (limit visible page buttons around active page)
+            const range = 2; // Pages to show before and after current
+            let startPage = Math.max(1, currentPage - range);
+            let endPage = Math.min(totalPages, currentPage + range);
+
+            if (startPage > 1) {
+                const btn1 = document.createElement('button');
+                btn1.className = 'pag-btn';
+                btn1.textContent = '1';
+                btn1.onclick = () => { currentPage = 1; renderTable(); };
+                container.appendChild(btn1);
+
+                if (startPage > 2) {
+                    const dots = document.createElement('span');
+                    dots.textContent = '...';
+                    dots.style.alignSelf = 'center';
+                    dots.style.margin = '0 4px';
+                    container.appendChild(dots);
+                }
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                const btn = document.createElement('button');
+                btn.className = `pag-btn ${i === currentPage ? 'active' : ''}`;
+                btn.textContent = i;
+                btn.onclick = () => { currentPage = i; renderTable(); };
+                container.appendChild(btn);
+            }
+
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    const dots = document.createElement('span');
+                    dots.textContent = '...';
+                    dots.style.alignSelf = 'center';
+                    dots.style.margin = '0 4px';
+                    container.appendChild(dots);
+                }
+
+                const btnLast = document.createElement('button');
+                btnLast.className = 'pag-btn';
+                btnLast.textContent = totalPages;
+                btnLast.onclick = () => { currentPage = totalPages; renderTable(); };
+                container.appendChild(btnLast);
+            }
+
+            // Next button
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'pag-btn';
+            nextBtn.textContent = 'Sonraki';
+            nextBtn.disabled = currentPage === totalPages;
+            nextBtn.onclick = () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderTable();
+                }
+            };
+            container.appendChild(nextBtn);
+        }
+
+        // Initialize Chart.js objects on layout canvases
+        function setupCharts() {
+            // Color palette
+            const colors = [
+                'rgba(0, 102, 204, 0.75)',  // Theme blue
+                'rgba(13, 148, 136, 0.75)',  // Teal
+                'rgba(79, 70, 229, 0.75)',   // Indigo
+                'rgba(239, 68, 68, 0.75)',   // Soft Red
+                'rgba(245, 158, 11, 0.75)',  // Amber
+                'rgba(14, 165, 233, 0.75)',  // Sky blue
+                'rgba(139, 92, 246, 0.75)',  // Violet
+                'rgba(148, 163, 184, 0.75)'   // Slate grey for others
+            ];
+
+            const borderColors = [
+                'rgb(0, 102, 204)',
+                'rgb(13, 148, 136)',
+                'rgb(79, 70, 229)',
+                'rgb(239, 68, 68)',
+                'rgb(245, 158, 11)',
+                'rgb(14, 165, 233)',
+                'rgb(139, 92, 246)',
+                'rgb(148, 163, 184)'
+            ];
+
+            // 1. Sector Chart
+            const ctxCat = document.getElementById('categoryChart').getContext('2d');
+            categoryChartInst = new Chart(ctxCat, {
+                type: 'doughnut',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        data: [],
+                        backgroundColor: colors,
+                        borderColor: borderColors,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                font: { size: 9 },
+                                boxWidth: 12
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 2. Trend Chart
+            const ctxTrend = document.getElementById('trendChart').getContext('2d');
+            trendChartInst = new Chart(ctxTrend, {
+                type: 'bar',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Staj Sayısı',
+                        data: [],
+                        backgroundColor: 'rgba(0, 102, 204, 0.7)',
+                        borderColor: 'rgb(0, 102, 204)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#eaeaea' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // 3. Company Chart
+            const ctxComp = document.getElementById('companyChart').getContext('2d');
+            companyChartInst = new Chart(ctxComp, {
+                type: 'bar',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Stajyer Sayısı',
+                        data: [],
+                        backgroundColor: 'rgba(13, 148, 136, 0.75)',
+                        borderColor: 'rgb(13, 148, 136)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: { color: '#eaeaea' }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: {
+                                font: { size: 9, weight: 'bold' }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Trigger updates when inputs change
+        function updateAll() {
+            applyFilters();
+            updateKPIs();
+            updateCharts();
+            currentPage = 1;
+            renderTable();
+        }
+
+        // Reset filter inputs to defaults
+        function resetFilters() {
+            document.getElementById('companySearch').value = '';
+            document.getElementById('departmentSelect').value = 'ALL';
+            document.getElementById('entranceYearSelect').value = 'ALL';
+            document.getElementById('internshipYearSelect').value = 'ALL';
+            document.getElementById('categorySelect').value = 'ALL';
+            updateAll();
+        }
+
+        // Initialize application when loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            initFilters();
+            setupCharts();
+            
+            // Set event listeners
+            document.getElementById('companySearch').addEventListener('input', updateAll);
+            document.getElementById('departmentSelect').addEventListener('change', updateAll);
+            document.getElementById('entranceYearSelect').addEventListener('change', updateAll);
+            document.getElementById('internshipYearSelect').addEventListener('change', updateAll);
+            document.getElementById('categorySelect').addEventListener('change', updateAll);
+            document.getElementById('resetFilters').addEventListener('click', resetFilters);
+
+            // Initial load
+            updateAll();
+        });
+    </script>
+</body>
+</html>
